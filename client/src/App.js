@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomePage from './frontpages/HomePage';
 import Login from './frontpages/login';
@@ -12,7 +13,6 @@ function App() {
         <Route path="/signup" element={<Register/>}/>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/admin" element={<AdminHomePage/>}/>
-      
       </Routes>
     </Router>
    </>
