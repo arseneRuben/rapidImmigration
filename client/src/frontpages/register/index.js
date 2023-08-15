@@ -1,12 +1,26 @@
 import React from 'react'
 import './index.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Input } from 'antd'
+import { Form, Input, message } from 'antd'
+import axios from 'axios'
 const Register = () => {
 
   const navigate = useNavigate()
   const onFinish = (values) => {
-    console.log('Received values of form: ', values)
+    try {
+      const res = axios.post('http://localhost:5000/api/user/signup', values)
+      if(res.data.success){
+        console.log(res)
+        message.success('Registered Successfully')
+        navigate('/signin')
+      } else {
+        message.error('Something went wrong')
+      }
+      
+    }catch(err) {
+      console.log(err)
+      message.error('Something went wrong')
+    }
   }
   return (
     <div className='d-flex align-items-center justify-content-center'>
