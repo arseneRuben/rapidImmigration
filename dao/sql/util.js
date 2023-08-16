@@ -8,5 +8,5 @@ export const writeJSONResponse = (request, response, result) => {
 }
 
 export const USER_ACCESS_LEVEL_ADMIN = 'admin'
-export const USER_ACCESS_LEVEL_USER = 'user'
+export const USER_ACCESS_LEVEL_CONSULTANT = 'consultant'
 export const USER_ACCESS_LEVEL_CLIENT = 'client'

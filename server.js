@@ -3,6 +3,8 @@ import express from 'express'
 import colors from 'colors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import bodyParser from 'body-parser'
 
 
 
@@ -10,18 +12,21 @@ import dotenv from 'dotenv'
 
 // ROUTES
 import userRoutes from './routes/user.js'
+
 // dotenv config
 dotenv.config()
 // rest object 
 const app = express()
+app.use(express.json())
+app.use(cors())
 
 //middlewares
-app.use(express.json())
-app.use(morgan('dev'))
+//app.use(express)
+//app.use(morgan('dev'))
 
 // routes
 // ROUTES
-app.use('api/users/signup', userRoutes)
+app.use('/api/users', userRoutes)
 
 
 // Listen port 

@@ -1,25 +1,34 @@
 import { connect, query, disconnect } from '../connectors/daoMySql.js'
-import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
+import { CONTENT_TYPE_JSON, HTTP_OK, USER_ACCESS_LEVEL_CLIENT } from './util.js'
 import bcrypt from 'bcrypt'
 export const createUser = async (req, res) => {
     try {
         connect()
-        query('SELECT * FROM users WHERE email=$1', [req.body.email], (result) => {
+        query('SELECT * FROM users WHERE email = ?', [req.body.email], (result) => {
+          
             if (result.length > 0) {
                 res.status(404).json({ message: 'User already exists' })
             } else {
-                query('INSERT INTO users (email, password,access_level) VALUES ($1, $2, $3, $4)', 
-                                    [ req.body.email, bcrypt.hashSync(req.body.password, 10),req.body.access_level], function () {
+                query('INSERT INTO users (email, password,access_level) VALUES (?, ?, ?)', 
+                                    [ req.body.email, bcrypt.hashSync(req.body.password, 10), USER_ACCESS_LEVEL_CLIENT], function () {
+                    res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+                    res.end(JSON.stringify({ message: 'User created' }, null, 4))
+                    
                 }) 
+                disconnect()
             }
-            disconnect()
+          
         })
+       
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
 }
 
 export const getUsers = async (req, res) => {
+   
+
+
     try {
         connect()
         query('SELECT * FROM users', [], (resp) => {
@@ -48,9 +57,11 @@ export const updateUser = async (req, res) => {
 
 
 export const getUserById = async (req, res) => {
-    try {
+   
+   try {
         connect()
-        query('SELECT * FROM users  WHERE id=$1', [req.params.user_id], (resp) => {
+        
+        query('SELECT * FROM users  WHERE id=?', [req.params.id], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
 

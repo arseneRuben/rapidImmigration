@@ -8,27 +8,34 @@ const Register = () => {
   const navigate = useNavigate()
   const onFinish = (values) => {
     try {
-      const res = axios.post('http://localhost:5000/api/user/signup', values)
-      if(res.data.success){
-        console.log(res)
-        message.success('Registered Successfully')
-        navigate('/signin')
-      } else {
+      if(values.password === values.confirmPassword) {
+        axios.post('/api/users/signup', values) 
+        .then(function (response) {
+          if(response.status === 200){
+            message.success(response.data.message)
+            navigate('/signin')
+          } else {
+            message.error(response.data.message)
+          }
+        })
+        .catch(function (error) {
+          message.error(error.response.data.message)
+        });
+          
+          
+        } else {
+          message.error('Passwords do not match') 
+        }
+      }catch(err) {
+        
         message.error('Something went wrong')
       }
-      
-    }catch(err) {
-      console.log(err)
-      message.error('Something went wrong')
-    }
   }
   return (
     <div className='d-flex align-items-center justify-content-center'>
       <Form layout='vertical' onFinish={onFinish} className='card p-4 w-30'>
         <h1 className='text-center'> Sign Up</h1>
-        <Form.Item label='Username' name='username'>
-          <Input type='text' required />
-        </Form.Item>
+      
         <Form.Item label='Email' name='email'>
           <Input type='email' required />
         </Form.Item>
