@@ -1,0 +1,32 @@
+import React from 'react'
+
+const TopBar = () => {
+  return (
+   
+    <div className="container-fluid bg-secondary ps-5 pe-0 d-none d-lg-block">
+    <div className="row gx-0">
+        <div className="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+            <div className="d-inline-flex align-items-center">
+                <a className="text-body py-2 pe-3 border-end" href="/"><small>FAQs</small></a>
+                <a className="text-body py-2 px-3 border-end" href=""><small>Support</small></a>
+                <a className="text-body py-2 px-3 border-end" href=""><small>Privacy</small></a>
+                <a className="text-body py-2 px-3 border-end" href=""><small>Policy</small></a>
+                <a className="text-body py-2 ps-3" href=""><small>Career</small></a>
+            </div>
+        </div>
+        <div className="col-md-6 text-center text-lg-end">
+            <div className="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
+                <div className="me-3 pe-3 border-end py-2">
+                    <p className="m-0"><i className="fa fa-envelope-open me-2"></i>info@example.com</p>
+                </div>
+                <div className="py-2">
+                    <p className="m-0"><i className="fa fa-phone-alt me-2"></i>+012 345 6789</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  )
+}
+
+export default TopBar

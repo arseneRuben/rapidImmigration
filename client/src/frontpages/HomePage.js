@@ -1,8 +1,17 @@
 import React from 'react'
+import TopBar from '../components/topBar'
+import NavBar from '../components/navBar'
+import { Footer } from 'antd/es/layout/layout'
 
 const HomePage = () => {
   return (
-    <h1 className='h1 bg-black'>HomePage</h1>
+    <>
+    
+      
+      <TopBar />
+      <NavBar />
+      <Footer />
+    </>
   )
 }
 
