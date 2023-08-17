@@ -28,7 +28,6 @@ app.use(cors())
 // ROUTES
 app.use('/api/users', userRoutes)
 
-
 // Listen port 
 const port = process.env.PORT || 8080
 app.listen(port, () => {

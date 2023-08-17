@@ -6,7 +6,7 @@ import axios from 'axios'
 const Register = () => {
 
   const navigate = useNavigate()
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     try {
       if(values.password === values.confirmPassword) {
         axios.post('/api/users/signup', values) 

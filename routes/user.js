@@ -1,4 +1,4 @@
-import { createUser, deleteUser, getUserById, getUsers } from '../dao/sql/user.js'
+import { createUser, deleteUser, getUser, getUserById, getUsers } from '../dao/sql/user.js'
 import express from 'express'
 const router = express.Router()
 /* READ */
@@ -7,6 +7,7 @@ router.get('/:id', getUserById)
 
 /* CREATE */
 router.post('/signup', createUser)
+router.post('/signin', getUser)
 /* UPDATE */
 
 /* DELETE */
