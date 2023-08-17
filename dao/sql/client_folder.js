@@ -1,25 +1,18 @@
 import { connect, query, disconnect } from '../connectors/daoMySql.js'
 import { CONTENT_TYPE_JSON, HTTP_OK, USER_ACCESS_LEVEL_CLIENT } from './util.js'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+
 
 
 //Register an user
-export const createUser = async (req, res) => {
+export const createFolder = async (req, res) => {
     try {
         connect()
-        query('SELECT * FROM users WHERE email = ?', [req.body.email], (result) => {
-            if (result.length > 0) {
-                res.status(404).json({ message: 'User already exists', success: false  })
-            } else {
-                query('INSERT INTO users (email, password,access_level) VALUES (?, ?, ?)', 
-                                    [ req.body.email, bcrypt.hashSync(req.body.password, 10), USER_ACCESS_LEVEL_CLIENT], function () {
-                    res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                    res.end(JSON.stringify({ message: 'User created', success: true  }, null, 4))
-                }) 
-                disconnect()
-            }
-        })
+        query('INSERT INTO client_folders (folder_name, folder_path,  client_id, consultant_id, current_step, statut) VALUES (?, ?, ?, ?, ?, ?)',
+            [req.body.folder_name, req.body.folder_path, req.body.client_id, req.body.consultant_id,req.body.current_step, req.body.statut  ], function () {
+                res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+                res.end(JSON.stringify({ message: 'Folder created', success: true }, null, 4))
+            })
+        disconnect()
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
@@ -53,12 +46,10 @@ export const updateUser = async (req, res) => {
 }
 
 
-export const getUserById = async (req, res) => {
-   
+export const getFolderById = async (req, res) => {
    try {
         connect()
-        
-        query('SELECT * FROM users  WHERE id=?', [req.params.id], (resp) => {
+        query('SELECT * FROM client_folders  WHERE id=?', [req.params.id], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
 
@@ -68,35 +59,32 @@ export const getUserById = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
-// Authenticate an user
-export const getUser = async (req, res) => {
+export const getFoldersByUser = async (req, res) => {
     try {
-       
         connect()
-
-        query('SELECT * FROM users  WHERE email=?', [req.body.email], (result) => {
-             
-            if (result.length <= 0) {
-              return res.status(200).json({ message: 'user not found', success: false })
-            } else {
-                if (bcrypt.compareSync(req.body.password, result[0].password)) {
-                    const token = jwt.sign({ id: result[0].id }, process.env.JWT_SECRET, {
-                        expiresIn: 86400 // expires in 24 hours
-                    })
-                    res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                    //res.status(HTTP_OK).json({ auth: true, token: token, success: true })
-                    res.end(JSON.stringify({ auth: true, token: token, success: true, access_level:result[0].access_level}, null, 4))
-                } else { 
-                    res.status(404).json({ message: 'Invalid email or password', success: false  })
-                }
-            }
-            
+        query('SELECT * FROM client_folders  WHERE client_id=?', [req.params.client_id], (result) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))  
             disconnect()
         })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
 }
+
+export const getFoldersByConsultant = async (req, res) => {
+    try {
+        connect()
+        query('SELECT * FROM client_folders  WHERE consultant_id=?', [req.params.consultant_id], (result) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))  
+            disconnect()
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
 
 export const deleteUser = async (req, res) => {
     try {

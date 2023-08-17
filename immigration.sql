@@ -32,13 +32,18 @@ CREATE TABLE users
     (
         id INT
         AUTO_INCREMENT PRIMARY KEY,
+         foler_name VARCHAR
+        (100),
+         foler_path VARCHAR
+        (255),
     client_id INT,
     consultant_id INT,
     current_step VARCHAR
         (100),
     statut VARCHAR
         (50),
-    created_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
     -- Autres informations sur le dossier
     FOREIGN KEY
         (client_id) REFERENCES users
