@@ -1,9 +1,9 @@
 import React, { Component }  from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import HomePage from './frontpages/HomePage';
+import FrontPages from './frontpages';
 import Login from './frontpages/login';
 import Register from './frontpages/register';
-import AdminHomePage from './adminpages/HomePage';
+import AdminHomePages from './adminpages';
 function App() {
   return (
    <>
@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/signin" element={<Login/>}/>
         <Route path="/signup" element={<Register/>}/>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/admin" element={<AdminHomePage/>}/>
+        <Route path="/" element={<FrontPages/>}/>
+        <Route path="/admin" element={<AdminHomePages/>}/>
       </Routes>
     </Router>
    </>

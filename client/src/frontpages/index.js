@@ -3,7 +3,7 @@ import TopBar from '../components/topBar'
 import NavBar from '../components/navBar'
 import { Footer } from 'antd/es/layout/layout'
 
-const HomePage = () => {
+const FrontPages = () => {
   return (
     <>
     
@@ -15,4 +15,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default FrontPages
