@@ -24,6 +24,7 @@ h6,
     font-weight: 500 !important;
 }
 
+
 .pt-6 {
     padding-top: 90px;
 }
@@ -109,7 +110,7 @@ h6,
 }
 
 @media (max-width: 991.98px) {
-    .navbar-light .navbar-nav .nav-link  {
+    .navbar-light .navbar-nav .nav-link {
         padding: 10px 0;
     }
 }
@@ -220,7 +221,7 @@ h6,
 }
 
 .testimonial-carousel .owl-nav .owl-prev,
-.testimonial-carousel .owl-nav .owl-next{
+.testimonial-carousel .owl-nav .owl-next {
     position: relative;
     margin: 0 5px;
     width: 45px;

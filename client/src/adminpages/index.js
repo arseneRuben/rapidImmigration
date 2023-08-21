@@ -1,13 +1,18 @@
 import React from 'react'
-import SideBar from '../components/sidebar'
+import NavSide from '../components/navSide'
 import TopNavigation from '../components/topNavigation'
+import PageWrapper from '../components/pageWrapper'
+
+
+import '../styles/backend/custom.css'
 
 const AdminPages = () => {
   return (
-    <div id="wrapper">   
-       <SideBar/>
-      <TopNavigation/>
-    </div>
+    <>  
+      <TopNavigation/> 
+      <NavSide/>
+      <PageWrapper/>
+    </>
   )
 }
 

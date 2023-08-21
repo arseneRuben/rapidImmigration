@@ -18,10 +18,10 @@ export const createFolder = async (req, res) => {
     }
 }
 
-export const getUsers = async (req, res) => {
+export const getClientFolders = async (req, res) => {
     try {
         connect()
-        query('SELECT * FROM users', [], (resp) => {
+        query('SELECT * FROM client_folders', [], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
             disconnect()
@@ -31,18 +31,19 @@ export const getUsers = async (req, res) => {
     }
 }
 
-export const updateUser = async (req, res) => {
+export const updateFolder = async (req, res) => {
     try {
         connect()
-        query('UPDATE users SET lastname=$1, firstname=$2, email=$3, password=$4, profile_image=$5, phone_number=$6, google_id=$7, access_level=$8 WHERE user_id=$9',
-            [req.body.lastname, req.body.firstname, req.body.email, req.body.password, req.body.profile_image, req.body.phone_number, req.body.google_id, req.body.access_level, req.params.user_id], (result) => {
+        query('UPDATE client_folders SET folder_name=?, folder_path=?,  client_id=?, consultant_id=?, current_step=?, statut=?, updated_at WHERE id=?',
+            [req.body.folder_name, req.body.folder_path, req.body.client_id, req.body.consultant_id,req.body.current_step, req.body.statut, req.params.id, Date.now()], function () {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                res.end(JSON.stringify(result, null, 4))
-                disconnect()
+                res.end(JSON.stringify({ message: 'Folder updated', success: true }, null, 4))
             })
+        disconnect()
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
+   
 }
 
 
@@ -59,7 +60,7 @@ export const getFolderById = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
-export const getFoldersByUser = async (req, res) => {
+export const getFoldersByClient = async (req, res) => {
     try {
         connect()
         query('SELECT * FROM client_folders  WHERE client_id=?', [req.params.client_id], (result) => {
@@ -86,10 +87,22 @@ export const getFoldersByConsultant = async (req, res) => {
 }
 
 
-export const deleteUser = async (req, res) => {
+export const deleteFolder = async (req, res) => {
     try {
         connect()
-        query('DELETE  FROM users WHERE user_id=$1', [req.params.id], (result) => {
+        query('DELETE  FROM client_folders WHERE id=$1', [req.params.client_id], (result) => {
+            req.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            disconnect()
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+export const deleteFolderByClient = async (req, res) => {
+    try {
+        connect()
+        query('DELETE  FROM client_folders WHERE client_id=$1', [req.params.client_id], (result) => {
             req.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             disconnect()
         })

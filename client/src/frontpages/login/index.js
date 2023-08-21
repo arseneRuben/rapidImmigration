@@ -3,6 +3,9 @@ import './index.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { Form, Input, message } from 'antd'
 import axios from 'axios'
+import TopBar from '../../components/topBar'
+import { Footer } from 'antd/es/layout/layout'
+import NavBar from '../../components/navBar'
 const Login = () => {
 
   const navigate = useNavigate()
@@ -27,7 +30,10 @@ const Login = () => {
     }
   }
   return (
-    <div className='d-flex align-items-center justify-content-center'>
+    <>
+    <TopBar />
+    <NavBar />
+    <div className='d-flex align-items-center justify-content-center  p-5'>
       <Form layout='vertical' onFinish={onFinish} className='card p-4 w-30'>
         <h1 className='text-center'> Sign In </h1>
      
@@ -42,6 +48,8 @@ const Login = () => {
         <button type='submit' className='btn btn-primary'>Login</button>
       </Form>
     </div>
+    <Footer />
+    </>
   )
 }
 
