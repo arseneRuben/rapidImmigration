@@ -1,12 +1,28 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import NewFolder from '../../folder/new';
 
 const PageWrapper = () => {
+    function Title({ pathname }) {
+        switch(pathname) {
+          case '/admin':
+            return "Dashboard"
+          case '/folders/new':
+            return "New Folder"
+          case 'error':
+            return "Error"
+          default:
+            return null
+        }
+      }
+    const location = useLocation();
+    console.log(location.pathname);
   return (
     <div id="page-wrapper">
         <div id="page-inner">
             <div className="row">
-                <div className="col-md-12">
-                    <h2>Admin Dashboard</h2>
+                <div className="col-md-12 text-center">
+                    <h2><Title pathname={location.pathname}/></h2>
                 </div>
             </div>
         
@@ -25,6 +41,12 @@ const PageWrapper = () => {
                         </div>
                     </div>
                 </div>
+               
+                <div className="col-md-6">
+                   <NewFolder />
+
+
+                </div>
                 <div className="col-md-3 col-sm-3 col-xs-6">
                     <h5>Widget Box Two</h5>
                     <div className="alert alert-info text-center">
@@ -32,30 +54,6 @@ const PageWrapper = () => {
                         <h3>100$ </h3>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </div>
-                </div>
-                <div className="col-md-6">
-                    <h5>Buttons Samples</h5>
-                    <a href="#" className="btn btn-default">default</a>
-                    <a href="#" className="btn btn-primary">primary</a>
-                    <a href="#" className="btn btn-danger">danger</a>
-                    <a href="#" className="btn btn-success">success</a>
-                    <a href="#" className="btn btn-info">info</a>
-                    <a href="#" className="btn btn-warning">warning</a>
-                    <br />
-                    <br />
-                    <h5>Progressbar Samples</h5>
-                    <div className="progress progress-striped row">
-                        <div className="progress-bar progress-bar-success col-4" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
-                            <span className="sr-only">40% Complete (success)</span>
-                        </div>
-                    </div>
-                    <div className="progress progress-striped active row">
-                        <div className="progress-bar progress-bar-primary col-5" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" >
-                            <span className="sr-only">20% Complete</span>
-                        </div>
-                    </div>
-
-
                 </div>
 
             </div>

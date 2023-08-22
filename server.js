@@ -12,6 +12,7 @@ import bodyParser from 'body-parser'
 
 // ROUTES
 import userRoutes from './routes/user.js'
+import folderRoutes from './routes/user.js'
 
 // dotenv config
 dotenv.config()
@@ -27,7 +28,7 @@ app.use(cors())
 // routes
 // ROUTES
 app.use('/api/users', userRoutes)
-
+app.use('/api/folders', folderRoutes)
 // Listen port 
 const port = process.env.PORT || 8080
 app.listen(port, () => {

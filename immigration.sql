@@ -19,6 +19,7 @@ CREATE TABLE users
     phone_number  VARCHAR
     (100),
     google_id int,
+    gender int,
     access_level ENUM
     ('admin','consultant', 'client') DEFAULT 'client'
 
@@ -43,7 +44,8 @@ CREATE TABLE users
     statut VARCHAR
         (50),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+    updated_at DATETIME ON
+        UPDATE CURRENT_TIMESTAMP,
     -- Autres informations sur le dossier
     FOREIGN KEY
         (client_id) REFERENCES users

@@ -33,7 +33,7 @@ const NavSide = () => {
                         <a href="#"><FontAwesomeIcon icon={faTable} /></a>
                     </li>
                     <li className=' nav-item  p-2  m-2 '>
-                        <a href="#"><FontAwesomeIcon icon={faEdit} /> </a>
+                         <NavLink to='../folders/new'  className=' bg-light text-dark' ><FontAwesomeIcon icon={faEdit} /> </NavLink>
                     </li>
 
                      {/*
