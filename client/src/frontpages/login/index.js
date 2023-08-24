@@ -6,12 +6,18 @@ import axios from 'axios'
 import TopBar from '../../components/topBar'
 import { Footer } from 'antd/es/layout/layout'
 import NavBar from '../../components/navBar'
+import {useDispatch} from 'react-redux'
+import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+
 const Login = () => {
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const onFinish = async (values) => {
     try {
+      dispatch(showLoading())
       const res = await axios.post('/api/users/signin', values)
+      dispatch(hideLoading())
       if(res.data.success) {
         localStorage.setItem('token', res.data.token) 
         message.success('Login success')
@@ -26,7 +32,9 @@ const Login = () => {
       }
      
     } catch (error) {
+      dispatch(hideLoading())
       console.log(error)
+      message.error("Somethind wne wrong")
     }
   }
   return (

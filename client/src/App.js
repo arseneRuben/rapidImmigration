@@ -4,11 +4,16 @@ import FrontPages from './frontpages';
 import Login from './frontpages/login';
 import Register from './frontpages/register';
 import AdminPages from './adminpages';
+import {useSelector} from "react-redux"
+import { Spinner } from 'react-bootstrap';
 function App() {
+  const {loading} = useSelector(state => state.alerts)
   return (
    <>
     <Router>
+      {loading && <Spinner/>}
       <Routes>
+
         <Route path="/signin" element={<Login/>}/>
         <Route path="/signup" element={<Register/>}/>
         <Route path="/" element={<FrontPages/>}/>

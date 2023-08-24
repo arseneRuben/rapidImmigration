@@ -6,12 +6,18 @@ import axios from 'axios'
 import TopBar from '../../components/topBar'
 import { Footer } from 'antd/es/layout/layout'
 import NavBar from '../../components/navBar'
+import {useDispatch} from 'react-redux'
+import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+
 const Register = () => {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const onFinish = async(values) => {
     try {
       if(values.password === values.confirmPassword) {
+        dispatch(showLoading())
         axios.post('/api/users/signup', values) 
         .then(function (response) {
           if(response.status === 200){
@@ -24,7 +30,8 @@ const Register = () => {
         .catch(function (error) {
           message.error(error.response.data.message)
         });
-          
+        dispatch(hideLoading())
+
           
         } else {
           message.error('Passwords do not match') 
