@@ -13,6 +13,7 @@ function App() {
         <Route path="/signup" element={<Register/>}/>
         <Route path="/" element={<FrontPages/>}/>
         <Route path="/admin" element={<AdminPages/>}/>
+        <Route path="/profile" element={<AdminPages/>}/>
         <Route path="/folders/new" element={<AdminPages/>}/>
       </Routes>
     </Router>

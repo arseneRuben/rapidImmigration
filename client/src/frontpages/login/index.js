@@ -13,10 +13,10 @@ const Login = () => {
     try {
       const res = await axios.post('/api/users/signin', values)
       if(res.data.success) {
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('token', res.data.token) 
         message.success('Login success')
         if(res.data.access_level === 'client') {
-          navigate('/')
+           navigate('/')
         }
         else{
            navigate('/admin')

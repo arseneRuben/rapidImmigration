@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faBarChart, faDesktop, faEdit, faEnvelopeOpen, faPhoneAlt, faQrcode, faSitemap, faTable, faTachometerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown, faBarChart, faDesktop, faEdit, faEnvelopeOpen, faPhoneAlt, faQrcode, faSitemap, faTable, faTachometerAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import user from '../../img/user.jpg'
 import { NavLink } from 'react-router-dom'
 const NavSide = () => {
@@ -13,6 +13,9 @@ const NavSide = () => {
                     </li>
                     <li className=' nav-item p-1 m-2 '>
                     <NavLink to='/admin' className=' bg-light text-dark'> <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
+                    </li>
+                    <li className=' nav-item p-1 m-2 '>
+                    <NavLink to='/profile' className=' bg-light text-dark'> <FontAwesomeIcon icon={faUserEdit} /></NavLink> 
                     </li>
                    {/*<li className=' nav-item '>
                         <a href="#"><FontAwesomeIcon icon={faEdit} />UI Elements<span className="fa arrow"></span></a>

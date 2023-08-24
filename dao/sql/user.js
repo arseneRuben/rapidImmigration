@@ -53,6 +53,28 @@ export const updateUser = async (req, res) => {
 }
 
 
+
+export const authUserData = async (req, res) => {
+   
+    try {
+         const user = getUserById(req.body.userId)
+         if(!user) {
+             return res.status(200).json({ message: 'User not found', success:false })
+         } else {
+                res.status(200).json({  success:true, 
+                    data:   {
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        email: user.email,
+                        phone_number: user.phone_number,
+                    }
+                }) 
+         }
+     } catch (error) {
+         res.status(500).json({ message: "Auth error", success:false, error })
+     }
+ }
+
 export const getUserById = async (req, res) => {
    
    try {
@@ -71,11 +93,8 @@ export const getUserById = async (req, res) => {
 // Authenticate an user
 export const getUser = async (req, res) => {
     try {
-       
         connect()
-
         query('SELECT * FROM users  WHERE email=?', [req.body.email], (result) => {
-             
             if (result.length <= 0) {
               return res.status(200).json({ message: 'user not found', success: false })
             } else {
@@ -85,12 +104,11 @@ export const getUser = async (req, res) => {
                     })
                     res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                     //res.status(HTTP_OK).json({ auth: true, token: token, success: true })
-                    res.end(JSON.stringify({ auth: true, token: token, success: true, access_level:result[0].access_level}, null, 4))
+                    res.end(JSON.stringify({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0]}, null, 4))
                 } else { 
                     res.status(404).json({ message: 'Invalid email or password', success: false  })
                 }
             }
-            
             disconnect()
         })
     } catch (error) {

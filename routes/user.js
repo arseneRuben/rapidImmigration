@@ -1,5 +1,6 @@
-import { createUser, deleteUser, getUser, getUserById, getUsers, updateUser } from '../dao/sql/user.js'
+import { createUser, deleteUser, getUser, getUserById, getUsers, updateUser,authUserData } from '../dao/sql/user.js'
 import express from 'express'
+import authMiddleware from '../middlewares/authMiddleware.js'
 const router = express.Router()
 /* READ */
 router.get('/', getUsers)
@@ -8,6 +9,7 @@ router.get('/:id', getUserById)
 /* CREATE */
 router.post('/signup', createUser)
 router.post('/signin', getUser)
+router.post('/userdata', authMiddleware, authUserData)
 /* UPDATE */
 router.put('/:id', updateUser)
 /* DELETE */

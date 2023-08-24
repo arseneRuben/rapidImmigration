@@ -1,12 +1,28 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NewFolder from '../../folder/new';
+import PersonnalInfo from '../folder/steps/PersonnalInfo';
+import axios from 'axios'
 
 const PageWrapper = () => {
+    const location = useLocation();
+
+    const personnalInfoData ={
+        first_name: "Arsene",
+        last_name: "Lupin",
+        gender: "0",
+        passport_number: "45d5656",
+        email: "fopoar@gmail.com",
+        password: "p",
+        profile_image: "testimonial-1.jpg",
+    }
+
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
             return "Dashboard"
+          case '/profile':
+            return "Edit profile"
           case '/folders/new':
             return "New Folder"
           case 'error':
@@ -15,8 +31,49 @@ const PageWrapper = () => {
             return null
         }
       }
-    const location = useLocation();
-    console.log(location.pathname);
+
+      const handleChange = (name) => (e) => {
+        console.log(e)
+        
+      };
+
+      const handleSave = async (event) => {
+        try {
+            console.log(event)
+          //const res = await axios.post('/api/users/update', event)
+          /*if(res.data.success) {
+            localStorage.setItem('token', res.data.token)
+            message.success('Login success')
+            if(res.data.access_level === 'client') {
+              navigate('/')
+            }
+            else{
+               navigate('/admin')
+            }
+          }else {
+            message.error(res.data.message)
+          } */
+         
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    
+    
+      function MainComponent({ pathname }) {
+        switch(pathname) {
+          case '/admin':
+            return  <NewFolder />
+            case '/profile':
+            return <PersonnalInfo handleChange={handleChange} />
+          case '/folders/new':
+            return <NewFolder />
+          case '/error':
+            return "Error"
+          default:
+            return null
+        }
+      }
   return (
     <div id="page-wrapper">
         <div id="page-inner">
@@ -25,8 +82,7 @@ const PageWrapper = () => {
                     <h2><Title pathname={location.pathname}/></h2>
                 </div>
             </div>
-        
-            <hr />
+           
             <div className="row">
                 <div className="col-md-3 col-sm-3 col-xs-6">
                     <h5>Widget Box One</h5>
@@ -37,15 +93,12 @@ const PageWrapper = () => {
                         </div>
                         <div className="panel-footer back-footer-blue">
                             Disk Space Available
-                        
                         </div>
                     </div>
                 </div>
-               
-                <div className="col-md-6">
-                   <NewFolder />
-
-
+                <div className="col-md-6 card">
+                   <MainComponent  pathname={location.pathname}   />
+                   {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>}
                 </div>
                 <div className="col-md-3 col-sm-3 col-xs-6">
                     <h5>Widget Box Two</h5>
@@ -54,6 +107,7 @@ const PageWrapper = () => {
                         <h3>100$ </h3>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </div>
+                   
                 </div>
 
             </div>

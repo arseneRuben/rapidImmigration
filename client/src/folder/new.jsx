@@ -12,12 +12,12 @@ const NewFolder = () => {
     lastname: "",
     gender: "",
     passport_number: "",
-
     email: "",
     password: "",
     profile_image: "",
     phone_number: "",
     state: "",
+    street: "",
     city: "",
     address: "",
     zip_code: "",
@@ -27,13 +27,13 @@ const NewFolder = () => {
     birth_country: "",
     application_type: "",
     application_date: "",
-   
-   
     birth_certificate: "",
     passport: "",
-
-
-
+    resume: "",
+    other_documents: "",
+    marital_status: "",
+    spouse_name: "",
+    marriage_certificate: "",
   });
   const [step, setStep] = useState(1);
 
@@ -54,17 +54,27 @@ const NewFolder = () => {
   const handleChange = (name) => (e) => {
     console.log(e);
     setDatas({ ...datas, [name]: e.target.value });
-    
   };
 
+  const personnalInfoData = ()=> {
+    return {
+      firstname: datas.firstname,
+      lastname: datas.lastname,
+      gender: datas.gender,
+      passport_number: datas.passport_number,
+      email: datas.email,
+      password: datas.password,
+      profile_image: datas.profile_image,
+    }
+  }
 
   return (
-    <div className="bg-dark vh-100">
+    <div className=" vh-100">
       <div className="container d-flex justify-content-center align-items-center">
-        <div className="card p-3 w-100 mt-5">
+        <div className=" p-3 w-100 mt-5">
           {
             {
-              1: <PersonnalInfo handleChange={handleChange}  />,
+              1: <PersonnalInfo handleChange={handleChange} personnalInfoData={personnalInfoData} />,
               2: <ContactInfo handleChange={handleChange} />,
               3: <LocationInfo handleChange={handleChange} />,
               4: <FilesInfo handleChange={handleChange} />,

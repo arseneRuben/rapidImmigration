@@ -1,123 +1,117 @@
-import React, {useState, useEffect} from "react";
-import { Form } from "react-bootstrap";
-import { COUNTRIES } from "../../../js/frontend/country/countries";
+import React, {useState} from "react";
+import { Form , Row} from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 
-const PersonnalInfo = ({ handleChange }) => {
-  let citiesSelect = document.getElementById('birth_city')
-  const outputDiv = document.getElementById('output')
+ 
+
+const PersonnalInfo = ({ handleChange, personnalInfoData }) => {
+  const location = useLocation();
+ 
   
-  const [countries, setCountries] = useState([]);
-  let countriesSelect = document.getElementById('birth_country')
-  //citiesSelect.addEventListener('change', onCityChangeEventHandler)
-  useEffect(() => {
-    setCountries(true);
-    countriesSelect = document.getElementById('birth_country')
-    citiesSelect = document.getElementById('birth_city')
-    buildCountrieOptions()
-  }, []);
-
-  
-  
-
-  
- /* const  onCityChangeEventHandler = (event) => {
-    outputDiv.innerHTML = event.target.value
-  } */
-
-
-  const  buildOption = (value) => {
-    const option = document.createElement('option')
-    option.setAttribute('value', value)
-    option.appendChild(document.createTextNode(value))
-    return option
-  }
-  const buildCountrieOptions = () =>{
-    Object.keys(COUNTRIES).forEach(function (countrie) {
-        const option = buildOption(countrie)
-        countriesSelect = document.getElementById('birth_country')
-        countriesSelect.addEventListener('change', onCountriesChangeEventHandler)
-        countriesSelect.appendChild(option)
-    })
-  }
-
-  const onCountriesChangeEventHandler = (event) => {
-   
-    // Retire tout les éléments option
-    citiesSelect.innerHTML = null
-    // eslint-disable-next-line no-undef
-    COUNTRIES[event.target.value].forEach(function (city) {
-        const option = buildOption(city)
-        citiesSelect.appendChild(option)
-    })
-}
-
   return (
     <div className="d-flex flex-column align-items-center">
-      <h2>Personal Info</h2>
-      <Form.Group className="w-100 mt-2">
-        <Form.Control
-          placeholder="First Name"
-          onChange={handleChange("first_name")}
-          name="first_name"
-        />
+      <div className="row">
+        <div className="col-6">
+          <Form.Group className="w-100 mt-2">
+            <Form.Control
+              placeholder="First Name"
+              onChange={handleChange("first_name")}
+              name="first_name"
+            />
+          </Form.Group>
+        </div>
+        <div className="col-6">
+          <Form.Group className="w-100 mt-2 col-6">
+            <Form.Control
+              placeholder="Last Name"
+              onChange={handleChange("last_name")}
+              name="last_name"
+            />
+          </Form.Group>
+        </div>
+      </div>
+      
+         
+      <Form.Group  className="w-100 mt-2">
+        <div className="row">
+          <div className="col-6">
+            <Form.Label className="w-100 mt-2">Gender</Form.Label>
+          </div>
+          <div className="col-6">
+            <Form.Control
+              placeholder="Gender"
+              className="w-100 mt-2"
+              as="select"
+              sm="7"
+              onChange={handleChange("gender")}
+              name="gender"
+            >
+              <option value="0">Male</option>
+              <option value="1">Female</option>
+              <option value="2">Other</option>
+            </Form.Control>
+          </div>
+        </div>
       </Form.Group>
-      <Form.Group className="w-100 mt-2">
-        <Form.Control
-          placeholder="Last Name"
-          onChange={handleChange("last_name")}
-          name="last_name"
-        />
+          
+        
+        
+        
+          <Form.Group className="w-100 mt-2">
+            <div className="row">
+               <div className="col-6">
+                <Form.Label  sm="5">Birthday</Form.Label>
+                </div>
+                <div className="col-6">
+                  <Form.Control
+                    placeholder="Birth Date"
+                    onChange={handleChange("birth_date")}
+                    name="birth_date"
+                    type="date"
+                  /> 
+                   </div> 
+                </div>
+                </Form.Group>
+            
+               
+      
+      <div className="row">
+        <div className="col-6">
+          <Form.Group className="w-100 mt-2">
+            <Form.Control
+              placeholder="Email"
+              onChange={handleChange("email")}
+              name="email"
+              type="email"
+            />
+          </Form.Group>
+        </div>
+        <div className="col-6">
+          <Form.Group className="w-100 mt-2 col-6">
+            <Form.Control
+              placeholder="Password"
+              onChange={handleChange("password")}
+              name="password"
+              type="password"
+            />
+          </Form.Group>
+        </div>
+      </div>
+      <Form.Group className="w-100 m-2">
+        <div className="row">
+          <div className="col-3">
+            <Form.Label>Profil image</Form.Label>
+          </div>
+          <div className="col-9">
+            <Form.Control
+              type='file'
+              onChange={handleChange("profile_image")}
+              name="profile_image"
+            />
+          </div>
+        </div>
       </Form.Group>
-      <Form.Group className="w-100 mt-2">
-        <Form.Control
-          placeholder="First Name"
-          as="select"
-          onChange={handleChange("gender")}
-          name="gender"
-        >
-          <option>Male</option>
-          <option>Female</option>
-        </Form.Control>
-      </Form.Group>
-      <Form.Group className="w-100 mt-2">
-        <Form.Control
-          placeholder="Birth Date"
-          onChange={handleChange("birth_date")}
-          name="birth_date"
-        />  
-      </Form.Group>
-      <Form.Group className="w-100 m-3">
-      <Form.Control
-          placeholder="Birth Country"
-          as="select"
-          name="birth_country"
-          id="birth_country"
-          className="w-100 mt-2"
-          onChange={handleChange("birth_country")}
-        >
-      </Form.Control>
-      <Form.Control
-          placeholder="Birth City"
-          as="select"
-          name="birth_city"
-          id="birth_city"
-          className="w-100 mt-2"
-          onChange={handleChange("birth_city")}
-        >
-      </Form.Control>
-       
-    </Form.Group>
-                 
-      <Form.Group className="w-100 mt-2">
-        <Form.Control
-          placeholder="Passport Number"
-          onChange={handleChange("passport_number")}
-          name="passport_number"
-        />
-      </Form.Group>
-    
-     
     </div>
   );
 };

@@ -3,21 +3,78 @@ import { Form } from "react-bootstrap";
 
 const FilesInfo = ({ handleChange }) => {
   return (
-    <div className="d-flex flex-column align-items-center">
-      <h2>File Info</h2>
-      <Form.Group className="w-75 mt-4">
-        <Form.Control
-          placeholder="Passport"
-          onChange={handleChange("passport")}
-          name="passeport"
-        />
+    <div className="d-flex flex-column justify-content-around">
+      <h2 className='text-center m-2'>File Info</h2>
+      <Form.Group className="w-100 m-2">
+        <div className="row">
+          <div className="col-3">
+            <Form.Label>Passport</Form.Label>
+          </div>
+          <div className="col-9">
+            <Form.Control
+              type='file'
+              onChange={handleChange("passport")}
+              name="passeport"
+            />
+          </div>
+        </div>
       </Form.Group>
-      <Form.Group className="w-75 mt-4">
+      <Form.Group className="w-100 m-2">
+        <div className="row">
+          <div className="col-3">
+            <Form.Label>Birth certificate</Form.Label>
+          </div>
+          <div className="col-9">
+            <Form.Control
+              type='file'
+              onChange={handleChange("birth_certificate")}
+              name="birth_certificate"
+            />
+          </div>
+        </div>
+      </Form.Group>
+      <Form.Group className="w-100 m-2">
+      <div className="row">
+          <div className="col-3">
+              <Form.Label>Marriage certificate</Form.Label>
+            </div>
+            <div className="col-9">
+              <Form.Control
+                type='file'
+                onChange={handleChange("marriage_certificate")}
+                name="marriage_certificate"
+              />
+          </div>
+      </div>
+      </Form.Group>
+
+      <Form.Group className="w-100 m-2">
+      <div className="row">
+        <div className="col-3">
+         <Form.Label>Resume</Form.Label>
+        </div>
+        <div className="col-9">
+            <Form.Control
+              type='file'
+              onChange={handleChange("resume")}
+              name="resume"
+            />
+         </div>
+        </div>
+      </Form.Group>
+      <Form.Group className="w-100 m-2">
+      <div className="row">
+        <div className="col-3">
+        <Form.Label>Other document</Form.Label>
+        </div>
+        <div className="col-9">
         <Form.Control
-          placeholder="Birth certificate"
-          onChange={handleChange("birth_certificate")}
-          name="birth_certificate"
+          type='file'
+          onChange={handleChange("other_documents")}
+          name="other_documents"
         />
+          </div>
+        </div>
       </Form.Group>
     </div>
   )
