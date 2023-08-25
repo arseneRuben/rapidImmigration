@@ -2,18 +2,20 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faTachometerAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 
 
 const TopBar = () => {
+  const location = useLocation();
   return (
    
     <div className="container-fluid bg-secondary ps-5 pe-0 d-none d-lg-block">
     <div className="row gx-0">
         <div className="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
             <div className="d-inline-flex align-items-center">
-            <NavLink className="text-body py-2 pe-3 border-end" to="/"> <FontAwesomeIcon icon={faHomeAlt} /> </NavLink>
-            <NavLink className="text-body py-2 px-3 border-end" to="/admin"><FontAwesomeIcon icon={faTachometerAlt} /></NavLink>
-                <a className="text-body py-2 px-3 border-end" href=""><FontAwesomeIcon icon={faUserSecret} /></a>
+            <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/" && 'bg-primary-subtle'}` } to="/"> <FontAwesomeIcon icon={faHomeAlt} /> </NavLink>
+            <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } to="/admin"><FontAwesomeIcon icon={faTachometerAlt} /></NavLink>
+            <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } to="/profile"><FontAwesomeIcon icon={faUserSecret} /></NavLink>
                 <a className="text-body py-2 px-3 border-end" href=""><small>Policy</small></a>
                 <a className="text-body py-2 ps-3" href=""><small>Career</small></a>
             </div>
