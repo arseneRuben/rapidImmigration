@@ -8,8 +8,8 @@ import FilesInfo from '../components/folder/steps/FilesInfo';
 const NewFolder = () => {
 
   const [datas, setDatas] = useState({
-    firstname: "",
-    lastname: "",
+    first_name: "",
+    last_name: "",
     gender: "",
     passport_number: "",
     email: "",
@@ -57,8 +57,8 @@ const NewFolder = () => {
 
   const personnalInfoData = ()=> {
     return {
-      firstname: datas.firstname,
-      lastname: datas.lastname,
+      first_name: datas.first_name,
+      last_name: datas.last_name,
       gender: datas.gender,
       passport_number: datas.passport_number,
       email: datas.email,

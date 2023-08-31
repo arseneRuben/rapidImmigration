@@ -6,9 +6,9 @@ CREATE TABLE users
 (
     id INT NOT NULL
     AUTO_INCREMENT PRIMARY KEY,
-    lastname VARCHAR
+    last_name VARCHAR
     (100),
-    firstname VARCHAR
+    first_name VARCHAR
     (100),
     email VARCHAR
     (255) UNIQUE,
@@ -26,6 +26,16 @@ CREATE TABLE users
     
     -- Autres informations sur le client
 );
+
+    INSERT INTO `users` (`
+    id`,
+    `last_name
+    `, `first_name`, `email`, `password`, `profile_image`, `phone_number`, `google_id`, `access_level`) VALUES
+    (1, 'FOKAM', 'ARSENE', 'fopoar@gmail.com', '$2b$10$jXujKA2Wnj9JfNI/PXbpl.544rEb4trI3W3msojqQSnncGeaj7xOK', NULL, NULL, NULL, 'admin'),
+    (2, NULL, NULL, 'ruben@gmail.com', '$2b$10$0Bsy0JXgxlkzvoQ4zZEfxeFBjPQZ.ygynQOHlFimHI5gcTcM8r4Ti', NULL, NULL, NULL, 'consultant'),
+    (3, NULL, NULL, 'aminebenhassine@gmail.com', '$2b$10$DEyeZ3xp2xGQ98OsNmu4leSkBDWPNMW.0jahEmoWpgV5mCcdLV0/G', NULL, NULL, NULL, 'client'),
+    (4, 'OUABE', 'ALAIN', 'fopoar4@gmail.com', '$2b$10$118weumuFCC8AG4FSTDrKupAe19Zn//zCiB5PxxIkD7wLVtBr7de.', NULL, NULL, NULL, 'client');
+
 
 
     -- Création de la table Dossiers

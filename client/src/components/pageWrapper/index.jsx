@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 const PageWrapper = () => {
     const location = useLocation();
     const {user} = useSelector(state => state.user)
-    
+    console.log(user)
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
