@@ -5,9 +5,9 @@ import { useLocation } from "react-router-dom";
 
  
 
-const PersonnalInfo = ({ handleChange, personnalInfoData }) => {
+const PersonnalInfo = ({ handleChange, user }) => {
   const location = useLocation();
- 
+  console.log(user)
   
   return (
     <div className="d-flex flex-column align-items-center">

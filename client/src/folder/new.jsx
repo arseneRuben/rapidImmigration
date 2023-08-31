@@ -52,7 +52,6 @@ const NewFolder = () => {
   };
 
   const handleChange = (name) => (e) => {
-    console.log(e);
     setDatas({ ...datas, [name]: e.target.value });
   };
 

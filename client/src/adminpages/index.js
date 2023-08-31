@@ -10,13 +10,9 @@ const AdminPages = () => {
   const getUserData = async () => { 
     try {
       const token = localStorage.getItem('token')
-      const res = await axios.post('/api/users/signin', {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      })
-      axios.get('/api/users/user', { headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => {
+       axios.post('http://localhost:8080/api/users/userdata',{}, { 
+        headers: { Authorization: `Bearer ${token}` }
+       }).then((res) => {
           if (res.data.success) {
             localStorage.setItem('user', JSON.stringify(res.data.user))
           }

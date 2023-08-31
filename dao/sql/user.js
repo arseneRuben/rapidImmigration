@@ -55,21 +55,29 @@ export const updateUser = async (req, res) => {
 
 
 export const authUserData = async (req, res) => {
-   
     try {
-         const user = getUserById(req.body.userId)
-         if(!user) {
-             return res.status(200).json({ message: 'User not found', success:false })
-         } else {
-                res.status(200).json({  success:true, 
-                    data:   {
-                        first_name: user.first_name,
-                        last_name: user.last_name,
-                        email: user.email,
-                        phone_number: user.phone_number,
-                    }
-                }) 
-         }
+        connect()
+        query('SELECT * FROM users WHERE id = ?', [req.body.userId], (user) => {
+            if(!user) {
+                return res.status(200).json({ message: 'User not found', success:false })
+               
+            } else {
+                res.status(200).json({
+                    success: true,
+                    data: user[0],
+                  });
+                /*  return  res.status(200).json({ 
+                        success:true, 
+                        data:   {
+                            first_name: user.first_name,
+                            last_name: user.last_name,
+                            email: user.email,
+                            phone_number: user.phone_number,
+                        }
+                    }) 
+                    */
+            }
+        })
      } catch (error) {
          res.status(500).json({ message: "Auth error", success:false, error })
      }
@@ -96,19 +104,19 @@ export const getUser = async (req, res) => {
         connect()
         query('SELECT * FROM users  WHERE email=?', [req.body.email], (result) => {
             if (result.length <= 0) {
-              return res.status(200).json({ message: 'user not found', success: false })
-            } else {
-                if (bcrypt.compareSync(req.body.password, result[0].password)) {
-                    const token = jwt.sign({ id: result[0].id }, process.env.JWT_SECRET, {
-                        expiresIn: 86400 // expires in 24 hours
-                    })
-                    res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                    //res.status(HTTP_OK).json({ auth: true, token: token, success: true })
-                    res.end(JSON.stringify({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0]}, null, 4))
-                } else { 
-                    res.status(404).json({ message: 'Invalid email or password', success: false  })
-                }
+              return res.status(HTTP_OK).send({ message: 'user not found', success: false })
+            } 
+            if (!bcrypt.compareSync(req.body.password, result[0].password)) { 
+               return res.status(HTTP_OK).json({ message: 'Invalid email or password', success: false  })
             }
+
+            const token = jwt.sign({ id: result[0].id }, process.env.JWT_SECRET, {
+                expiresIn: "1d" // expires in 24 hours
+            })
+           // res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.status(HTTP_OK).send({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0] })
+           // res.end(JSON.stringify({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0]}, null, 4))
+            
             disconnect()
         })
     } catch (error) {

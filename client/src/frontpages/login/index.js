@@ -16,8 +16,9 @@ const Login = () => {
   const onFinish = async (values) => {
     try {
       dispatch(showLoading())
-      const res = await axios.post('/api/users/signin', values)
+      const res = await axios.post('http://localhost:8080/api/users/signin', values)
       dispatch(hideLoading())
+      
       if(res.data.success) {
         localStorage.setItem('token', res.data.token) 
         message.success('Login success')

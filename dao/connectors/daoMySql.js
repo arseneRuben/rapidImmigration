@@ -11,12 +11,13 @@ export function connect () {
         password: '',
         database: 'immigration'
     })
+   
     connection.connect((err) => {
         if (err) {
             console.log('Error connecting to Db')
             throw err
         }
-        console.log('Connection established')
+        console.log('Connection ESTABLISHED')
     })
 }
 
@@ -28,6 +29,7 @@ export function query (query, values, resultCallback) {
         resultCallback(result)
     })
 }
+
 export function disconnect () {
     console.log('Connection ENDED')
     connection.end()

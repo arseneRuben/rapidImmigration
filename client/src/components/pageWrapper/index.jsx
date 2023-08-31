@@ -2,21 +2,12 @@ import React from 'react'
 import { useLocation } from "react-router-dom";
 import NewFolder from '../../folder/new';
 import PersonnalInfo from '../folder/steps/PersonnalInfo';
-import axios from 'axios'
+import { useSelector } from 'react-redux';
 
 const PageWrapper = () => {
     const location = useLocation();
-
-    const personnalInfoData ={
-        first_name: "Arsene",
-        last_name: "Lupin",
-        gender: "0",
-        passport_number: "45d5656",
-        email: "fopoar@gmail.com",
-        password: "p",
-        profile_image: "testimonial-1.jpg",
-    }
-
+    const {user} = useSelector(state => state.user)
+    
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -65,7 +56,7 @@ const PageWrapper = () => {
           case '/admin':
             return  <NewFolder />
             case '/profile':
-            return <PersonnalInfo handleChange={handleChange} />
+            return <PersonnalInfo handleChange={handleChange}  user = {user}/>
           case '/folders/new':
             return <NewFolder />
           case '/error':
@@ -107,9 +98,7 @@ const PageWrapper = () => {
                         <h3>100$ </h3>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </div>
-                   
                 </div>
-
             </div>
         
             <hr />
@@ -169,7 +158,6 @@ const PageWrapper = () => {
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
                 <div className="col-md-6">
                     <h5>Table  Sample Two</h5>

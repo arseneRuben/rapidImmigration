@@ -18,7 +18,7 @@ const Register = () => {
     try {
       if(values.password === values.confirmPassword) {
         dispatch(showLoading())
-        axios.post('/api/users/signup', values) 
+        axios.post('http://localhost:8080/api/users/signup', values) 
         .then(function (response) {
           if(response.status === 200){
             message.success(response.data.message)
@@ -31,8 +31,6 @@ const Register = () => {
           message.error(error.response.data.message)
         });
         dispatch(hideLoading())
-
-          
         } else {
           message.error('Passwords do not match') 
         }
