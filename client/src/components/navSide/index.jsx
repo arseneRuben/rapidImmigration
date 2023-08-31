@@ -14,7 +14,7 @@ const NavSide = () => {
                        <img src={user} className="img-responsive img-fluid img-thumbnail" />
                     </li>
                     <li className=' nav-item p-1 m-2 '>
-                    <NavLink to='/admin' className=' bg-light text-dark'> <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
+                    <NavLink to='/admin' className={` bg-light text-dark  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
                     </li>
                     <li className=' nav-item p-1 m-2 '>
                     <NavLink to='/profile' className={` bg-light text-dark  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faUserEdit} /></NavLink> 
