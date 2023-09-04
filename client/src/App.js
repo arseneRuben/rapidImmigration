@@ -33,6 +33,11 @@ function App() {
               <FrontPages />
           </PublicRoute>
         }/>
+          <Route path="/signout" element={ 
+            <PublicRoute>
+              <FrontPages />
+          </PublicRoute>
+        }/>
 
         <Route path="/admin" element={  
           <ProtectedRoute>

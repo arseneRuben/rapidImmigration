@@ -1,12 +1,22 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faTachometerAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faSignOut, faTachometerAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 
 const TopBar = () => {
+  const handleLogout = (e) => {
+        e.preventDefault();
+        // Remove the token or session ID from localStorage
+        localStorage.removeItem('token');
+        // Redirect to the login page or perform any other desired actions
+        window.location.href = '/';
+  };
   const location = useLocation();
+  const {user} = useSelector((state) => state.user)
+
   return (
    
     <div className="container-fluid bg-secondary ps-5 pe-0 d-none d-lg-block">
@@ -16,6 +26,7 @@ const TopBar = () => {
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/" && 'bg-primary-subtle'}` } to="/"> <FontAwesomeIcon icon={faHomeAlt} /> </NavLink>
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } to="/admin"><FontAwesomeIcon icon={faTachometerAlt} /></NavLink>
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } to="/profile"><FontAwesomeIcon icon={faUserSecret} /></NavLink>
+            { user  && <a className="text-body py-2 px-3 border-end" onClick={handleLogout} href="#"><FontAwesomeIcon icon={faSignOut} /></a>}
                 <a className="text-body py-2 px-3 border-end" href=""><small>Policy</small></a>
                 <a className="text-body py-2 ps-3" href=""><small>Career</small></a>
             </div>

@@ -3,12 +3,8 @@ import { Form , Row} from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 
- 
-
-const PersonnalInfo = ({ handleChange, user }) => {
+const PersonnalInfo = ({ handleChange, user=null }) => {
   const location = useLocation();
-  console.log(user)
-  
   return (
     <div className="d-flex flex-column align-items-center">
       <div className="row">
@@ -16,8 +12,9 @@ const PersonnalInfo = ({ handleChange, user }) => {
           <Form.Group className="w-100 mt-2">
             <Form.Control
               placeholder="First Name"
-              onChange={handleChange("first_name")}
+              onChange= {handleChange("first_name")}
               name="first_name"
+              value={user && user.first_name}
             />
           </Form.Group>
         </div>
@@ -25,8 +22,9 @@ const PersonnalInfo = ({ handleChange, user }) => {
           <Form.Group className="w-100 mt-2 col-6">
             <Form.Control
               placeholder="Last Name"
-              onChange={handleChange("last_name")}
+              onChange= {handleChange("last_name")}
               name="last_name"
+              value={user && user.last_name}
             />
           </Form.Group>
         </div>
@@ -44,12 +42,13 @@ const PersonnalInfo = ({ handleChange, user }) => {
               className="w-100 mt-2"
               as="select"
               sm="7"
-              onChange={handleChange("gender")}
+              onChange= {handleChange("first_name")}
               name="gender"
+             
             >
-              <option value="0">Male</option>
-              <option value="1">Female</option>
-              <option value="2">Other</option>
+              <option selected={user && user.gender == 0} value="0">Male</option>
+              <option selected={user && user.gender == 1} value="1">Female</option>
+              <option selected={user && user.gender == 2} value="2">Other</option>
             </Form.Control>
           </div>
         </div>
@@ -66,9 +65,10 @@ const PersonnalInfo = ({ handleChange, user }) => {
                 <div className="col-6">
                   <Form.Control
                     placeholder="Birth Date"
-                    onChange={handleChange("birth_date")}
+                    onChange= {handleChange("first_name")}
                     name="birth_date"
                     type="date"
+                    value={user && user.birth_date}
                   /> 
                    </div> 
                 </div>
@@ -81,9 +81,10 @@ const PersonnalInfo = ({ handleChange, user }) => {
           <Form.Group className="w-100 mt-2">
             <Form.Control
               placeholder="Email"
-              onChange={handleChange("email")}
+              onChange= {handleChange("first_name")}
               name="email"
               type="email"
+              value={user && user.email}
             />
           </Form.Group>
         </div>
@@ -91,7 +92,7 @@ const PersonnalInfo = ({ handleChange, user }) => {
           <Form.Group className="w-100 mt-2 col-6">
             <Form.Control
               placeholder="Password"
-              onChange={handleChange("password")}
+              onChange= {handleChange("first_name")}
               name="password"
               type="password"
             />
@@ -106,8 +107,10 @@ const PersonnalInfo = ({ handleChange, user }) => {
           <div className="col-9">
             <Form.Control
               type='file'
-              onChange={handleChange("profile_image")}
+              accept="image/*"
+               onChange= {handleChange("first_name")}
               name="profile_image"
+             
             />
           </div>
         </div>

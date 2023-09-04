@@ -3,27 +3,27 @@ import PersonnalInfo from '../components/folder/steps/PersonnalInfo';
 import ContactInfo from '../components/folder/steps/ContactInfo';
 import LocationInfo from '../components/folder/steps/LocationInfo';
 import FilesInfo from '../components/folder/steps/FilesInfo';
+import { useSelector } from 'react-redux';
 
 
 const NewFolder = () => {
-
+  const {user} = useSelector(state => state.user)
   const [datas, setDatas] = useState({
-    first_name: "",
-    last_name: "",
+    first_name: user && user.firt_name,
+    last_name: user && user.last_name,
     gender: "",
     passport_number: "",
-    email: "",
+    email: user && user.email,
     password: "",
     profile_image: "",
     phone_number: "",
-    state: "",
-    street: "",
+    country: "",
     city: "",
+    street: "",
     address: "",
     zip_code: "",
     birth_date: "",
     birth_place: "",
-    birth_state: "",
     birth_country: "",
     application_type: "",
     application_date: "",
@@ -35,6 +35,7 @@ const NewFolder = () => {
     spouse_name: "",
     marriage_certificate: "",
   });
+
   const [step, setStep] = useState(1);
 
   const nextStep = () => {
@@ -51,21 +52,18 @@ const NewFolder = () => {
     }
   };
 
+ 
+
+  //Personal Info extraction
+  const {first_name, last_name, gender,birth_date, email, password, profile_image } = datas;
+  // Set PersonalInfo datas
+  const [userData, setUserData] = useState({first_name, last_name, gender,birth_date, email, password, profile_image });
   const handleChange = (name) => (e) => {
+    setUserData({ ...userData, [name]: e.target.value });
     setDatas({ ...datas, [name]: e.target.value });
   };
 
-  const personnalInfoData = ()=> {
-    return {
-      first_name: datas.first_name,
-      last_name: datas.last_name,
-      gender: datas.gender,
-      passport_number: datas.passport_number,
-      email: datas.email,
-      password: datas.password,
-      profile_image: datas.profile_image,
-    }
-  }
+
 
   return (
     <div className=" vh-100">
@@ -73,7 +71,7 @@ const NewFolder = () => {
         <div className=" p-3 w-100 mt-5">
           {
             {
-              1: <PersonnalInfo handleChange={handleChange} personnalInfoData={personnalInfoData} />,
+              1: <PersonnalInfo handleChange={handleChange}  user={userData}/>,
               2: <ContactInfo handleChange={handleChange} />,
               3: <LocationInfo handleChange={handleChange} />,
               4: <FilesInfo handleChange={handleChange} />,

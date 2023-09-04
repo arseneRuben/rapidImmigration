@@ -3,13 +3,12 @@ import {Form} from "react-bootstrap";
 import { COUNTRIES } from "../../../js/frontend/country/countries";
 
 const ContactInfo = ({ handleChange }) => {
-  let citiesSelect = document.getElementById('birth_city')
-  
+  let citiesSelect = document.getElementById('birth_place')
   let countriesSelect = document.getElementById('birth_country')
 
   useEffect(() => {
     countriesSelect = document.getElementById('birth_country')
-    citiesSelect = document.getElementById('birth_city')
+    citiesSelect = document.getElementById('birth_place')
     buildCountrieOptions()
   }, []);
 
@@ -79,10 +78,10 @@ const ContactInfo = ({ handleChange }) => {
           <Form.Control
               placeholder="Birth City"
               as="select"
-              name="birth_city"
-              id="birth_city"
+              name="birth_place"
+              id="birth_place"
               className="w-100 mt-2"
-              onChange={handleChange("birth_city")}
+              onChange={handleChange("birth_place")}
             >
           </Form.Control>
         </div>

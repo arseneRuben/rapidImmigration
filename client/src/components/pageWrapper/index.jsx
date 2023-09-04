@@ -1,13 +1,10 @@
-import React from 'react'
+import React , {useState}from 'react'
 import { useLocation } from "react-router-dom";
 import NewFolder from '../../folder/new';
 import PersonnalInfo from '../folder/steps/PersonnalInfo';
-import { useSelector } from 'react-redux';
 
 const PageWrapper = () => {
     const location = useLocation();
-    const {user} = useSelector(state => state.user)
-    console.log(user)
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -22,15 +19,17 @@ const PageWrapper = () => {
             return null
         }
       }
-
+      const [userData, setUserData] = useState(null);
+      
+     
       const handleChange = (name) => (e) => {
-        console.log(e)
-        
+        setUserData({ ...userData, [name]: e.target.value });
       };
+     
 
       const handleSave = async (event) => {
         try {
-            console.log(event)
+          
           //const res = await axios.post('/api/users/update', event)
           /*if(res.data.success) {
             localStorage.setItem('token', res.data.token)
@@ -55,8 +54,8 @@ const PageWrapper = () => {
         switch(pathname) {
           case '/admin':
             return  <NewFolder />
-            case '/profile':
-            return <PersonnalInfo handleChange={handleChange}  user = {user}/>
+          case '/profile':
+            return <PersonnalInfo handleChange={handleChange}  user={userData}/>
           case '/folders/new':
             return <NewFolder />
           case '/error':

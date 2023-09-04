@@ -15,6 +15,7 @@ const FilesInfo = ({ handleChange }) => {
               type='file'
               onChange={handleChange("passport")}
               name="passeport"
+              
             />
           </div>
         </div>
