@@ -3,11 +3,12 @@ import './index.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { Form, Input, message } from 'antd'
 import axios from 'axios'
+import {useDispatch} from 'react-redux'
+import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
 import TopBar from '../../components/topBar'
 import { Footer } from 'antd/es/layout/layout'
 import NavBar from '../../components/navBar'
-import {useDispatch} from 'react-redux'
-import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+
 
 const Login = () => {
 

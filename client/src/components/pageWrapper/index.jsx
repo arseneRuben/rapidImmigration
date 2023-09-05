@@ -1,13 +1,17 @@
 import React , {useState, useMemo}from 'react'
-import { useLocation } from "react-router-dom";
+import axios from 'axios'
+import {useDispatch} from 'react-redux'
+import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+import { useLocation,useNavigate } from "react-router-dom";
 import NewFolder from '../../folder/new';
 import PersonnalInfo from '../folder/steps/PersonnalInfo';
 import { useSelector } from 'react-redux';
+import {  message } from 'antd'
+
 
 const PageWrapper = () => {
     const location = useLocation();
     const {usr} = useSelector((state) => state.user)
-
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -23,6 +27,8 @@ const PageWrapper = () => {
         }
     }
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [user, setUser] = useState(usr);
       
      
@@ -32,24 +38,36 @@ const PageWrapper = () => {
      
 
     const handleSave = async (event) => {
+      
         try {
-          
-          
-         
+            dispatch(showLoading())
+            axios.put(`http://localhost:8080/api/users/${user._id}`, user) 
+            .then(function (response) {
+              if(response.status === 200){
+                message.success(response.data.message)
+              } else {
+                message.error(response.data.message)
+              }
+            })
+            .catch(function (error) {
+              message.error(error.response.data.message)
+            });
+            dispatch(hideLoading())
+
         } catch (error) {
           console.log(error)
-        }
+        } 
     }
     
     
-    function MainComponent({ pathname }) {
+    const  MainComponent = ( pathname) =>( user) => (handleChange) => {
         switch(pathname) {
           case '/admin':
-            return  <NewFolder />
+            return ( <NewFolder />)
           case '/profile':
-            return <PersonnalInfo  handleChange={handleChange}  user={user}/>
+            return (<PersonnalInfo  handleChange={handleChange}  user={user}/>)
           case '/folders/new':
-            return <NewFolder />
+            return (<NewFolder />)
           case '/error':
             return "Error"
           default:
@@ -81,8 +99,8 @@ const PageWrapper = () => {
                         </div>
                     </div>
                     <div className="col-md-6 card">
-                    <MainComponent  pathname={location.pathname}   />
-                 {/*  {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} */}
+                    <PersonnalInfo  pathname={location.pathname}  user={user} handleChange={handleChange} />
+                  {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
                     </div>
                     <div className="col-md-3 col-sm-3 col-xs-6">
                         <h5>Widget Box Two</h5>

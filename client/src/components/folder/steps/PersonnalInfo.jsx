@@ -86,7 +86,7 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
           <Form.Group className="w-100 mt-2">
             <Form.Control
               placeholder="Email"
-              onChange= {handleChange("first_name")}
+              onChange= {handleChange("email")}
               name="email"
               id="email"
               type="email"
@@ -103,6 +103,7 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
               name="password"
               id="password"
               type="password"
+              value={user ? user.password: ""}
             />
           </Form.Group>
         </div>
@@ -116,7 +117,7 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
             <Form.Control
               type='file'
               accept="image/*"
-              onChange= {handleChange("first_name")}
+              onChange= {handleChange("profile_image")}
               name="profile_image"
               id="profile_image"
             />

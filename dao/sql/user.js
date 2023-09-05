@@ -41,8 +41,8 @@ export const getUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         connect()
-        query('UPDATE users SET last_name=$1, first_name=$2, email=$3, password=$4, profile_image=$5, phone_number=$6, google_id=$7, access_level=$8,  gender=$9 WHERE user_id=$10',
-            [req.body.last_name, req.body.first_name, req.body.email, req.body.password, req.body.profile_image, req.body.phone_number, req.body.google_id, req.body.access_level,req.body.gender, req.params.user_id], (result) => {
+        query('UPDATE users SET last_name=$1, first_name=$2, email=$3, password=$4, profile_image=$5,   gender=$6 WHERE user_id=$7',
+            [req.body.last_name, req.body.first_name, req.body.email, req.body.password, req.body.profile_image,  req.body.gender, req.params.user_id], (result) => {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                 res.end(JSON.stringify(result, null, 4))
                 disconnect()
