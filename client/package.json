@@ -18,6 +18,7 @@
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "concurrently": "^8.2.0",
+    "nanoid": "^4.0.2",
     "react-bootstrap": "^2.8.0",
     "react-country-state-city": "^1.0.9",
     "react-dom": "^18.2.0",

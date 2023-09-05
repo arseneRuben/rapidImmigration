@@ -58,6 +58,7 @@ const NewFolder = () => {
   const {first_name, last_name, gender,birth_date, email, password, profile_image } = datas;
   // Set PersonalInfo datas
   const [userData, setUserData] = useState({first_name, last_name, gender,birth_date, email, password, profile_image });
+  
   const handleChange = (name) => (e) => {
     setUserData({ ...userData, [name]: e.target.value });
     setDatas({ ...datas, [name]: e.target.value });
