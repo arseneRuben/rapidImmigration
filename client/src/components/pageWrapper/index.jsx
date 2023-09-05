@@ -99,8 +99,14 @@ const PageWrapper = () => {
                         </div>
                     </div>
                     <div className="col-md-6 card">
-                    <PersonnalInfo  pathname={location.pathname}  user={user} handleChange={handleChange} />
-                  {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
+                        
+                       {(location.pathname === '/profile') && 
+                            <PersonnalInfo  handleChange={handleChange}  user={user}/>}
+                        
+                        {(location.pathname=== '/admin' || location.pathname=== '/folders/new') &&
+                            <NewFolder /> }
+                        
+                        {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
                     </div>
                     <div className="col-md-3 col-sm-3 col-xs-6">
                         <h5>Widget Box Two</h5>
