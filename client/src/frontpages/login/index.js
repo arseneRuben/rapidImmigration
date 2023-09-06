@@ -18,6 +18,7 @@ const Login = () => {
     try {
       dispatch(showLoading())
       const res = await axios.post('http://localhost:8080/api/users/signin', values)
+      window.location.reload()
       dispatch(hideLoading())
       
       if(res.data.success) {

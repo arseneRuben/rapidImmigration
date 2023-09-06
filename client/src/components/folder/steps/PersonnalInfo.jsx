@@ -6,34 +6,31 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
   return (
      
      <div className="d-flex flex-column align-items-center">
-      <div className="row">
-        <div className="col-6">
-          <Form.Group className="w-100 mt-2">
-            <Form.Control
-              placeholder="First Name"
-              onChange= {handleChange("first_name")}
-              name="first_name"
-              value={user ? user.first_name : ""}
-              id="first_name"
-              autoComplete="on"
-            />
-          </Form.Group>
+      <Form.Group className="w-100 mt-2">
+        <div className="row">
+          <div className="col-6">
+              <Form.Control
+                placeholder="First Name"
+                onChange= {handleChange("first_name")}
+                name="first_name"
+                value={user ? user.first_name : ""}
+                id="first_name"
+                autoComplete="on"
+              />
+          </div>
+          <div className="col-6">
+              <Form.Control
+                placeholder="Last Name"
+                onChange= {handleChange("last_name")}
+                name="last_name"
+                value={user ? user.last_name:""}
+                id="last_name"
+                autoComplete="on"
+              />
+          </div>
+
         </div>
-        <div className="col-6">
-          <Form.Group className="w-100 mt-2 col-6">
-            <Form.Control
-              placeholder="Last Name"
-              onChange= {handleChange("last_name")}
-              name="last_name"
-              value={user ? user.last_name:""}
-              id="last_name"
-              autoComplete="on"
-            />
-          </Form.Group>
-        </div>
-      </div>
-      
-         
+      </Form.Group>
       <Form.Group  className="w-100 mt-2">
         <div className="row">
           <div className="col-6">
@@ -56,11 +53,7 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
           </div>
         </div>
       </Form.Group>
-          
-        
-        
-        
-          <Form.Group className="w-100 mt-2">
+      <Form.Group className="w-100 mt-2">
             <div className="row">
                <div className="col-6">
                 <Form.Label htmlFor="birth_date"  sm="5">Birthday</Form.Label>
@@ -77,17 +70,15 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
                   /> 
                    </div> 
               </div>
-            </Form.Group>
-            <input type="hidden" name="email" onChange= {handleChange("email")} value={user ? user.email: ""}/>
-            <Form.Group className="w-100 mt-2">
+      </Form.Group>
+            <input type="hidden" name="email"  value={user ? user.email: ""}/>
+      <Form.Group className="w-100 mt-2">
             <div className="row">
                <div className="col-6">
-               <div className="col-6">
                   <Form.Control
-                    placeholder="Email"
+                    placeholder={user ? user.email: ""}
                     disabled
                   /> 
-                </div> 
                 </div>
                 <div className="col-6">
                   <Form.Control
@@ -101,10 +92,7 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
                   /> 
                 </div> 
               </div>
-            </Form.Group>
-               
-      
-    
+      </Form.Group>
       <Form.Group className="w-100 m-2">
         <div className="row">
           <div className="col-3">

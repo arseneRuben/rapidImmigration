@@ -1,20 +1,13 @@
 import React , {useState, useMemo}from 'react'
-import axios from 'axios'
 import {useDispatch} from 'react-redux'
-import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
 import { useLocation,useNavigate } from "react-router-dom";
-import NewFolder from '../../folder/new';
-import PersonnalInfo from '../folder/steps/PersonnalInfo';
 import { useSelector } from 'react-redux';
 
 
-const PageWrapper = () => {
+const PageWrapper = ({children}) => {
     const location = useLocation();
+    const {usr} = useSelector((state) => state.user)
 
-    const {usr} = useSelector(state => state.user)
-
-    
-    console.log(usr)
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -40,28 +33,7 @@ const PageWrapper = () => {
     };
      
 
-    const handleSave = async (event) => {
-       
-        console.log(user)
-        /*try {
-            dispatch(showLoading())
-            axios.put(`http://localhost:8080/api/users`, user) 
-            .then(function (response) {
-              if(response.status === 200){
-                message.success(response.data.message)
-              } else {
-                message.error(response.data.message)
-              }
-            })
-            .catch(function (error) {
-              message.error(error.message)
-            });
-            dispatch(hideLoading())
-
-        } catch (error) {
-          console.log(error)
-        } */
-    }
+   
 
 
     return (
@@ -77,14 +49,14 @@ const PageWrapper = () => {
                 <div className="col-2">
                         </div>
                     <div className="col-md-8 card">
-                        
-                       {(location.pathname === '/profile') && 
+                        {children}
+                    {/*}   {(location.pathname === '/profile') && 
                             <PersonnalInfo  handleChange={handleChange}  user={user}/>}
-                        
+                       {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
+
                         {(location.pathname === '/admin' || location.pathname=== '/folders/new') &&
                             <NewFolder /> }
-                        
-                        {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
+                    */}
                     </div>
                     <div className="col-2">
                         </div>

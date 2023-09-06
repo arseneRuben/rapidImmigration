@@ -4,7 +4,7 @@ import ContactInfo from '../components/folder/steps/ContactInfo';
 import LocationInfo from '../components/folder/steps/LocationInfo';
 import FilesInfo from '../components/folder/steps/FilesInfo';
 import { useSelector } from 'react-redux';
-
+import PageWrapper from "../components/pageWrapper";
 
 const NewFolder = () => {
   const {user} = useSelector(state => state.user)
@@ -35,9 +35,7 @@ const NewFolder = () => {
     spouse_name: "",
     marriage_certificate: "",
   });
-
   const [step, setStep] = useState(1);
-
   const nextStep = () => {
     if (step < 4) {
       setStep(step + 1);
@@ -45,15 +43,11 @@ const NewFolder = () => {
         console.log(datas);
     }
   };
-
   const prevStep = () => {
     if (step > 1) {
       setStep(step - 1);
     }
   };
-
- 
-
   //Personal Info extraction
   const {first_name, last_name, gender,birth_date, email, password, profile_image } = datas;
   // Set PersonalInfo datas
@@ -62,35 +56,33 @@ const NewFolder = () => {
     setUserData({ ...userData, [name]: e.target.value });
     setDatas({ ...datas, [name]: e.target.value });
   };
-
-
-
   return (
-    <div className=" vh-100">
-      <div className="container d-flex justify-content-center align-items-center">
-        <div className=" p-3 w-100 mt-5">
-          {
+    <PageWrapper>
+      <div className=" vh-100">
+        <div className="container d-flex justify-content-center align-items-center">
+          <div className=" p-3 w-100 mt-5">
             {
-              1: <PersonnalInfo handleChange={handleChange}  user={userData}/>,
-              2: <ContactInfo handleChange={handleChange} />,
-              3: <LocationInfo handleChange={handleChange} />,
-              4: <FilesInfo handleChange={handleChange} />,
-            }[step]
-          }
-          <div className="d-flex justify-content-around px-5 mt-5">
-            {step > 1 ? (
-              <button className="btn btn-warning" onClick={prevStep}>
-                Back
+              {
+                1: <PersonnalInfo handleChange={handleChange}  user={userData}/>,
+                2: <ContactInfo handleChange={handleChange} />,
+                3: <LocationInfo handleChange={handleChange} />,
+                4: <FilesInfo handleChange={handleChange} />,
+              }[step]
+            }
+            <div className="d-flex justify-content-around px-5 mt-5">
+              {step > 1 ? (
+                <button className="btn btn-warning" onClick={prevStep}>
+                  Back
+                </button>
+              ) : null}
+              <button className="btn btn-warning" onClick={nextStep}>
+                {step === 4 ? "Submit" : "Next"}
               </button>
-            ) : null}
-            <button className="btn btn-warning" onClick={nextStep}>
-              {step === 4 ? "Submit" : "Next"}
-            </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
+    </PageWrapper>
   )
 }
 

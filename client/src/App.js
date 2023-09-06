@@ -8,6 +8,8 @@ import {useSelector} from "react-redux"
 import SpinnerCustom from './components/redux/SpinnerCustom';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
+import ProfilePage from './adminpages/profile';
+import NewFolder from './folder/new';
 function App() {
   const {loading} = useSelector((state) => state.alerts)
   return (
@@ -39,20 +41,16 @@ function App() {
           </PublicRoute>
         }/>
 
-        <Route path="/admin"  element={  
-          <ProtectedRoute>
-            <AdminPages/>
-          </ProtectedRoute>
-       }/>
+      
        <Route path="/profile" element={ 
           <ProtectedRoute>
-           <AdminPages/>
+           <ProfilePage/>
           </ProtectedRoute>
 
         }/>
          <Route path="/folders/new" element={ 
           <ProtectedRoute>
-           <AdminPages/>
+           <NewFolder/>
           </ProtectedRoute>
 
         }/>

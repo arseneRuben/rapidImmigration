@@ -5,7 +5,7 @@ import React, {useEffect} from "react"
 import '../styles/backend/custom.css'
 import axios from 'axios'
 
-const AdminPages = () => {
+const AdminPages = ({children}) => {
   // login user data
   const getUserData = async () => { 
     try {
@@ -29,7 +29,7 @@ const AdminPages = () => {
     <>  
       <TopNavigation/> 
       <NavSide/>
-      <PageWrapper/>
+      <PageWrapper  children={children}/>
     </>
   )
 }
