@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faSignOut, faTachometerAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faSignIn, faSignOut, faTachometerAlt, faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ const TopBar = () => {
     const navigate = useNavigate()
 
   const handleLogout = (e) => {
+        localStorage.removeItem('user')
         localStorage.clear()
         message.success("Logout successful")
         navigate('/')
@@ -28,7 +29,7 @@ const TopBar = () => {
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/" && 'bg-primary-subtle'}` } to="/"> <FontAwesomeIcon icon={faHomeAlt} /> </NavLink>
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } to="/admin"><FontAwesomeIcon icon={faTachometerAlt} /></NavLink>
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } to="/profile"><FontAwesomeIcon icon={faUserSecret} /></NavLink>
-            { user  && <a className="text-body py-2 px-3 border-end" onClick={handleLogout} href="#"><FontAwesomeIcon icon={faSignOut} /></a>}
+            { user ?  <a className="text-body py-2 px-3 border-end" onClick={handleLogout} href="#"><FontAwesomeIcon icon={faSignOut} /></a> : <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/signin" && 'bg-primary-subtle'}` } to="/signin"><FontAwesomeIcon icon={faSignIn} /></NavLink>}
                 <a className="text-body py-2 px-3 border-end" href=""><small>Policy</small></a>
                 <a className="text-body py-2 ps-3" href=""><small>Career</small></a>
             </div>

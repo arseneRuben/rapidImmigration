@@ -24,7 +24,7 @@ const ProfilePage = () => {
             method: "POST",
             body: formData,
         }).then((res) => res.json());
-        alert(JSON.stringify(`${res.message}, status: ${res.status}`)); 
+        message.success(JSON.stringify(`${res.message}, status: ${res.status}`)); 
       
     };
 
