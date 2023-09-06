@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 import ProfilePage from './adminpages/profile';
 import NewFolder from './folder/new';
+import FolderShow from './folder/show';
 function App() {
   const {loading} = useSelector((state) => state.alerts)
   return (
@@ -41,7 +42,12 @@ function App() {
           </PublicRoute>
         }/>
 
-      
+        <Route path="/folder/*/show" element={ 
+          <ProtectedRoute>
+           <FolderShow/>
+          </ProtectedRoute>
+
+        }/>
        <Route path="/profile" element={ 
           <ProtectedRoute>
            <ProfilePage/>
