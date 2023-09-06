@@ -29,7 +29,7 @@ const AdminPages = ({children}) => {
     <>  
       <TopNavigation/> 
       <NavSide/>
-      <PageWrapper  children={children}/>
+       {children}
     </>
   )
 }

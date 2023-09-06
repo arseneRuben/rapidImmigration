@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Form } from "react-bootstrap";
 
 
-const PersonnalInfo = ({ handleChange, user=null }) => {
+const PersonnalInfo = ({ handleChange, user=null, register }) => {
   return (
      
      <div className="d-flex flex-column align-items-center">
@@ -102,9 +102,9 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
             <Form.Control
               type='file'
               accept="image/*"
-              onChange= {handleChange("profile_image")}
+              {...register("profile_image")}
               name="profile_image"
-              id="profile_image"
+              
             />
           </div>
         </div>

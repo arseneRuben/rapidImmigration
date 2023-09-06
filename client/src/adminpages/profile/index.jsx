@@ -7,11 +7,27 @@ import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import { message } from 'antd';
 import { useLocation,useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 
 
 const ProfilePage = () => {
     const {user} = useSelector((state) => state.user)
+    const { register, handleSubmit } = useForm();
+
+    const onSubmit = async (data, event) =>  {
+        const formData = new FormData();
+        formData.append("file", data.profile_image[0]);
+        profile["profile_image"]= data.profile_image[0].name;
+        handleSave(event)
+        const res = await fetch("http://localhost:8080/upload-file", {
+            method: "POST",
+            body: formData,
+        }).then((res) => res.json());
+        alert(JSON.stringify(`${res.message}, status: ${res.status}`)); 
+      
+    };
+
     const [profile, setProfile] = useState({
         first_name: user && user.firt_name,
         last_name: user && user.last_name,
@@ -22,6 +38,7 @@ const ProfilePage = () => {
         birth_date: "",
       });
     const handleChange = (name) => (e) => {
+        
         setProfile({ ...profile, [name]: e.target.value });
       };
 
@@ -29,6 +46,7 @@ const ProfilePage = () => {
     const navigate = useNavigate()
     const handleSave = async (event) => {
         try {
+            
             dispatch(showLoading())
             axios.put(`http://localhost:8080/api/users/${user.id}`, profile) 
             .then(function (response) {
@@ -49,10 +67,14 @@ const ProfilePage = () => {
     }
   return (
     <PageWrapper>
-       
-                            <PersonnalInfo  handleChange={handleChange} user={profile}/>
-                            <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>
-
+                        <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
+                      
+                            <PersonnalInfo  handleChange={handleChange} user={profile} register={register} />
+                            <div  className='d-flex justify-content-around'  >
+                                <input type="submit" className='m-3 btn btn-primary btn-lg btn-block '/>
+                                <input type="reset" className='m-3 btn btn-secondary btn-lg btn-block'/>
+                            </div>
+                        </form>
     </PageWrapper>
   )
 }

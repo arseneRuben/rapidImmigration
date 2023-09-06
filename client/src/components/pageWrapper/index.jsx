@@ -2,6 +2,7 @@ import React , {useState, useMemo}from 'react'
 import {useDispatch} from 'react-redux'
 import { useLocation,useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import AdminPages from '../../adminpages';
 
 
 const PageWrapper = ({children}) => {
@@ -37,6 +38,7 @@ const PageWrapper = ({children}) => {
 
 
     return (
+        <AdminPages>
         <div id="page-wrapper">
             <div id="page-inner">
                 <div className="row">
@@ -50,13 +52,6 @@ const PageWrapper = ({children}) => {
                         </div>
                     <div className="col-md-8 card">
                         {children}
-                    {/*}   {(location.pathname === '/profile') && 
-                            <PersonnalInfo  handleChange={handleChange}  user={user}/>}
-                       {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
-
-                        {(location.pathname === '/admin' || location.pathname=== '/folders/new') &&
-                            <NewFolder /> }
-                    */}
                     </div>
                     <div className="col-2">
                         </div>
@@ -280,6 +275,7 @@ const PageWrapper = ({children}) => {
             </div>
         
         </div>
+        </AdminPages>
     )
 }
 

@@ -3,16 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faBarChart, faBeerMugEmpty, faBell, faDesktop, faEdit, faEnvelopeOpen, faPhoneAlt, faQrcode, faSitemap, faTable, faTachometerAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import defaultProfile from '../../img/user.jpg'
 import { NavLink, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+var path = require('path');
+
 
 const NavSide = () => {
   const location = useLocation();
-
+  const {user} = useSelector((state) => state.user)
   return (
     <nav className="navbar-default navbar-side" role="navigation">
             <div className=" bg-white  show">
                 <ul className="nav  flex-column align-items-center d-flex justify-content-between " id="main-menu">
                     <li className=" nav-item text-center user-image-back">
-                       <img src={defaultProfile} className="img-responsive img-fluid img-thumbnail" />
+                       <img src={user ? `http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} className="img-responsive img-fluid img-thumbnail rounded-pill" width="70vw" />
                     </li>
                     <li className=' nav-item p-1 m-2 '>
                     <NavLink to='/admin' className={` bg-light text-dark  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
