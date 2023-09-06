@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 
 const PersonnalInfo = ({ handleChange, user=null }) => {
   return (
-   
+     
      <div className="d-flex flex-column align-items-center">
       <div className="row">
         <div className="col-6">
@@ -76,38 +76,35 @@ const PersonnalInfo = ({ handleChange, user=null }) => {
                     autoComplete="on"
                   /> 
                    </div> 
+              </div>
+            </Form.Group>
+            <input type="hidden" name="email" onChange= {handleChange("email")} value={user ? user.email: ""}/>
+            <Form.Group className="w-100 mt-2">
+            <div className="row">
+               <div className="col-6">
+               <div className="col-6">
+                  <Form.Control
+                    placeholder="Email"
+                    disabled
+                  /> 
+                </div> 
                 </div>
-                </Form.Group>
-            
+                <div className="col-6">
+                  <Form.Control
+                    placeholder="Password"
+                    onChange= {handleChange("password")}
+                    name="password"
+                    id="password"
+                    type="password"
+                    value={user ? user.password: ""}
+                    autoComplete="on"
+                  /> 
+                </div> 
+              </div>
+            </Form.Group>
                
       
-      <div className="row">
-        <div className="col-6">
-          <Form.Group className="w-100 mt-2">
-            <Form.Control
-              placeholder="Email"
-              onChange= {handleChange("email")}
-              name="email"
-              id="email"
-              type="email"
-              value={user ? user.email: ""}
-              autoComplete="on"
-            />
-          </Form.Group>
-        </div>
-        <div className="col-6">
-          <Form.Group className="w-100 mt-2 col-6">
-            <Form.Control
-              placeholder="Password"
-              onChange= {handleChange("password")}
-              name="password"
-              id="password"
-              type="password"
-              value={user ? user.password: ""}
-            />
-          </Form.Group>
-        </div>
-      </div>
+    
       <Form.Group className="w-100 m-2">
         <div className="row">
           <div className="col-3">

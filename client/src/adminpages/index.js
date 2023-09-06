@@ -25,7 +25,6 @@ const AdminPages = () => {
   useEffect(() => {
       getUserData()
     }, [])
-
   return (
     <>  
       <TopNavigation/> 

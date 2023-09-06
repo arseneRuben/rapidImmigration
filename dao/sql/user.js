@@ -41,8 +41,8 @@ export const getUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         connect()
-        query('UPDATE users SET last_name=$1, first_name=$2, email=$3, password=$4, profile_image=$5,   gender=$6 WHERE user_id=$7',
-            [req.body.last_name, req.body.first_name, req.body.email, req.body.password, req.body.profile_image,  req.body.gender, req.params.user_id], (result) => {
+        query('UPDATE users SET last_name=$1, first_name=$2, password=$3, profile_image=$4,   gender=$5 WHERE email=$6',
+            [req.body.last_name, req.body.first_name, bcrypt.hashSync(req.body.password, 10), req.body.profile_image,  req.body.gender,  req.body.email], (result) => {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                 res.end(JSON.stringify(result, null, 4))
                 disconnect()
@@ -66,16 +66,7 @@ export const authUserData = async (req, res) => {
                     success: true,
                     data: user[0],
                   });
-                /*  return  res.status(200).json({ 
-                        success:true, 
-                        data:   {
-                            first_name: user.first_name,
-                            last_name: user.last_name,
-                            email: user.email,
-                            phone_number: user.phone_number,
-                        }
-                    }) 
-                    */
+        
             }
         })
      } catch (error) {

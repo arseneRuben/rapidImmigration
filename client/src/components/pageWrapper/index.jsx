@@ -6,12 +6,15 @@ import { useLocation,useNavigate } from "react-router-dom";
 import NewFolder from '../../folder/new';
 import PersonnalInfo from '../folder/steps/PersonnalInfo';
 import { useSelector } from 'react-redux';
-import {  message } from 'antd'
 
 
 const PageWrapper = () => {
     const location = useLocation();
-    const {usr} = useSelector((state) => state.user)
+
+    const {usr} = useSelector(state => state.user)
+
+    
+    console.log(usr)
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -29,19 +32,20 @@ const PageWrapper = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+   
     const [user, setUser] = useState(usr);
-      
-     
+    
     const handleChange = (name) => (e) => {
         setUser({ ...user, [name]: e.target.value });
     };
      
 
     const handleSave = async (event) => {
-      
-        try {
+       
+        console.log(user)
+        /*try {
             dispatch(showLoading())
-            axios.put(`http://localhost:8080/api/users/${user._id}`, user) 
+            axios.put(`http://localhost:8080/api/users`, user) 
             .then(function (response) {
               if(response.status === 200){
                 message.success(response.data.message)
@@ -50,29 +54,13 @@ const PageWrapper = () => {
               }
             })
             .catch(function (error) {
-              message.error(error.response.data.message)
+              message.error(error.message)
             });
             dispatch(hideLoading())
 
         } catch (error) {
           console.log(error)
-        } 
-    }
-    
-    
-    const  MainComponent = ( pathname) =>( user) => (handleChange) => {
-        switch(pathname) {
-          case '/admin':
-            return ( <NewFolder />)
-          case '/profile':
-            return (<PersonnalInfo  handleChange={handleChange}  user={user}/>)
-          case '/folders/new':
-            return (<NewFolder />)
-          case '/error':
-            return "Error"
-          default:
-            return null
-        }
+        } */
     }
 
 
@@ -86,36 +74,21 @@ const PageWrapper = () => {
                 </div>
             
                 <div className="row">
-                    <div className="col-md-3 col-sm-3 col-xs-6">
-                        <h5>Widget Box One</h5>
-                        <div className="panel panel-primary text-center no-boder bg-color-blue">
-                            <div className="panel-body">
-                                <i className="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>120 GB </h3>
-                            </div>
-                            <div className="panel-footer back-footer-blue">
-                                Disk Space Available
-                            </div>
+                <div className="col-2">
                         </div>
-                    </div>
-                    <div className="col-md-6 card">
+                    <div className="col-md-8 card">
                         
                        {(location.pathname === '/profile') && 
                             <PersonnalInfo  handleChange={handleChange}  user={user}/>}
                         
-                        {(location.pathname=== '/admin' || location.pathname=== '/folders/new') &&
+                        {(location.pathname === '/admin' || location.pathname=== '/folders/new') &&
                             <NewFolder /> }
                         
                         {(location.pathname === '/profile') && <button className='m-3 btn btn-primary '   onClick={handleSave}>Save</button>} 
                     </div>
-                    <div className="col-md-3 col-sm-3 col-xs-6">
-                        <h5>Widget Box Two</h5>
-                        <div className="alert alert-info text-center">
-                            <i className="fa fa-desktop fa-5x"></i>
-                            <h3>100$ </h3>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    <div className="col-2">
                         </div>
-                    </div>
+                        
                 </div>
             
                 <hr />

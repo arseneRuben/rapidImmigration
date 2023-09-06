@@ -11,7 +11,7 @@ router.post('/signup', createUser)
 router.post('/signin', getUser)
 router.post('/userdata',authMiddleware, authUserData)
 /* UPDATE */
-router.put('/:id', updateUser)
+router.put('/', updateUser)
 /* DELETE */
 router.delete('/:id', deleteUser)
 

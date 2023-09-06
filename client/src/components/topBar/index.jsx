@@ -4,15 +4,17 @@ import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faSignOut, faTachometerAlt, faUs
 import { NavLink } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import { Form, Input, message } from 'antd'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const TopBar = () => {
+    const navigate = useNavigate()
+
   const handleLogout = (e) => {
-        e.preventDefault();
-        // Remove the token or session ID from localStorage
-        localStorage.removeItem('token');
-        // Redirect to the login page or perform any other desired actions
-        window.location.href = '/';
+        localStorage.clear()
+        message.success("Logout successful")
+        navigate('/')
   };
   const location = useLocation();
   const {user} = useSelector((state) => state.user)
