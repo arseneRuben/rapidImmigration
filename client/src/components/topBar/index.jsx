@@ -4,21 +4,22 @@ import { faEnvelopeOpen, faHomeAlt, faPhoneAlt, faSignIn, faSignOut, faTachomete
 import { NavLink } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { Form, Input, message } from 'antd'
+import {  message } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 
 
 const TopBar = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
+  const location = useLocation();
+  const {user} = useSelector((state) => state.user)
 
   const handleLogout = (e) => {
         localStorage.removeItem('user')
         localStorage.clear()
-        message.success("Logout successful")
         navigate('/')
+        message.success("Logout successful")
+        window.location.reload()
   };
-  const location = useLocation();
-  const {user} = useSelector((state) => state.user)
 
   return (
    
@@ -29,7 +30,7 @@ const TopBar = () => {
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/" && 'bg-primary-subtle'}` } to="/"> <FontAwesomeIcon icon={faHomeAlt} /> </NavLink>
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } to="/admin"><FontAwesomeIcon icon={faTachometerAlt} /></NavLink>
             <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } to="/profile"><FontAwesomeIcon icon={faUserSecret} /></NavLink>
-            { user ?  <a className="text-body py-2 px-3 border-end" onClick={handleLogout} href="#"><FontAwesomeIcon icon={faSignOut} /></a> : <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/signin" && 'bg-primary-subtle'}` } to="/signin"><FontAwesomeIcon icon={faSignIn} /></NavLink>}
+            { user ?  <span className="text-body py-2 px-3 border-end"  ><FontAwesomeIcon icon={faSignOut} onClick={handleLogout}/></span> : <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/signin" && 'bg-primary-subtle'}` } to="/signin"><FontAwesomeIcon icon={faSignIn} /></NavLink>}
                 <a className="text-body py-2 px-3 border-end" href=""><small>Policy</small></a>
                 <a className="text-body py-2 ps-3" href=""><small>Career</small></a>
             </div>

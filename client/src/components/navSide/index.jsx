@@ -1,6 +1,6 @@
 import React  from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faBarChart, faBeerMugEmpty, faBell, faDesktop, faEdit, faEnvelopeOpen, faPhoneAlt, faQrcode, faSitemap, faTable, faTachometerAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown, faBarChart, faBeerMugEmpty, faBell, faDesktop, faEdit, faEnvelopeOpen, faPhoneAlt, faPlus, faPlusSquare, faQrcode, faSitemap, faTable, faTachometerAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import defaultProfile from '../../img/user.jpg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -37,13 +37,13 @@ const NavSide = () => {
                             </li>
                         </ul>
                     </li> */}
-
+                     <li className=' nav-item  p-2  m-2 '>
+                         <NavLink to='/folders/new'  className={` bg-light text-dark  ${location.pathname==="/folders/new" && 'bg-primary-subtle'}` }><FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
+                    </li>
                     <li className=' nav-item  p-2  m-2'>
                         <a href="#"><FontAwesomeIcon icon={faBell} /></a>
                     </li>
-                    <li className=' nav-item  p-2  m-2 '>
-                         <NavLink to='../folders/new'  className=' bg-light text-dark' ><FontAwesomeIcon icon={faEdit} /> </NavLink>
-                    </li>
+                   
 
                      {/*
                     <li className=' nav-item '>

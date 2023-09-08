@@ -15,7 +15,7 @@ const PersonnalInfo = ({ handleChange, user=null, register }) => {
                 name="first_name"
                 value={user ? user.first_name : ""}
                 id="first_name"
-                autoComplete="on"
+                autoComplete="off"
               />
           </div>
           <div className="col-6">
@@ -25,7 +25,7 @@ const PersonnalInfo = ({ handleChange, user=null, register }) => {
                 name="last_name"
                 value={user ? user.last_name:""}
                 id="last_name"
-                autoComplete="on"
+                autoComplete="off"
               />
           </div>
 
@@ -75,20 +75,23 @@ const PersonnalInfo = ({ handleChange, user=null, register }) => {
       <Form.Group className="w-100 mt-2">
             <div className="row">
                <div className="col-6">
-                  <Form.Control
-                    placeholder={user ? user.email: ""}
-                    disabled
+               <Form.Control
+                    placeholder="Email"
+                    onChange= {handleChange("email")}
+                    name="email"
+                    id="email"
+                    type="email"
+                    value={user ? user.email: ""}
                   /> 
                 </div>
                 <div className="col-6">
                   <Form.Control
-                    placeholder="Password"
-                    onChange= {handleChange("password")}
-                    name="password"
-                    id="password"
-                    type="password"
-                    value={user ? user.password: ""}
-                    autoComplete="on"
+                    placeholder={user.hasOwnProperty("password") ? "Password": "Passport Number"}
+                    onChange= {user.hasOwnProperty("password") ? handleChange("password") :  handleChange("password_number") }
+                    name={user.hasOwnProperty("password") ? "password": "password_number"}
+                    id={user.hasOwnProperty("password") ? "password": "password_number"}
+                    type={user.hasOwnProperty("password") ? "password": "text"}
+                    value={user.hasOwnProperty("password") ? user.password: user.password_number}
                   /> 
                 </div> 
               </div>
@@ -100,11 +103,12 @@ const PersonnalInfo = ({ handleChange, user=null, register }) => {
           </div>
           <div className="col-9">
             <Form.Control
-              type='file'
+              type="file"
               accept="image/*"
+              onChange= {handleChange("profile_image")}
               {...register("profile_image")}
               name="profile_image"
-              
+              id="profile_image"
             />
           </div>
         </div>

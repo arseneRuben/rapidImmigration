@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { Form } from "react-bootstrap";
 import { COUNTRIES } from "../../../js/frontend/country/countries";
 
-const LocationInfo = ({ handleChange }) => {
+const LocationInfo = ({ handleChange, client }) => {
   let citiesSelect = document.getElementById('city')
   
   let countriesSelect = document.getElementById('country')
@@ -52,6 +52,7 @@ const LocationInfo = ({ handleChange }) => {
               id="country"
               className="w-100 mt-2"
               onChange={handleChange("country")}
+              value={ client.country }
             >
           </Form.Control>
         </div>
@@ -63,6 +64,7 @@ const LocationInfo = ({ handleChange }) => {
               id="city"
               className="w-100 mt-2"
               onChange={handleChange("city")}
+              value={ client.city }
             >
           </Form.Control>
         </div>
@@ -72,20 +74,20 @@ const LocationInfo = ({ handleChange }) => {
       <Form.Group className="w-100 mt-4">
       <div className="row">
         <div className="col-6">
-        <Form.Control
-          placeholder="Street"
-          onChange={handleChange("srteet")}
-          name="street"
-        />
-     
+          <Form.Control
+            placeholder="Street"
+            onChange={handleChange("street")}
+            name="street"
+            value={ client.street }
+          />
         </div>
         <div className="col-6">
-      
-        <Form.Control
-          placeholder="Zip Code"
-          onChange={handleChange("zip_code")}
-          name="zip_code"
-        />
+          <Form.Control
+            placeholder="Zip Code"
+            onChange={handleChange("zip_code")}
+            name="zip_code"
+            value={ client.zip_code }
+          />
         </div>
       </div>
       </Form.Group>

@@ -4,27 +4,26 @@ import PersonnalInfo from '../components/folder/steps/PersonnalInfo';
 import ContactInfo from '../components/folder/steps/ContactInfo';
 import LocationInfo from '../components/folder/steps/LocationInfo';
 import FilesInfo from '../components/folder/steps/FilesInfo';
-import { useSelector } from 'react-redux';
 import PageWrapper from "../components/pageWrapper";
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { hideLoading, showLoading } from '../components/redux/features/alertSlice'
 import axios from 'axios'
+import Summary from "../components/folder/steps/Summary";
 
 const NewFolder = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {user} = useSelector(state => state.user)
   const [datas, setDatas] = useState({
-    first_name: user && user.firt_name,
-    last_name: user && user.last_name,
+    first_name: "",
+    last_name: "",
     gender: "",
-    passport_number: "",
-    email: user && user.email,
-    password: "",
+    passport_number: "2",
+    email: "",
+
     profile_image: "",
     phone_number: "",
     country: "",
@@ -40,42 +39,58 @@ const NewFolder = () => {
     birth_certificate: "",
     passport: "",
     resume: "",
+    wes_report: "",
+    marriage_certificate: "",
+    birth_certificate: "",
     other_documents: "",
     marital_status: "",
     spouse_name: "",
-    marriage_certificate: "",
+   
   });
   const [step, setStep] = useState(1);
-  const nextStep = () => {
-    if (step < 4) {
+  const nextStep = (e) => {
+   
+    if (step < 5) {
+      e.preventDefault()
       setStep(step + 1);
-    } else if(step === 4) {
-        console.log(datas);
-    }
+    } 
   };
-  const prevStep = () => {
+  const prevStep = (e) => {
+    e.preventDefault()
     if (step > 1) {
       setStep(step - 1);
     }
   };
 
-  //Personal Info extraction
-  const {first_name, last_name, gender,birth_date, email, password, profile_image } = datas;
   // Set PersonalInfo datas
-  const [userData, setUserData] = useState({first_name, last_name, gender,birth_date, email, password, profile_image });
   const onSubmit = async (data, event) =>  {
-    if(event.target.id==="submit_folder"){
+    console.log(data)
     const formData = new FormData();
-    formData.append("file", data.profile_image[0]);
+    formData.append("profile_image", data.profile_image[0]);
     datas["profile_image"]= data.profile_image[0].name;
+    formData.append("passport", data.passport[0]);
+    datas["passport"]= data.passport[0].name;
+    formData.append("resume", data.resume[0]);
+    datas["resume"]= data.resume[0].name;
+    formData.append("wes_report", data.wes_report[0]);
+    datas["wes_report"]= data.wes_report[0].name;
+    formData.append("other_documents", data.other_documents[0]);
+    datas["other_documents"]= data.other_documents[0].name;
+    formData.append("marriage_certificate", data.marriage_certificate[0]);
+    datas["marriage_certificate"]= data.marriage_certificate[0].name;
+    formData.append("birth_certificate", data.birth_certificate[0]);
+    datas["birth_certificate"]= data.birth_certificate[0].name;
+  
+
     handleSave(event)
     const res = await fetch("http://localhost:8080/upload-file", {
         method: "POST",
         body: formData,
     }).then((res) => res.json());
     message.success(JSON.stringify(`${res.message}, status: ${res.status}`)); 
-  }
+  
 };
+
 const handleSave = async (event) => {
   try {
       
@@ -99,23 +114,21 @@ const handleSave = async (event) => {
   } 
 }
   const handleChange = (name) => (e) => {
-    setUserData({ ...userData, [name]: e.target.value });
     setDatas({ ...datas, [name]: e.target.value });
   };
   return (
     <PageWrapper>
       <div className=" vh-100">
       <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
-
         <div className="container d-flex justify-content-center align-items-center">
           <div className=" p-3 w-100 mt-5">
             {
               {
-                1: <PersonnalInfo handleChange={handleChange}  user={userData} register={register} />,
-                2: <ContactInfo handleChange={handleChange} />,
-                3: <LocationInfo handleChange={handleChange} />,
-                4: <FilesInfo handleChange={handleChange} />,
-               
+                1: <PersonnalInfo handleChange={handleChange}  user={datas} register={register} />,
+                2: <ContactInfo handleChange={handleChange} client={datas}  />,
+                3: <LocationInfo handleChange={handleChange} client={datas}  />,
+                4: <FilesInfo client={datas} handleChange={handleChange} register={register}  />,
+                5: <Summary  client={datas}  />,
               }[step]
             }
             <div className="d-flex justify-content-around px-5 mt-5">
@@ -124,8 +137,8 @@ const handleSave = async (event) => {
                   Back
                 </button>
               ) : null}
-              <button className="btn btn-warning" onClick={nextStep}>
-                {step === 4 ? "Submit" : "Next"}
+              <button className="btn btn-warning" onClick={ nextStep }>
+                {step === 5 ? "Submit" : "Next"}
               </button>
             </div>
           </div>

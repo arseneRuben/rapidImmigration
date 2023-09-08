@@ -16,8 +16,8 @@ const ProfilePage = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data, event) =>  {
-      event.prenventDefault();
-      if(event.target.id==="submit_profile"){
+     
+       
         const formData = new FormData();
         formData.append("file", data.profile_image[0]);
         profile["profile_image"]= data.profile_image[0].name;
@@ -27,7 +27,7 @@ const ProfilePage = () => {
             body: formData,
         }).then((res) => res.json());
         message.success(JSON.stringify(`${res.message}, status: ${res.status}`)); 
-      }
+      
 
     };
 

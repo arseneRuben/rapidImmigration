@@ -44,10 +44,13 @@ app.post("/upload-file", async (req, res) => {
                 message: "No file uploaded",
             });
         } else {
-            let file = req.files.file;
+            let file ;
 
-
-            file.mv("./uploads/profiles/" + file.name);
+            Object.keys(req.files).forEach(function(key) {
+                file = req.files[key];
+                file.mv("./uploads/profiles/" + file.name);
+            });
+            
 
             res.send({
                 status: "success",

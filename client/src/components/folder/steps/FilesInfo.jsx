@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form } from "react-bootstrap";
 
-const FilesInfo = ({ handleChange }) => {
+const FilesInfo = ({ client,handleChange,register }) => {
   return (
     <div className="d-flex flex-column justify-content-around">
       <h2 className='text-center m-2'>File Info</h2>
@@ -14,8 +14,9 @@ const FilesInfo = ({ handleChange }) => {
             <Form.Control
               type='file'
               onChange={handleChange("passport")}
-              name="passeport"
-              
+              {...register("passport")}
+              name="passport"
+             
             />
           </div>
         </div>
@@ -30,6 +31,8 @@ const FilesInfo = ({ handleChange }) => {
               type='file'
               onChange={handleChange("birth_certificate")}
               name="birth_certificate"
+              
+              {...register("birth_certificate")}
             />
           </div>
         </div>
@@ -44,10 +47,13 @@ const FilesInfo = ({ handleChange }) => {
                 type='file'
                 onChange={handleChange("marriage_certificate")}
                 name="marriage_certificate"
+               
+                {...register("marriage_certificate")}
               />
           </div>
       </div>
       </Form.Group>
+    
 
       <Form.Group className="w-100 m-2">
       <div className="row">
@@ -58,7 +64,9 @@ const FilesInfo = ({ handleChange }) => {
             <Form.Control
               type='file'
               onChange={handleChange("resume")}
+             
               name="resume"
+              {...register("resume")}
             />
          </div>
         </div>
@@ -66,15 +74,33 @@ const FilesInfo = ({ handleChange }) => {
       <Form.Group className="w-100 m-2">
       <div className="row">
         <div className="col-3">
-        <Form.Label>Other document</Form.Label>
+        <Form.Label>Rapport WES</Form.Label>
         </div>
         <div className="col-9">
         <Form.Control
           type='file'
-          onChange={handleChange("other_documents")}
-          name="other_documents"
+          onChange={handleChange("wes_report")}
+          name="wes_report"
+          
+          {...register("wes_report")}
         />
           </div>
+        </div>
+      </Form.Group>
+      <Form.Group className="w-100 m-2">
+        <div className="row">
+            <div className="col-3">
+            <Form.Label>Other document</Form.Label>
+            </div>
+            <div className="col-9">
+              <Form.Control
+                type='file'
+                onChange={handleChange("other_documents")}
+                name="other_documents"
+              
+                {...register("other_documents")}
+              />
+            </div>
         </div>
       </Form.Group>
     </div>
