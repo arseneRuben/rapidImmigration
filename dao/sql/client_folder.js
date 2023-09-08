@@ -7,19 +7,18 @@ import { CONTENT_TYPE_JSON, HTTP_OK, USER_ACCESS_LEVEL_CLIENT } from './util.js'
 export const createFolder = async (req, res) => {
     try {
         connect()
-        query("SELECT first_name || ' ' || last_name AS full_name FROM users WHERE id = ?", [req.body.client_id], (result) => {
-            if (result.length > 0) {
-                query('INSERT INTO client_folders (passport_number,country,phone_number,city,street,address,zip_code,birth_date,birth_place,birth_country,birth_certificate,passport,resume,other_documents,marital_status,spouse_name,marriage_certificate,folder_name,  client_id, consultant_id, current_step, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                    [req.body.passport_number,req.body.country,req.body.phone_number,req.body.city,req.body.street,req.body.address,req.body.zip_code,req.body.birth_date,req.body.birth_place,req.body.birth_country,req.body.birth_certificate,req.body.passport,req.body.resume,req.body.other_documents,req.body.marital_status,req.body.spouse_name,req.body.marriage_certificate, result[0].full_name, req.body.client_id, req.body.consultant_id,req.body.current_step, req.body.statut  ], function (err, result, fields) {
+        query('INSERT INTO  client_folders (first_name,             last_name,         gender,           passport_number,           country,            phone_number,           city,          street,         address,          zip_code,               birth_date,         birth_place,         birth_country,          birth_certificate,          passport,          resume,          other_documents,          marital_status,          spouse_name,           marriage_certificate,                                              consultant_id               ) VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                                           [req.body.first_name,   req.body.last_name,  req.body.gender,  req.body.passport_number,  req.body.country,  req.body.phone_number, req.body.city, req.body.street, req.body.address, req.body.zip_code,  req.body.birth_date, req.body.birth_place, req.body.birth_country, req.body.birth_certificate, req.body.passport, req.body.resume, req.body.other_documents, req.body.marital_status,  req.body.spouse_name, req.body.marriage_certificate,   req.body.consultant_id ], function (err, result, fields) {
                         res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                         res.end(JSON.stringify({ message: 'Folder created', success: true, id: res.insertedId }, null, 4))
+                        disconnect()
                     })
-                disconnect()
-            }
-    })
+      
+    
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
+   
 }
 
 export const getClientFolders = async (req, res) => {

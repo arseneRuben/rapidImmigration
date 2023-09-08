@@ -38,84 +38,131 @@ CREATE TABLE users
 
 
 
-    -- Création de la table Dossiers
-    CREATE TABLE client_folders
+
+    CREATE TABLE `client_folders`
+    (
+  `id` int
+    (11) NOT NULL,
+  `foler_name` varchar
+    (100) DEFAULT NULL,
+  `foler_path` varchar
+    (255) DEFAULT NULL,
+  `consultant_id` int
+    (11) DEFAULT NULL,
+  `current_step` varchar
+    (100) DEFAULT 'CREATED',
+  `statut` int
+    (11) DEFAULT 0,
+  `first_name` varchar
+    (50) DEFAULT NULL,
+  `last_name` varchar
+    (50) DEFAULT NULL,
+  `gender` varchar
+    (50) DEFAULT NULL,
+  `passport_number` varchar
+    (50) DEFAULT NULL,
+  `email` varchar
+    (50) DEFAULT NULL,
+  `profile_image` varchar
+    (50) DEFAULT NULL,
+  `phone_number` varchar
+    (50) DEFAULT NULL,
+  `country` varchar
+    (50) DEFAULT NULL,
+  `city` varchar
+    (50) DEFAULT NULL,
+  `street` varchar
+    (50) DEFAULT NULL,
+  `address` varchar
+    (50) DEFAULT NULL,
+  `zip_code` varchar
+    (10) DEFAULT NULL,
+  `birth_date` varchar
+    (50) DEFAULT NULL,
+  `birth_place` varchar
+    (50) DEFAULT NULL,
+  `birth_country` varchar
+    (50) DEFAULT NULL,
+  `passport` varchar
+    (50) DEFAULT NULL,
+  `resume` varchar
+    (50) DEFAULT NULL,
+  `wes_report` varchar
+    (50) DEFAULT NULL,
+  `marriage_certificate` varchar
+    (50) DEFAULT NULL,
+  `birth_certificate` varchar
+    (50) DEFAULT NULL,
+  `other_documents` varchar
+    (50) DEFAULT NULL,
+  `marital_status` int
+    (11) DEFAULT NULL,
+  `spouse_name` varchar
+    (50) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp
+    (),
+  `updated_at` datetime DEFAULT NULL ON
+    UPDATE current_timestamp()
+) ENGINE
+    =InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+    --
+    -- Index pour les tables déchargées
+    --
+
+    --
+    -- Index pour la table `client_folders`
+    --
+    ALTER TABLE `client_folders`
+    ADD PRIMARY KEY
+    (`id`);
+
+    --
+    -- AUTO_INCREMENT pour les tables déchargées
+    --
+
+    --
+    -- AUTO_INCREMENT pour la table `client_folders`
+    --
+    ALTER TABLE `client_folders`
+  MODIFY `id` int
+    (11) NOT NULL AUTO_INCREMENT;
+    COMMIT;
+
+    -- Création de la table Commentaires
+    CREATE TABLE comments
     (
         id INT
         AUTO_INCREMENT PRIMARY KEY,
-         foler_name VARCHAR
-        (100),
-         foler_path VARCHAR
-        (255),
-    client_id INT,
-    consultant_id INT,
-    current_step VARCHAR
-        (100),
-    statut VARCHAR
-        (50),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME ON
-        UPDATE CURRENT_TIMESTAMP,
-    -- Autres informations sur le dossier
-    FOREIGN KEY
-        (client_id) REFERENCES users
-        (id),
-    FOREIGN KEY
-        (consultant_id) REFERENCES users
-        (id)
-);
-
-        -- Création de la table Documents
-        CREATE TABLE documents
-        (
-            id INT
-            AUTO_INCREMENT PRIMARY KEY,
-    folder_id INT,
-    file_name VARCHAR
-            (255),
-    path VARCHAR
-            (255),
-    created_at DATETIME,
-    -- Autres informations sur le document
-    FOREIGN KEY
-            (folder_id) REFERENCES client_folders
-            (id)
-);
-
-            -- Création de la table Commentaires
-            CREATE TABLE comments
-            (
-                id INT
-                AUTO_INCREMENT PRIMARY KEY,
     folder_id INT,
     author_id INT,
     content TEXT,
     created_at DATETIME,
     -- Autres informations sur le commentaire
     FOREIGN KEY
-                (folder_id) REFERENCES client_folders
-                (id),
+        (folder_id) REFERENCES client_folders
+        (id),
     FOREIGN KEY
-                (author_id) REFERENCES users
-                (id) -- Ou Consultants(ID)
+        (author_id) REFERENCES users
+        (id) -- Ou Consultants(ID)
 );
 
-                -- Création de la table Taches
-                CREATE TABLE tasks
-                (
-                    id INT
-                    AUTO_INCREMENT PRIMARY KEY,
+        -- Création de la table Taches
+        CREATE TABLE tasks
+        (
+            id INT
+            AUTO_INCREMENT PRIMARY KEY,
     folder_id INT,
     consultant_id INT,
     description TEXT,
     due_date DATETIME,
     Statut ENUM
-                    ('En attente', 'En cours', 'Terminee'),
+            ('En attente', 'En cours', 'Terminee'),
     -- Autres informations sur la tâche
     FOREIGN KEY
-                    (folder_id) REFERENCES client_folders
-                    (id),
+            (folder_id) REFERENCES client_folders
+            (id),
     FOREIGN KEY
-                    (consultant_id) REFERENCES users
-                    (id)
+            (consultant_id) REFERENCES users
+            (id)
 );

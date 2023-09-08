@@ -17,9 +17,9 @@ const ProfilePage = () => {
 
     const onSubmit = async (data, event) =>  {
      
-       
+        
         const formData = new FormData();
-        formData.append("file", data.profile_image[0]);
+        formData.append("profile_image", data.profile_image[0]);
         profile["profile_image"]= data.profile_image[0].name;
         handleSave(event)
         const res = await fetch("http://localhost:8080/upload-file", {

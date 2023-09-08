@@ -13,7 +13,7 @@ import bodyParser from 'body-parser'
 
 // ROUTES
 import userRoutes from './routes/user.js'
-import folderRoutes from './routes/user.js'
+import folderRoutes from './routes/folder.js'
 
 // dotenv config
 dotenv.config()
@@ -38,6 +38,7 @@ app.use(morgan('dev'))
 // ROUTES
 app.post("/upload-file", async (req, res) => {
     try {
+        
         if (!req.files) {
             res.send({
                 status: "failed",
@@ -45,11 +46,16 @@ app.post("/upload-file", async (req, res) => {
             });
         } else {
             let file ;
-
+           
             Object.keys(req.files).forEach(function(key) {
                 file = req.files[key];
-                file.mv("./uploads/profiles/" + file.name);
-            });
+                if(key === "profile_image"){
+                    file.mv("./uploads/profiles/" + file.name);
+                }else {
+                    file.mv(`./uploads/${req.body.full_name}/` + file.name);
+                    
+                }
+            }); 
             
 
             res.send({

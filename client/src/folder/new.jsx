@@ -11,19 +11,21 @@ import { useDispatch } from 'react-redux';
 import { hideLoading, showLoading } from '../components/redux/features/alertSlice'
 import axios from 'axios'
 import Summary from "../components/folder/steps/Summary";
+import { useSelector } from 'react-redux';
 
 const NewFolder = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const {user} = useSelector((state) => state.user)
 
   const [datas, setDatas] = useState({
     first_name: "",
     last_name: "",
     gender: "",
-    passport_number: "2",
+    passport_number: "",
     email: "",
-
+    consultant_id: user.id,
     profile_image: "",
     phone_number: "",
     country: "",
@@ -64,7 +66,7 @@ const NewFolder = () => {
 
   // Set PersonalInfo datas
   const onSubmit = async (data, event) =>  {
-    console.log(data)
+    
     const formData = new FormData();
     formData.append("profile_image", data.profile_image[0]);
     datas["profile_image"]= data.profile_image[0].name;
@@ -80,6 +82,7 @@ const NewFolder = () => {
     datas["marriage_certificate"]= data.marriage_certificate[0].name;
     formData.append("birth_certificate", data.birth_certificate[0]);
     datas["birth_certificate"]= data.birth_certificate[0].name;
+    formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
   
 
     handleSave(event)
@@ -105,7 +108,7 @@ const handleSave = async (event) => {
       }
     })
     .catch(function (error) {
-      message.error(error.response.data.message)
+      message.error(error.message)
     });
     dispatch(hideLoading())
 
