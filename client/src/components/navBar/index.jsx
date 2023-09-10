@@ -10,7 +10,7 @@ const NavBar = () => {
    
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
         <NavLink to="/" className="navbar-brand p-0">
-            <h1 className="m-0 text-primary">Canada Quick Immigration</h1>
+            <h1 className="m-0 text-danger">Canada Quick Immigration</h1>
         </NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
@@ -29,8 +29,8 @@ const NavBar = () => {
                         <a href="detail.html"  className="dropdown-item">Blog Detail</a>
                         <a href="feature.html" className="dropdown-item">Features</a>
                         <a href="quote.html"  className="dropdown-item">Quote Form</a>
-                        <NavLink to="/signup" className={`dropdown-item ${location.pathname==="/signup" && 'active'}`}>Sign Up</NavLink>
-                        <NavLink to="/signin" className={`dropdown-item ${location.pathname==="/signin" && 'active'}`}>Sign In</NavLink>
+                        <NavLink to="/signup" className={`dropdown-item ${location.pathname==="/signup" && ' bg-danger'}`}>Sign Up</NavLink>
+                        <NavLink to="/signin" className={`dropdown-item ${location.pathname==="/signin" && ' bg-danger'}`}>Sign In</NavLink>
                         <a href="testimonial.html" className="dropdown-item">Testimonial</a>
                     </div>
                 </div>

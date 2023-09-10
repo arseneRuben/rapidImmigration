@@ -5,9 +5,8 @@ import { Form, Input, message } from 'antd'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
-import TopBar from '../../components/topBar'
-import { Footer } from 'antd/es/layout/layout'
-import NavBar from '../../components/navBar'
+
+import FrontPages from '..'
 
 
 const Login = () => {
@@ -42,8 +41,7 @@ const Login = () => {
   }
   return (
     <>
-    <TopBar />
-    <NavBar />
+    <FrontPages>
     <div className='d-flex align-items-center justify-content-center  p-5'>
       <Form layout='vertical' onFinish={onFinish} className='card p-4 w-30'>
         <h1 className='text-center'> Sign In </h1>
@@ -55,11 +53,11 @@ const Login = () => {
           <Input type='password' required />
         </Form.Item>
       
-        <Link to='/signup' className='m-2'>Not yet have an account?</Link>
-        <button type='submit' className='btn btn-primary'>Login</button>
+        <Link to='/signup' className='m-2 text-danger'>Not yet have an account?</Link>
+        <button type='submit' className='btn btn-danger'>Login</button>
       </Form>
     </div>
-    <Footer />
+    </FrontPages>
     </>
   )
 }

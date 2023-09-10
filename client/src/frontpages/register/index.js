@@ -3,11 +3,10 @@ import './index.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { Form, Input, message } from 'antd'
 import axios from 'axios'
-import TopBar from '../../components/topBar'
-import { Footer } from 'antd/es/layout/layout'
-import NavBar from '../../components/navBar'
+
 import {useDispatch} from 'react-redux'
 import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+import FrontPages from '..'
 
 const Register = () => {
 
@@ -40,9 +39,8 @@ const Register = () => {
       }
   }
   return (
-    <>
-    <TopBar />
-    <NavBar />
+    <FrontPages>
+   
     <div className='d-flex align-items-center justify-content-center p-5'>
       <Form layout='vertical' onFinish={onFinish} className='card p-4 w-30'>
         <h1 className='text-center'> Sign Up</h1>
@@ -56,12 +54,12 @@ const Register = () => {
         <Form.Item label='Confirm Password' name='confirmPassword'>
           <Input type='password' required />
         </Form.Item>
-        <Link to='/signin' className='m-2'>Already have an account?</Link>
-        <button type='submit' className='btn btn-primary'>Register</button>
+        <Link to='/signin' className='m-2  text-danger'>Already have an account?</Link>
+        <button type='submit' className='btn btn-danger'>Register</button>
       </Form>
     </div>
-    <Footer />
-    </>
+    
+    </FrontPages>
   )
 }
 
