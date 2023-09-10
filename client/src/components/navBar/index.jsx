@@ -34,7 +34,9 @@ const NavBar = () => {
                         <a href="testimonial.html" className="dropdown-item">Testimonial</a>
                     </div>
                 </div>
-                <a href="contact.html" className="nav-item nav-link">Contact</a>
+                <NavLink to="/contact" className={`nav-item nav-link ${location.pathname==="/contact" && 'active'}`}>
+                    Contact
+                </NavLink>
             </div>
         </div>
     </nav>

@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <>
     <FrontPages>
-    <div className='d-flex align-items-center justify-content-center  p-5'>
+    <div className='d-flex align-items-center justify-content-center bg-light p-5'>
       <Form layout='vertical' onFinish={onFinish} className='card p-4 w-30'>
         <h1 className='text-center'> Sign In </h1>
      

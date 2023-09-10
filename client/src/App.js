@@ -12,6 +12,7 @@ import ProfilePage from './adminpages/profile';
 import NewFolder from './folder/new';
 import FolderShow from './folder/show';
 import ClientList from './folder';
+import ContactPage from './frontpages/contact';
 function App() {
   const {loading} = useSelector((state) => state.alerts)
   return (
@@ -30,6 +31,11 @@ function App() {
         <Route path="/signup" element={
             <PublicRoute>
               <Register/>
+            </PublicRoute>
+        }/>
+         <Route path="/contact" element={
+            <PublicRoute>
+              <ContactPage/>
             </PublicRoute>
         }/>
         <Route path="/" element={ 
