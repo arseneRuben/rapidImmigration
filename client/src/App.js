@@ -11,6 +11,7 @@ import PublicRoute from './components/PublicRoute';
 import ProfilePage from './adminpages/profile';
 import NewFolder from './folder/new';
 import FolderShow from './folder/show';
+import ClientList from './folder';
 function App() {
   const {loading} = useSelector((state) => state.alerts)
   return (
@@ -57,6 +58,12 @@ function App() {
          <Route path="/folders/new" element={ 
           <ProtectedRoute>
            <NewFolder/>
+          </ProtectedRoute>
+
+        }/>
+         <Route path="/folders" element={ 
+          <ProtectedRoute>
+           <ClientList/>
           </ProtectedRoute>
 
         }/>

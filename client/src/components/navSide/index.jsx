@@ -18,7 +18,7 @@ const NavSide = () => {
                        <img src={user ? `http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} className="img-responsive img-fluid img-thumbnail rounded-pill" width="70vw" />
                     </li>
                     <li className=' nav-item p-1 m-2 '>
-                    <NavLink to='/admin' className={` bg-light text-dark  ${location.pathname==="/admin" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
+                    <NavLink to='/folders' className={` bg-light text-dark  ${location.pathname==="/folders" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
                     </li>
                     <li className=' nav-item p-1 m-2 '>
                     <NavLink to='/profile' className={` bg-light text-dark  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faUserEdit} /></NavLink> 

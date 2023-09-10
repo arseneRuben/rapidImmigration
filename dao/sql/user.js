@@ -60,13 +60,11 @@ export const authUserData = async (req, res) => {
         query('SELECT * FROM users WHERE id = ?', [req.body.userId], (user) => {
             if(!user) {
                 return res.status(200).json({ message: 'User not found', success:false })
-               
             } else {
                 res.status(200).json({
                     success: true,
                     data: user[0],
                   });
-        
             }
         })
      } catch (error) {

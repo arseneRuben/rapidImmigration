@@ -6,7 +6,6 @@ import { hideLoading, showLoading } from '../../components/redux/features/alertS
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import { message } from 'antd';
-import { useLocation,useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 
@@ -16,8 +15,6 @@ const ProfilePage = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data, event) =>  {
-     
-        
         const formData = new FormData();
         formData.append("profile_image", data.profile_image[0]);
         profile["profile_image"]= data.profile_image[0].name;
@@ -46,7 +43,6 @@ const ProfilePage = () => {
       };
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const handleSave = async (event) => {
         try {
             
@@ -70,14 +66,13 @@ const ProfilePage = () => {
     }
   return (
     <PageWrapper>
-                        <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
-                      
+                       <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
                             <PersonnalInfo  handleChange={handleChange} user={profile} register={register} />
                             <div  className='d-flex justify-content-around'  >
                                 <input id="submit_profile" type="submit" className='m-3 btn btn-primary btn-lg btn-block '/>
                                 <input type="reset" className='m-3 btn btn-secondary btn-lg btn-block'/>
                             </div>
-                        </form>
+                       </form>
     </PageWrapper>
   )
 }
