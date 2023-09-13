@@ -14,6 +14,7 @@ import LocationInfo from '../../components/folder/steps/LocationInfo';
 import FilesInfo from '../../components/folder/steps/FilesInfo';
 import Summary from "../../components/folder/steps/Summary";
 import PageWrapper from "../../components/pageWrapper";
+import { createFolder } from "../../actions/folders";
 
 const NewFolder = () => {
   const { register, handleSubmit } = useForm();
@@ -99,7 +100,9 @@ const NewFolder = () => {
 };
 
 const handleSave = async (event) => {
-  try {
+  event.preventDefault()
+  dispatch(createFolder(datas, navigate))
+ /* try {
       
     dispatch(showLoading())
     axios.post('http://localhost:8080/api/folders/new', datas) 
@@ -118,7 +121,7 @@ const handleSave = async (event) => {
 
   } catch (error) {
     console.log(error)
-  } 
+  }  */
 }
   const handleChange = (name) => (e) => {
     setDatas({ ...datas, [name]: e.target.value });

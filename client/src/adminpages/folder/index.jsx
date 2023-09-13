@@ -6,11 +6,7 @@ import { useSelector } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 
 const ClientList =  () => {
-    //const [folders, setFolders] = useState([]);
     const {isLoading, folders} = useSelector((state)=> state.folders)
- 
-
-    
 
   return (
     <PageWrapper>

@@ -58,14 +58,14 @@ export const getFoldersBySearch = (searchQuery) => async (dispatch) => {
   }
 };
 
-export const createFolder = (folder, history) => async (dispatch) => {
+export const createFolder = (folder, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createFolder(folder);
 
     dispatch({ type: CREATE, payload: data });
 
-    history.push(`/folders/${data._id}`);
+    navigate(`/folders/${data._id}`);
   } catch (error) {
     console.log(error);
   }

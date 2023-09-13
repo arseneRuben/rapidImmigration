@@ -16,7 +16,7 @@ export const fetchFolderByClient = (name) => API.get(`/folders/creator?name=${na
 export const fetchFolderByConsultant = (name) => API.get(`/folders/consultant?name=${name}`);
 
 export const fetchFoldersBySearch = (searchQuery) => API.get(`/folders/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
-export const createFolder = (newFolder) => API.folder('/folders', newFolder);
+export const createFolder = (newFolder) => API.post('/folders', newFolder);
 export const updateFolder = (id, updatedFolder) => API.patch(`/folders/${id}`, updatedFolder);
 export const deleteFolder = (id) => API.delete(`/folders/${id}`);
 

@@ -8,7 +8,7 @@ router.get('client/:id', getFoldersByClient)
 router.get('consultant/:id', getFoldersByConsultant)
 
 /* CREATE */
-router.post('/new', createFolder)
+router.post('/', createFolder)
 
 /* UPDATE */
 router.put('/:id', updateFolder)
