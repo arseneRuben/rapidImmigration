@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import { hideLoading, showLoading } from "../../redux/features/alertSlice";
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
 import { useDispatch } from 'react-redux';
@@ -102,26 +100,6 @@ const NewFolder = () => {
 const handleSave = async (event) => {
   event.preventDefault()
   dispatch(createFolder(datas, navigate))
- /* try {
-      
-    dispatch(showLoading())
-    axios.post('http://localhost:8080/api/folders/new', datas) 
-    .then(function (response) {
-      if(response.status === 200){
-        message.success(response.data.message)
-        navigate(`/folder/${response.data.id}/show`)
-      } else {
-        message.error(response.data.message)
-      }
-    })
-    .catch(function (error) {
-      message.error(error.message)
-    });
-    dispatch(hideLoading())
-
-  } catch (error) {
-    console.log(error)
-  }  */
 }
   const handleChange = (name) => (e) => {
     setDatas({ ...datas, [name]: e.target.value });

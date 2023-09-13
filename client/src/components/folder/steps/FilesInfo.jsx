@@ -81,7 +81,6 @@ const FilesInfo = ({ client,handleChange,register }) => {
           type='file'
           onChange={handleChange("wes_report")}
           name="wes_report"
-          
           {...register("wes_report")}
         />
           </div>

@@ -25,7 +25,6 @@ const ClientList =  () => {
                                                         <th>FullName</th>
                                                         <th>Passport</th>
                                                         <th>Consultant</th>
-                                                        <th>Address</th>
                                                         <th>Birthday</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -36,8 +35,7 @@ const ClientList =  () => {
                                                             <td>{folder.first_name }</td>
                                                             <td>{folder.passport_number }</td>
                                                             <td>{folder.consultant_id }</td>
-                                                            <td className="center">{folder.address }</td>
-                                                            <td className="center">{folder.birthday }</td>
+                                                            <td className="center">{folder.birth_date }</td>
                                                             <td className="center"><button className="btn btn-warning"> <FontAwesomeIcon icon={faUserEdit} /></button><button className="btn btn-info"> <FontAwesomeIcon icon={faEye} /></button><button className="btn btn-danger"> <FontAwesomeIcon icon={faTrash} /></button></td>
                                                         </tr>
                                                     ))

@@ -65,7 +65,7 @@ export const createFolder = (folder, navigate) => async (dispatch) => {
 
     dispatch({ type: CREATE, payload: data });
 
-    navigate(`/folders/${data._id}`);
+    navigate(`/folders`);
   } catch (error) {
     console.log(error);
   }

@@ -10,7 +10,7 @@ export const createFolder = async (req, res) => {
         query('INSERT INTO  client_folders (first_name,             last_name,         gender,           passport_number,           country,            phone_number,           city,          street,         address,          zip_code,               birth_date,         birth_place,         birth_country,          birth_certificate,          passport,          resume,          other_documents,          marital_status,          spouse_name,           marriage_certificate,                                              consultant_id               ) VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                                            [req.body.first_name,   req.body.last_name,  req.body.gender,  req.body.passport_number,  req.body.country,  req.body.phone_number, req.body.city, req.body.street, req.body.address, req.body.zip_code,  req.body.birth_date, req.body.birth_place, req.body.birth_country, req.body.birth_certificate, req.body.passport, req.body.resume, req.body.other_documents, req.body.marital_status,  req.body.spouse_name, req.body.marriage_certificate,   req.body.consultant_id ], function (err, result, fields) {
                         res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                        res.end(JSON.stringify({ message: 'Folder created', success: true, id: res.insertedId }, null, 4))
+                        res.end(JSON.stringify({ message: 'Folder created', success: true, res }, null, 4))
                         disconnect()
                     })
       
