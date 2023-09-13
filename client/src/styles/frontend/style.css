@@ -25,7 +25,9 @@ h6,
 }
 
 
-
+.pt-6 {
+    padding-top: 90px;
+}
 
 .pb-6 {
     padding-bottom: 90px;

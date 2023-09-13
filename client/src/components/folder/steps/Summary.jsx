@@ -56,6 +56,7 @@ const Summary = ({client}) => {
                                     <h4 class="card-title">Married life</h4>
                                     <p class="card-text">Marital status : {matitalStatus(client.marital_status)}</p>
                                     <p class="card-text">Spouse : {client.spouse_name}</p>
+                                    <p class="card-text">  {client.chidren} child(ren)</p>
                                 </div>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Form, Input, message } from 'antd'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
-import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+import { hideLoading, showLoading } from '../../redux/features/alertSlice'
 
 import FrontPages from '..'
 
@@ -17,7 +17,7 @@ const Login = () => {
     try {
       dispatch(showLoading())
       const res = await axios.post('http://localhost:8080/api/users/signin', values)
-      window.location.reload()
+     
       dispatch(hideLoading())
       
       if(res.data.success) {

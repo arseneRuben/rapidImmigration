@@ -44,7 +44,7 @@ const ContactPage = () => {
                               </div>
                               <div className="col-12">
                                   <div className="form-floating">
-                                      <textarea className="form-control" placeholder="Message" id="form-floating-4" ></textarea>
+                                      <textarea className="form-control form-control-lg" placeholder="Message" id="form-floating-4" rows="30"></textarea>
                                       <label for="form-floating-4">Message</label>
                                     </div>
                               </div>

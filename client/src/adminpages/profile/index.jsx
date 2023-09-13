@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PageWrapper from '../../components/pageWrapper'
 import { useSelector } from 'react-redux';
 import PersonnalInfo from '../../components/folder/steps/PersonnalInfo';
-import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+import { hideLoading, showLoading } from '../../redux/features/alertSlice'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import { message } from 'antd';
@@ -23,6 +23,7 @@ const ProfilePage = () => {
             method: "POST",
             body: formData,
         }).then((res) => res.json());
+        window.location.reload()
         message.success(JSON.stringify(`${res.message}, status: ${res.status}`)); 
       
 

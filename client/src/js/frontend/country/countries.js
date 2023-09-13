@@ -7817,15 +7817,36 @@ export const COUNTRIES = {
     "Vott Kampong Svay"
   ],
   "Cameroon": [
+
     "Bafia",
+
     "Bafoussam",
+    
     "Bamenda",
     "Buea",
     "Douala",
+    "Garoua",
+
     "Kribi",
     "Kumba",
+    "Limbe",
+
+    "Maroua",
+
+    "Ngaoundéré",
+
+    "Nkongsamba",
     "Ringo",
-    "Tibati"
+    "Tibati",
+    "Wum",
+    "Yaoundé",
+    "Yokadouma",
+    "Yoko",
+    "Yomou",
+    "Yongorongo",
+    
+   
+
   ],
   "Canada": [
     "100 Mile House",

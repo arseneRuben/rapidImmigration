@@ -3,12 +3,12 @@ import {Form} from "react-bootstrap";
 import { COUNTRIES } from "../../../js/frontend/country/countries";
 
 const ContactInfo = ({ handleChange, client }) => {
-  let citiesSelect = document.getElementById('birth_place')
+  let citiesSelect = document.getElementById('birth_city')
   let countriesSelect = document.getElementById('birth_country')
 
   useEffect(() => {
     countriesSelect = document.getElementById('birth_country')
-    citiesSelect = document.getElementById('birth_place')
+    citiesSelect = document.getElementById('birth_city')
     buildCountrieOptions()
   }, []);
 
@@ -40,31 +40,10 @@ const ContactInfo = ({ handleChange, client }) => {
 
   return (
     <div className="d-flex flex-column align-items-center">
-      <h2>Identity Info</h2>
+      <h2>Date and place of birth, marital status</h2>
       <Form.Group className="w-100 m-2">
         <div className="row">
-          <div className="col-6">
-              <Form.Control
-                placeholder="Email"
-                onChange= {handleChange("email")}
-                name="email"
-                value={client.email }
-                autoComplete="off"
-              />
-          </div>
-          <div className="col-6">
-              <Form.Control
-                placeholder="Phone Number"
-                onChange= {handleChange("phone_number")}
-                name="phone_number"
-                value={client.phone_number}
-              />
-          </div>
-        </div>
-      </Form.Group>
-      <Form.Group className="w-100 m-2">
-        <div className="row">
-          <div className="col-6">
+        <div className="col-6">
             <Form.Control
                 placeholder="Birth Country"
                 as="select"
@@ -76,9 +55,26 @@ const ContactInfo = ({ handleChange, client }) => {
             </Form.Control>
           </div>
           <div className="col-6">
-            <Form.Control
+          <Form.Control
                 placeholder="Birth City"
                 as="select"
+                name="birth_city"
+                id="birth_city"
+                className="w-100 mt-2"
+                onChange={handleChange("birth_city")}
+              >
+            </Form.Control>
+           
+          </div>
+        </div>
+      </Form.Group>
+      <Form.Group className="w-100 m-2">
+        <div className="row">
+         
+          <div className="col-6">
+            <Form.Control
+                placeholder="Birth Place"
+                type="text"
                 name="birth_place"
                 id="birth_place"
                 className="w-100 mt-2"
@@ -86,11 +82,19 @@ const ContactInfo = ({ handleChange, client }) => {
               >
             </Form.Control>
           </div>
+          <div className="col-6">
+          <Form.Control
+                placeholder="Phone Number"
+                onChange= {handleChange("phone_number")}
+                name="phone_number"
+                value={client.phone_number}
+              />
+          </div>
         </div>
      </Form.Group>
      <Form.Group className="w-100 m-2">
         <div className="row">
-          <div clasName="col-5">
+          <div clasName="col-4">
             <Form.Control
                 placeholder="Marital status"
                 className="mt-2"
@@ -105,13 +109,26 @@ const ContactInfo = ({ handleChange, client }) => {
                 <option  value="2">Divorced</option>
             </Form.Control>
           </div>
-          <div className="col-6">
+          <div className="col-4">
               <Form.Control
                 placeholder="Spouse Name"
                 onChange= {handleChange("spouse_name")}
                 name="spouse_name"
                 className="mt-2"
                 value={client.spouse_name}
+              />
+          </div>
+          <div className="col-4">
+                <Form.Label htmlFor="children"  mt="5">Number of children</Form.Label>
+            </div>
+          <div className="col-4">
+              <Form.Control
+                placeholder="Chidren"
+                type="number"
+                onChange= {handleChange("children")}
+                name="children"
+                className="mt-2"
+                value={client.children}
               />
           </div>
         </div>

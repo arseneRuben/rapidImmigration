@@ -3,16 +3,17 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import FrontPages from './frontpages';
 import Login from './frontpages/login';
 import Register from './frontpages/register';
-import AdminPages from './adminpages';
 import {useSelector} from "react-redux"
-import SpinnerCustom from './components/redux/SpinnerCustom';
+import SpinnerCustom from './redux/SpinnerCustom';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 import ProfilePage from './adminpages/profile';
-import NewFolder from './folder/new';
-import FolderShow from './folder/show';
-import ClientList from './folder';
+
 import ContactPage from './frontpages/contact';
+import ClientList from './adminpages/folder';
+import NewFolder from './adminpages/folder/new';
+import FolderShow from './adminpages/folder/show';
+
 function App() {
   const {loading} = useSelector((state) => state.alerts)
   return (

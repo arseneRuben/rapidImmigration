@@ -5,7 +5,7 @@ import { Form, Input, message } from 'antd'
 import axios from 'axios'
 
 import {useDispatch} from 'react-redux'
-import { hideLoading, showLoading } from '../../components/redux/features/alertSlice'
+import { hideLoading, showLoading } from '../../redux/features/alertSlice'
 import FrontPages from '..'
 
 const Register = () => {

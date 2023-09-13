@@ -87,11 +87,11 @@ const PersonnalInfo = ({ handleChange, user=null, register }) => {
                 <div className="col-6">
                   <Form.Control
                     placeholder={user.hasOwnProperty("password") ? "Password": "Passport Number"}
-                    onChange= {user.hasOwnProperty("password") ? handleChange("password") :  handleChange("password_number") }
-                    name={user.hasOwnProperty("password") ? "password": "password_number"}
-                    id={user.hasOwnProperty("password") ? "password": "password_number"}
+                    onChange= {user.hasOwnProperty("password") ? handleChange("password") :  handleChange("passport_number") }
+                    name={user.hasOwnProperty("password") ? "password": "passport_number"}
+                    id={user.hasOwnProperty("password") ? "password": "passport_number"}
                     type={user.hasOwnProperty("password") ? "password": "text"}
-                    value={user.hasOwnProperty("password") ? user.password: user.password_number}
+                    value={user.hasOwnProperty("password") ? user.password: user.passport_number}
                   /> 
                 </div> 
               </div>

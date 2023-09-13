@@ -1,11 +1,13 @@
 import NavSide from '../components/navSide'
 import TopNavigation from '../components/topNavigation'
-import PageWrapper from '../components/pageWrapper'
 import React, {useEffect} from "react"
 import '../styles/backend/custom.css'
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { getFolders } from '../actions/folders'
 
 const AdminPages = ({children}) => {
+  const dispatch = useDispatch()
   // login user data
   const getUserData = async () => { 
     try {
@@ -24,6 +26,7 @@ const AdminPages = ({children}) => {
 
   useEffect(() => {
       getUserData()
+      dispatch(getFolders())
     }, [])
   return (
     <>  

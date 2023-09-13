@@ -1,17 +1,19 @@
 import React, {useState} from "react";
+import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import PersonnalInfo from '../components/folder/steps/PersonnalInfo';
-import ContactInfo from '../components/folder/steps/ContactInfo';
-import LocationInfo from '../components/folder/steps/LocationInfo';
-import FilesInfo from '../components/folder/steps/FilesInfo';
-import PageWrapper from "../components/pageWrapper";
+import { hideLoading, showLoading } from "../../redux/features/alertSlice";
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
 import { useDispatch } from 'react-redux';
-import { hideLoading, showLoading } from '../redux/features/alertSlice'
-import axios from 'axios'
-import Summary from "../components/folder/steps/Summary";
 import { useSelector } from 'react-redux';
+
+
+import ContactInfo from "../../components/folder/steps/ContactInfo";
+import PersonnalInfo from '../../components/folder/steps/PersonnalInfo';
+import LocationInfo from '../../components/folder/steps/LocationInfo';
+import FilesInfo from '../../components/folder/steps/FilesInfo';
+import Summary from "../../components/folder/steps/Summary";
+import PageWrapper from "../../components/pageWrapper";
 
 const NewFolder = () => {
   const { register, handleSubmit } = useForm();
