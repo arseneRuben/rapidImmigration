@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 
 
 import ContactInfo from "../../components/folder/steps/ContactInfo";

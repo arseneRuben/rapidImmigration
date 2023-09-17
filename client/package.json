@@ -23,6 +23,7 @@
     "react-bootstrap": "^2.8.0",
     "react-country-state-city": "^1.0.9",
     "react-dom": "^18.2.0",
+    "react-download-link": "^2.3.0",
     "react-hook-form": "^7.46.1",
     "react-jqueryui-datepicker": "^1.0.3",
     "react-redux": "^8.1.2",

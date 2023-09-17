@@ -50,7 +50,7 @@ function App() {
           </PublicRoute>
         }/>
 
-        <Route path="/folder/*/show" element={ 
+        <Route path="/folder/:id/show" element={ 
           <ProtectedRoute>
            <FolderShow/>
           </ProtectedRoute>

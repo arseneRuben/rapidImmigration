@@ -15,8 +15,8 @@ const Footer = () => {
                 <h1 className="display-5 mb-4">Stay Update!!!</h1>
                 <form className="mx-auto" >
                     <div className="input-group">
-                     <input type="text" class="form-control border-white p-3" placeholder="Your Email"/>
-                        <button class="btn btn-dark px-4">Sign Up</button>
+                     <input type="text" className="form-control border-white p-3" placeholder="Your Email"/>
+                        <button className="btn btn-dark px-4">Sign Up</button>
                     </div>
                 </form>
             </div>

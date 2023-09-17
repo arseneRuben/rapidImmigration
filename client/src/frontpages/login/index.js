@@ -35,8 +35,8 @@ const Login = () => {
      
     } catch (error) {
       dispatch(hideLoading())
-      console.log(error)
-      message.error("Somethind wne wrong")
+      //console.log(error)
+      message.error(error.message)
     }
   }
   return (

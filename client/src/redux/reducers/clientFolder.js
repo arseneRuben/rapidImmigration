@@ -17,7 +17,7 @@ const folders= (state = { isLoading: true, folders: [] }, action) => {
     case FETCH_BY_CONSULTANT:
       return { ...state, folders: action.payload.data };
     case FETCH_FOLDER:
-      return { ...state, folder: action.payload.folder };
+      return { ...state, folder: action.payload };
    
     case CREATE:
       return { ...state, folders: [...state.folders, action.payload] };

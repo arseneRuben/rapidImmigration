@@ -3,10 +3,11 @@ import * as api from '../api/index.js';
 
 export const getFolder = (id) => async (dispatch) => {
   try {
+    console.log(id)
     dispatch({ type: START_LOADING });
 
     const { data } = await api.fetchFolder(id);
-
+    
     dispatch({ type: FETCH_FOLDER, payload: { folder: data } });
   } catch (error) {
     console.log(error);
