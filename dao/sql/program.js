@@ -23,7 +23,7 @@ export const createProgram = async (req, res) => {
 
 
 
-export const updatePrograms = async (req, res) => {
+export const updateProgram = async (req, res) => {
     try {
         connect()
         query('UPDATE programs SET name=?, description=?,  image=? WHERE id=?',
@@ -83,4 +83,5 @@ export const getProgramById = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }   
+
 

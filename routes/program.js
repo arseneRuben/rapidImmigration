@@ -1,5 +1,6 @@
-import { createProgram,deleteProgram,getProgramById,getPrograms } from "../dao/sql/program";
 import express from 'express'
+import { createProgram,deleteProgram,getProgramById,getPrograms,updateProgram } from '../dao/sql/program.js'
+
 const router = express.Router()
 /* READ */
 router.get('/', getPrograms)

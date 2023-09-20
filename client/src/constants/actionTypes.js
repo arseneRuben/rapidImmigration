@@ -13,3 +13,11 @@ export const FETCH_BY_CLIENT = 'FETCH_BY_CLIENT';
 
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
+
+export const FETCH_ALL_PROGRAM = 'FETCH_ALL_PROGRAM';
+export const FETCH_PROGRAM_BY_CLIENT = 'FETCH_PROGRAM_BY_CLIENT';
+export const CREATE_PROGRAM = 'CREATE_PROGRAM';
+export const UPDATE_PROGRAM = 'UPDATE_PROGRAM';
+export const DELETE_PROGRAM = 'DELETE_PROGRAM';
+
+
