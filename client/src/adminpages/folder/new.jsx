@@ -45,7 +45,6 @@ const NewFolder = () => {
     wes_report: "",
     marriage_certificate: "",
     birth_certificate: "",
-    other_documents: "",
     marital_status: "",
     spouse_name: "",
     children: 0,
@@ -86,10 +85,7 @@ const NewFolder = () => {
       datas["wes_report"]= data.wes_report[0].name;
     }
   
-  if(data.other_documents.length > 0){
-    formData.append("other_documents", data.other_documents[0]);
-    datas["other_documents"]= data.other_documents[0].name;
-  }
+
   if(data.marriage_certificate.length > 0){
     formData.append("marriage_certificate", data.marriage_certificate[0]);
     datas["marriage_certificate"]= data.marriage_certificate[0].name;

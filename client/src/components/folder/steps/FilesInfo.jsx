@@ -83,19 +83,7 @@ const FilesInfo = ({ client,handleChange,register }) => {
         </div>
       </Form.Group>
       <Form.Group className="w-100 m-2">
-        <div className="row">
-            <div className="col-3">
-            <Form.Label>Other document</Form.Label>
-            </div>
-            <div className="col-9">
-              <Form.Control
-                type='file'
-                onChange={handleChange("other_documents")}
-                name="other_documents"
-                {...register("other_documents")}
-              />
-            </div>
-        </div>
+      
       </Form.Group>
     </div>
   )

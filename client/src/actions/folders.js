@@ -8,7 +8,7 @@ export const getFolder = (id) => async (dispatch) => {
     const { data } = await api.fetchFolder(id);
     dispatch({ type: FETCH_FOLDER, payload: { folder: data } });
   } catch (error) {
-    console.log(error);
+    message.error(error.message)
   }
 };
 
@@ -19,7 +19,7 @@ export const getFolders = () => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error);
+    message.error(error.message)
   }
 };
 
@@ -30,7 +30,7 @@ export const getFolderByClient = (name) => async (dispatch) => {
     dispatch({ type: FETCH_BY_CLIENT, payload: { data } });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error);
+    message.error(error.message)
   }
 };
 
@@ -63,20 +63,20 @@ export const createFolder = (folder, navigate) => async (dispatch) => {
     const { data } = await api.createFolder(folder);
 
     dispatch({ type: CREATE, payload: data });
-
+    message.success('Folder created')
     navigate(`/folders`);
   } catch (error) {
-    console.log(error);
+    message.error(error.message)
   }
 };
 
 export const updateFolder = (id, folder) => async (dispatch) => {
   try {
     const { data } = await api.updateFolder(id, folder);
-
+    message.success('Folder updated')
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
-    console.log(error);
+    message.error(error.message)
   }
 };
 

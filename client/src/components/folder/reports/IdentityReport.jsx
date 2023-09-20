@@ -19,7 +19,6 @@ const IdentityReport = ({client}) => {
                                   <p className="card-text">{client.first_name}  {client.last_name}</p>
                                   <p className="card-text">Ne le   {client.birth_date} a {client.birth_country}-{client.birth_city}-{client.birth_place}</p>
                                   <p className="card-text">Sexe  {gender(client.gender)} </p>
-
                               </div>
             </div>
   )
