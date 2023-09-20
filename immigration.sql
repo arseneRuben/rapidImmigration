@@ -19,7 +19,7 @@ CREATE TABLE users
     phone_number  VARCHAR
   (100),
     google_id int,
-    gender int,
+    gender CHAR(1),
     access_level ENUM
   ('admin','consultant', 'client') DEFAULT 'client'
 

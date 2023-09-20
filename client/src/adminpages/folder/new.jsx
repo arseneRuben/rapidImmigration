@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
 import { useDispatch , useSelector} from 'react-redux';
@@ -53,7 +53,6 @@ const NewFolder = () => {
   });
   const [step, setStep] = useState(1);
   const nextStep = (e) => {
-   
     if (step < 5) {
       e.preventDefault()
       setStep(step + 1);
@@ -70,22 +69,38 @@ const NewFolder = () => {
   const onSubmit = async (data, event) =>  {
     
     const formData = new FormData();
-    formData.append("profile_image", data.profile_image[0]);
-    datas["profile_image"]= data.profile_image[0].name;
-    formData.append("passport", data.passport[0]);
-    datas["passport"]= data.passport[0].name;
-    formData.append("resume", data.resume[0]);
-    datas["resume"]= data.resume[0].name;
-    formData.append("wes_report", data.wes_report[0]);
-    datas["wes_report"]= data.wes_report[0].name;
+    if(data.profile_image.length > 0){
+      formData.append("profile_image", data.profile_image[0]);
+      datas["profile_image"]= data.profile_image[0].name;
+    }
+    if(data.passport.length > 0){
+      formData.append("passport", data.passport[0]);
+      datas["passport"]= data.passport[0].name;
+    }
+    if(data.resume.length > 0){
+      formData.append("resume", data.resume[0]);
+      datas["resume"]= data.resume[0].name;
+    }
+    if(data.wes_report.length > 0){
+      formData.append("wes_report", data.wes_report[0]);
+      datas["wes_report"]= data.wes_report[0].name;
+    }
+  
+  if(data.other_documents.length > 0){
     formData.append("other_documents", data.other_documents[0]);
     datas["other_documents"]= data.other_documents[0].name;
+  }
+  if(data.marriage_certificate.length > 0){
     formData.append("marriage_certificate", data.marriage_certificate[0]);
     datas["marriage_certificate"]= data.marriage_certificate[0].name;
+  }
+  if(data.birth_certificate.length > 0){
     formData.append("birth_certificate", data.birth_certificate[0]);
     datas["birth_certificate"]= data.birth_certificate[0].name;
-    formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
+  }
   
+    formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
+
 
     handleSave(event)
     const res = await fetch("http://localhost:8080/upload-file", {
@@ -98,11 +113,12 @@ const NewFolder = () => {
 
 const handleSave = async (event) => {
   event.preventDefault()
+  console.log(datas)
   dispatch(createFolder(datas, navigate))
 }
-  const handleChange = (name) => (e) => {
+const handleChange = (name) => (e) => {
     setDatas({ ...datas, [name]: e.target.value });
-  };
+};
   return (
     <PageWrapper>
       <div className=" vh-100">
@@ -121,11 +137,11 @@ const handleSave = async (event) => {
             }
             <div className="d-flex justify-content-around px-5 mt-5">
               {step > 1 ? (
-                <button className="btn btn-warning" onClick={prevStep}>
+                <button className="btn btn-primary" onClick={prevStep}>
                   Back
                 </button>
               ) : null}
-              <button className="btn btn-warning" onClick={ nextStep }>
+              <button  className= {step === 5 ? "btn btn-danger" : "btn btn-primary"} onClick={ nextStep }>
                 {step === 5 ? "Submit" : "Next"}
               </button>
             </div>

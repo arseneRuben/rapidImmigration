@@ -2,12 +2,25 @@ import React, { useState, useEffect } from 'react';
 import PageWrapper from '../../components/pageWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { deleteFolder } from '../../api';
+import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 
 const ClientList =  () => {
     const {isLoading, folders} = useSelector((state)=> state.folders)
+    const dispatch = useDispatch()
+
+    function deleteCLient(id){
+        dispatch(showLoading())
+        deleteFolder(id)
+        window.location.reload(false);
+        dispatch(hideLoading())
+    }
+
+  
+        
   return (
     <PageWrapper>
         <div class="row">
@@ -31,12 +44,12 @@ const ClientList =  () => {
                                                 </thead>
                                                 <tbody>
                                                     {folders.map((folder)=> (
-                                                        <tr class="gradeC" key={folder.id}>
+                                                        <tr class="gradeC"  key={folder.id}>
                                                             <td>{folder.first_name }</td>
                                                             <td>{folder.passport_number }</td>
                                                             <td>{folder.consultant_id }</td>
                                                             <td className="center">{folder.birth_date }</td>
-                                                            <td className="center"><button className="btn btn-warning"> <FontAwesomeIcon icon={faUserEdit} /></button><button className="btn btn-info"><NavLink to={`/folder/${folder.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon icon={faTrash} /></button></td>
+                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/folder/${folder.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/folder/${folder.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteCLient(folder.id)} icon={faTrash} /></button></td>
                                                         </tr>
                                                     ))
                                                     }

@@ -16,7 +16,6 @@ const FilesInfo = ({ client,handleChange,register }) => {
               onChange={handleChange("passport")}
               {...register("passport")}
               name="passport"
-             
             />
           </div>
         </div>
@@ -31,7 +30,6 @@ const FilesInfo = ({ client,handleChange,register }) => {
               type='file'
               onChange={handleChange("birth_certificate")}
               name="birth_certificate"
-              
               {...register("birth_certificate")}
             />
           </div>
@@ -47,7 +45,6 @@ const FilesInfo = ({ client,handleChange,register }) => {
                 type='file'
                 onChange={handleChange("marriage_certificate")}
                 name="marriage_certificate"
-               
                 {...register("marriage_certificate")}
               />
           </div>
@@ -64,7 +61,6 @@ const FilesInfo = ({ client,handleChange,register }) => {
             <Form.Control
               type='file'
               onChange={handleChange("resume")}
-             
               name="resume"
               {...register("resume")}
             />
@@ -96,7 +92,6 @@ const FilesInfo = ({ client,handleChange,register }) => {
                 type='file'
                 onChange={handleChange("other_documents")}
                 name="other_documents"
-              
                 {...register("other_documents")}
               />
             </div>

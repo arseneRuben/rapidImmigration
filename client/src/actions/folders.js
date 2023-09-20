@@ -1,13 +1,11 @@
 import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_FOLDER, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, FETCH_BY_CONSULTANT, FETCH_BY_CLIENT } from '../constants/actionTypes';
 import * as api from '../api/index.js';
+import {  message } from 'antd'
 
 export const getFolder = (id) => async (dispatch) => {
   try {
-    console.log(id)
     dispatch({ type: START_LOADING });
-
     const { data } = await api.fetchFolder(id);
-    
     dispatch({ type: FETCH_FOLDER, payload: { folder: data } });
   } catch (error) {
     console.log(error);
@@ -89,9 +87,9 @@ export const updateFolder = (id, folder) => async (dispatch) => {
 export const deleteFolder = (id) => async (dispatch) => {
   try {
     await await api.deleteFolder(id);
-
     dispatch({ type: DELETE, payload: id });
+    message.success('Folder deleted')
   } catch (error) {
-    console.log(error);
+    message.error('Delete failed')
   }
 };

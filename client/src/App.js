@@ -13,6 +13,7 @@ import ContactPage from './frontpages/contact';
 import ClientList from './adminpages/folder';
 import NewFolder from './adminpages/folder/new';
 import FolderShow from './adminpages/folder/show';
+import FolderEdit from './adminpages/folder/edit';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -53,6 +54,11 @@ function App() {
         <Route path="/folder/:id/show" element={ 
           <ProtectedRoute>
            <FolderShow/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/folder/:id/edit" element={ 
+          <ProtectedRoute>
+           <FolderEdit/>
           </ProtectedRoute>
 
         }/>

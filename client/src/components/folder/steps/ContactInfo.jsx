@@ -94,7 +94,7 @@ const ContactInfo = ({ handleChange, client }) => {
      </Form.Group>
      <Form.Group className="w-100 m-2">
         <div className="row">
-          <div clasName="col-4">
+          <div className="col-4">
             <Form.Control
                 placeholder="Marital status"
                 className="mt-2"

@@ -45,6 +45,8 @@ const PersonnalInfo = ({ handleChange, user=null, register }) => {
               onChange= {handleChange("gender")}
               name="gender"
               id="gender"
+              value={user ? user.gender: "0"}
+
             >
               <option value="0">Male</option>
               <option   value="1">Female</option>

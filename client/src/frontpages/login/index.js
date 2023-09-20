@@ -35,7 +35,6 @@ const Login = () => {
      
     } catch (error) {
       dispatch(hideLoading())
-      //console.log(error)
       message.error(error.message)
     }
   }

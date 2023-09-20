@@ -14,7 +14,7 @@ const FolderShow = () => {
   const { id } = useParams();
   const {isLoading, folders} = useSelector((state)=> state.folders)
   const client = folders.find((client) => client.id === parseInt(id))
-
+  console.log(client)
 return (
 <PageWrapper>
   <div className="d-flex flex-column align-items-center">

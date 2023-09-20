@@ -27,7 +27,13 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.static('uploads'))
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: '*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+    credentials: true,
+
+
+}));
 app.use(express.urlencoded({ extended: true }));
 
 //middlewares

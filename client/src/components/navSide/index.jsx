@@ -17,12 +17,17 @@ const NavSide = () => {
                     <li className=" nav-item text-center user-image-back">
                        <img src={user ? `http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} className="img-responsive img-fluid img-thumbnail rounded-pill" width="70vw" />
                     </li>
-                    <li className=' nav-item p-1 m-2 '>
-                    <NavLink to='/folders' className={` bg-light text-dark  ${location.pathname==="/folders" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
-                    </li>
+                   
                     <li className=' nav-item p-1 m-2 '>
                     <NavLink to='/profile' className={` bg-light text-dark  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faUserEdit} /></NavLink> 
                     </li>
+                    <li className=' nav-item p-1 m-2 '>
+                    <NavLink to='/folders' className={` bg-light text-dark  ${location.pathname==="/folders" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faTachometerAlt} /></NavLink> 
+                    </li>
+                    <li className=' nav-item  p-2  m-2 '>
+                         <NavLink to='/folders/new'  className={` bg-light text-dark  ${location.pathname==="/folders/new" && 'bg-primary-subtle'}` }><FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
+                    </li>
+                    
                    {/*<li className=' nav-item '>
                         <a href="#"><FontAwesomeIcon icon={faEdit} />UI Elements<span className="fa arrow"></span></a>
                         <ul className="nav nav-second-level">
@@ -37,9 +42,7 @@ const NavSide = () => {
                             </li>
                         </ul>
                     </li> */}
-                     <li className=' nav-item  p-2  m-2 '>
-                         <NavLink to='/folders/new'  className={` bg-light text-dark  ${location.pathname==="/folders/new" && 'bg-primary-subtle'}` }><FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
-                    </li>
+                   
                     <li className=' nav-item  p-2  m-2'>
                         <a href="#"><FontAwesomeIcon icon={faBell} /></a>
                     </li>
@@ -80,9 +83,7 @@ const NavSide = () => {
                         <a href="#"><FontAwesomeIcon icon={faBarChart} /></a>
                     </li>
 
-                    <li className=' nav-item  p-2  m-2'>
-                        <a href="#"><FontAwesomeIcon icon={faEdit} /> </a>
-                    </li>
+                   
                     <li className=' nav-item  p-2  m-2'>
                         <a href="blank.html"><FontAwesomeIcon icon={faTable} /></a>
                     </li>  
