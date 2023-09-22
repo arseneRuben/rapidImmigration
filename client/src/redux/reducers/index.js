@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import folders from './clientFolder';
+import customers from './customer';
 import programs from './program';
 
 

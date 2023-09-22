@@ -10,7 +10,6 @@ const programs = (state = { isLoading: true, programs: [] }, action) => {
         return {
             ...state,
             programs: action.payload,
-         
         };
         case FETCH_PROGRAM_BY_CLIENT:
         return { ...state, programs: action.payload.data };

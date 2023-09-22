@@ -39,7 +39,7 @@ export const createProgram = (program, navigate) => async (dispatch) => {
         dispatch({ type: START_LOADING });
         const { data } = await api.createProgram(program);
         dispatch({ type: CREATE_PROGRAM, payload: data });
-        navigate(`/program/${data._id}`);
+        navigate(`/programs`);
         message.success('Program created');
     } catch (error) {
         message.error(error.message)
@@ -80,11 +80,14 @@ export const likeProgram = (id) => async (dispatch) => {
 export const commentProgram = (value, id) => async (dispatch) => {
     try {
         const { data } = await api.commentProgram(id, value);
-        dispatch({ type: UPDATE_PROGRAM, payload: data });
+        dispatch({ type: CREATE_PROGRAM, payload: data });
     } catch (error) {
         console.log(error);
     }
 }
+
+
+
 
 export const deleteComment = (programId, commentId) => async (dispatch) => {
     try {

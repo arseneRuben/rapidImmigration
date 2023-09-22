@@ -10,14 +10,14 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchFolder = (id) => API.get(`/folders/${id}`);
-export const fetchFolders = (page) => API.get(`/folders`);
-export const fetchFolderByClient = (name) => API.get(`/folders/creator?name=${name}`);
-export const fetchFolderByConsultant = (name) => API.get(`/folders/consultant?name=${name}`);
-export const fetchFoldersBySearch = (searchQuery) => API.get(`/folders/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
-export const createFolder = (newFolder) => API.post('/folders', newFolder);
-export const updateFolder = (id, updatedFolder) => API.patch(`/folders/${id}`, updatedFolder);
-export const deleteFolder = (id) => API.delete(`/folders/${id}`);
+export const fetchCustomer = (id) => API.get(`/customers/${id}`);
+export const fetchCustomers = (page) => API.get(`/customers`);
+export const fetchCustomerByClient = (name) => API.get(`/customers/creator?name=${name}`);
+export const fetchCustomerByConsultant = (name) => API.get(`/customers/consultant?name=${name}`);
+export const fetchCustomersBySearch = (searchQuery) => API.get(`/customers/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
+export const createCustomer = (newCustomer) => API.post('/customers', newCustomer);
+export const updateCustomer = (id, updatedCustomer) => API.patch(`/customers/${id}`, updatedCustomer);
+export const deleteCustomer = (id) => API.delete(`/customers/${id}`);
 
 export const fetchPrograms = (page) => API.get(`/programs`);
 export const fetchProgram = (id) => API.get(`/programs/${id}`);
@@ -31,5 +31,5 @@ export const comment = (value, id) => API.post(`/programs/${id}/commentProgram`,
 
 
 
-export const signIn = (formData) => API.folder('/user/signin', formData);
-export const signUp = (formData) => API.folder('/user/signup', formData);
+export const signIn = (formData) => API.user('/user/signin', formData);
+export const signUp = (formData) => API.user('/user/signup', formData);

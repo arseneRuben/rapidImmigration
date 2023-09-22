@@ -4,18 +4,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 import PageWrapper from '../../components/pageWrapper';
 import { useForm } from 'react-hook-form';
 import { message } from 'antd';
-import { updateFolder } from "../../actions/folders";
-import PersonnalInfo from "../../components/folder/steps/PersonnalInfo";
-import ContactInfo from "../../components/folder/steps/ContactInfo";
-import LocationInfo from "../../components/folder/steps/LocationInfo";
-import FilesInfo from "../../components/folder/steps/FilesInfo";
-import Summary from "../../components/folder/steps/Summary";
+import { updateCustomer } from "../../actions/customer";
+import PersonnalInfo from "../../components/customer/steps/PersonnalInfo";
+import ContactInfo from "../../components/customer/steps/ContactInfo";
+import LocationInfo from "../../components/customer/steps/LocationInfo";
+import FilesInfo from "../../components/customer/steps/FilesInfo";
+import Summary from "../../components/customer/steps/Summary";
 
 const FolderEdit = () => {
     const { id } = useParams()
 
-    const {isLoading, folders} = useSelector((state)=> state.folders)
-    const client = folders.find((client) => client.id === parseInt(id))
+    const {isLoading, customers} = useSelector((state)=> state.customers)
+    const client = customers.find((client) => client.id === parseInt(id))
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -69,7 +69,7 @@ const FolderEdit = () => {
     };
     const handleSave = async (event) => {
         event.preventDefault()
-        dispatch(updateFolder(datas, navigate))
+        dispatch(updateCustomer(datas, navigate))
       }
       const handleChange = (name) => (e) => {
           setDatas({ ...datas, [name]: e.target.value });

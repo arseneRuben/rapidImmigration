@@ -4,7 +4,7 @@ import React, {useEffect} from "react"
 import '../styles/backend/custom.css'
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
-import { getFolders } from '../actions/folders'
+import { getCustomers } from '../actions/customer'
 
 const AdminPages = ({children}) => {
   const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const AdminPages = ({children}) => {
 
   useEffect(() => {
       getUserData()
-      dispatch(getFolders())
+      dispatch(getCustomers())
     }, [])
   return (
     <>  

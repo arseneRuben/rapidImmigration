@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import PageWrapper from '../../components/pageWrapper'
 import { useSelector } from 'react-redux';
-import PersonnalInfo from '../../components/folder/steps/PersonnalInfo';
+import PersonnalInfo from '../../components/customer/steps/PersonnalInfo';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice'
 import axios from 'axios'
 import {useDispatch} from 'react-redux'

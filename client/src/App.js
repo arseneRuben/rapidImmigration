@@ -10,10 +10,12 @@ import PublicRoute from './components/PublicRoute';
 import ProfilePage from './adminpages/profile';
 
 import ContactPage from './frontpages/contact';
-import ClientList from './adminpages/folder';
-import NewFolder from './adminpages/folder/new';
-import FolderShow from './adminpages/folder/show';
-import FolderEdit from './adminpages/folder/edit';
+import ClientList from './adminpages/customer';
+import NewCustomer from './adminpages/customer/new';
+import CustomerShow from './adminpages/customer/show';
+import CustomerEdit from './adminpages/customer/edit';
+import NewProgram from './adminpages/program/new';
+import Programs from './adminpages/program';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -53,12 +55,12 @@ function App() {
 
         <Route path="/folder/:id/show" element={ 
           <ProtectedRoute>
-           <FolderShow/>
+           <CustomerShow/>
           </ProtectedRoute>
         }/>
         <Route path="/folder/:id/edit" element={ 
           <ProtectedRoute>
-           <FolderEdit/>
+           <CustomerEdit/>
           </ProtectedRoute>
 
         }/>
@@ -70,13 +72,26 @@ function App() {
         }/>
          <Route path="/folders/new" element={ 
           <ProtectedRoute>
-           <NewFolder/>
+           <NewCustomer/>
           </ProtectedRoute>
 
         }/>
          <Route path="/folders" element={ 
           <ProtectedRoute>
            <ClientList/>
+          </ProtectedRoute>
+
+        }/>
+
+        <Route path="/programs/new" element={ 
+          <ProtectedRoute>
+           <NewProgram/>
+          </ProtectedRoute>
+
+        }/>
+        <Route path="/programs" element={ 
+          <ProtectedRoute>
+           <Programs/>
           </ProtectedRoute>
 
         }/>

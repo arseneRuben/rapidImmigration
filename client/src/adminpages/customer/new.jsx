@@ -3,17 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
 import { useDispatch , useSelector} from 'react-redux';
-
-
-import ContactInfo from "../../components/folder/steps/ContactInfo";
-import PersonnalInfo from '../../components/folder/steps/PersonnalInfo';
-import LocationInfo from '../../components/folder/steps/LocationInfo';
-import FilesInfo from '../../components/folder/steps/FilesInfo';
-import Summary from "../../components/folder/steps/Summary";
+import ContactInfo from "../../components/customer/steps/ContactInfo";
+import PersonnalInfo from '../../components/customer/steps/PersonnalInfo';
+import LocationInfo from '../../components/customer/steps/LocationInfo';
+import FilesInfo from '../../components/customer/steps/FilesInfo';
+import Summary from "../../components/customer/steps/Summary";
 import PageWrapper from "../../components/pageWrapper";
-import { createFolder } from "../../actions/folders";
+import { createCustomer } from "../../actions/customer";
 
-const NewFolder = () => {
+const NewCustomer = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -109,8 +107,7 @@ const NewFolder = () => {
 
 const handleSave = async (event) => {
   event.preventDefault()
-  console.log(datas)
-  dispatch(createFolder(datas, navigate))
+  dispatch(createCustomer(datas, navigate))
 }
 const handleChange = (name) => (e) => {
     setDatas({ ...datas, [name]: e.target.value });
@@ -149,4 +146,4 @@ const handleChange = (name) => (e) => {
   )
 }
 
-export default NewFolder
+export default NewCustomer

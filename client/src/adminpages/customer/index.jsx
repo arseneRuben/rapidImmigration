@@ -5,16 +5,16 @@ import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { useSelector,useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { deleteFolder } from '../../api';
+import { deleteCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 
 const ClientList =  () => {
-    const {isLoading, folders} = useSelector((state)=> state.folders)
+    const {isLoading, customers} = useSelector((state)=> state.customers)
     const dispatch = useDispatch()
 
     function deleteCLient(id){
         dispatch(showLoading())
-        deleteFolder(id)
+        deleteCustomer(id)
         window.location.reload(false);
         dispatch(hideLoading())
     }
@@ -27,7 +27,7 @@ const ClientList =  () => {
                 <div class="col-lg-12">
                         <div class="panel panel-default">
                                 <div class="panel-heading text-center h3">
-                                       Folders
+                                       Customers
                                 </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
@@ -43,13 +43,13 @@ const ClientList =  () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {folders.map((folder)=> (
-                                                        <tr class="gradeC"  key={folder.id}>
-                                                            <td>{folder.first_name }</td>
-                                                            <td>{folder.passport_number }</td>
-                                                            <td>{folder.consultant_id }</td>
-                                                            <td className="center">{folder.birth_date }</td>
-                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/folder/${folder.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/folder/${folder.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteCLient(folder.id)} icon={faTrash} /></button></td>
+                                                    {customers.map((customer)=> (
+                                                        <tr class="gradeC"  key={customer.id}>
+                                                            <td>{customer.first_name }</td>
+                                                            <td>{customer.passport_number }</td>
+                                                            <td>{customer.consultant_id }</td>
+                                                            <td className="center">{customer.birth_date }</td>
+                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/customer/${customer.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/customer/${customer.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteCLient(customer.id)} icon={faTrash} /></button></td>
                                                         </tr>
                                                     ))
                                                     }
