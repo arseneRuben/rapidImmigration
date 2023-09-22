@@ -13,6 +13,22 @@ const NavSide = () => {
   return (
 
     <nav className="navbar-default navbar-side" role="navigation">
+            <div className="sidebar-collapse">
+            <div className="dropdown pb-4">
+                    <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src={user ? `http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} alt="hugenerd" width="50" height="50" className="rounded-circle"/>
+                        <span className="d-none d-sm-inline mx-1">{user && user.first_name}</span>
+                    </a>
+                    {/*<ul className="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a className="dropdown-item" href="#">New project...</a></li>
+                        <li><a className="dropdown-item" href="#">Settings</a></li>
+                        <li><a className="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr className="dropdown-divider"/>
+                        </li>
+                        <li><a className="dropdown-item" href="#">Sign out</a></li>
+                    </ul>*/}
+                </div>
             <div className=" bg-white  show">
                 <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start " id="main-menu">
                    
@@ -25,10 +41,10 @@ const NavSide = () => {
                          <FontAwesomeIcon icon={faPeopleGroup} /> <span className="ms-1 d-none d-sm-inline">Customers</span> </a>
                         <ul className="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li>
-                                <NavLink to='/folders' className="nav-link px-2"> <FontAwesomeIcon icon={faList} />  </NavLink>
+                                <NavLink to='/customers' className="nav-link px-2"> <FontAwesomeIcon icon={faList} />  </NavLink>
                             </li>
                             <li className="w-100">
-                                <NavLink to='/folders/new' className={`nav-link px-2`}> <FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
+                                <NavLink to='/customers/new' className={`nav-link px-2`}> <FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
                             </li>
                         </ul>
                     </li>
@@ -95,23 +111,10 @@ const NavSide = () => {
                             <i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Customers</span> </a>
                     </li>
                 </ul>
-                <hr/>
-                <div className="dropdown pb-4">
-                    <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src={user ? `http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} alt="hugenerd" width="30" height="30" className="rounded-circle"/>
-                        <span className="d-none d-sm-inline mx-1">loser</span>
-                    </a>
-                    <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a className="dropdown-item" href="#">New project...</a></li>
-                        <li><a className="dropdown-item" href="#">Settings</a></li>
-                        <li><a className="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr className="dropdown-divider"/>
-                        </li>
-                        <li><a className="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
+                
+               
  
+            </div>
             </div>
 
     </nav>

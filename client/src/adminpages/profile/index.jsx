@@ -70,8 +70,8 @@ const ProfilePage = () => {
                        <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
                             <PersonnalInfo  handleChange={handleChange} user={profile} register={register} />
                             <div  className='d-flex justify-content-around'  >
-                                <input id="submit_profile" type="submit" className='m-3 btn btn-primary btn-lg btn-block '/>
-                                <input type="reset" className='m-3 btn btn-secondary btn-lg btn-block'/>
+                                <input id="submit_profile" type="submit" value="Sumbit"className='m-3 btn btn-primary btn-lg btn-block '/>
+                                <input type="reset" value="Reset" className='m-3 btn btn-secondary btn-lg btn-block'/>
                             </div>
                        </form>
     </PageWrapper>

@@ -77,23 +77,6 @@ const FolderEdit = () => {
       const onSubmit = async (data, event) =>  {
     
         const formData = new FormData();
-       /* formData.append("profile_image", data.profile_image[0]);
-        datas["profile_image"]= data.profile_image[0].name;
-        formData.append("passport", data.passport[0]);
-        datas["passport"]= data.passport[0].name;
-        formData.append("resume", data.resume[0]);
-        datas["resume"]= data.resume[0].name;
-        formData.append("wes_report", data.wes_report[0]);
-        datas["wes_report"]= data.wes_report[0].name;
-        formData.append("other_documents", data.other_documents[0]);
-        datas["other_documents"]= data.other_documents[0].name;
-        formData.append("marriage_certificate", data.marriage_certificate[0]);
-        datas["marriage_certificate"]= data.marriage_certificate[0].name;
-        formData.append("birth_certificate", data.birth_certificate[0]);
-        datas["birth_certificate"]= data.birth_certificate[0].name;
-        formData.append("full_name" , `${datas.first_name} ${datas.last_name}`) */
-    
-    
         handleSave(event)
         const res = await fetch("http://localhost:8080/upload-file", {
             method: "POST",

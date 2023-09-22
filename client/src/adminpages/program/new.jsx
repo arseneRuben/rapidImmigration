@@ -45,7 +45,9 @@ const handleChange = (name) => (e) => {
 };
   return (
     <PageWrapper>
-     
+       <div class="panel-heading text-center h3">
+                                      New Immigration Program
+                                </div>
      
       <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
         <div className="row">

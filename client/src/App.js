@@ -53,12 +53,12 @@ function App() {
           </PublicRoute>
         }/>
 
-        <Route path="/folder/:id/show" element={ 
+        <Route path="/customer/:id/show" element={ 
           <ProtectedRoute>
            <CustomerShow/>
           </ProtectedRoute>
         }/>
-        <Route path="/folder/:id/edit" element={ 
+        <Route path="/customer/:id/edit" element={ 
           <ProtectedRoute>
            <CustomerEdit/>
           </ProtectedRoute>
@@ -70,13 +70,13 @@ function App() {
           </ProtectedRoute>
 
         }/>
-         <Route path="/folders/new" element={ 
+         <Route path="/customers/new" element={ 
           <ProtectedRoute>
            <NewCustomer/>
           </ProtectedRoute>
 
         }/>
-         <Route path="/folders" element={ 
+         <Route path="/customers" element={ 
           <ProtectedRoute>
            <ClientList/>
           </ProtectedRoute>

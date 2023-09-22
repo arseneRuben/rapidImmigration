@@ -10,10 +10,10 @@ import MaritalReport from '../../components/customer/reports/MaritalReport';
 var path = require('path');
 
 
-const FolderShow = () => {
+const CustomerShow = () => {
   const { id } = useParams();
-  const {isLoading, folders} = useSelector((state)=> state.folders)
-  const client = folders.find((client) => client.id === parseInt(id))
+  const {isLoading, customers} = useSelector((state)=> state.customers)
+  const client = customers.find((client) => client.id === parseInt(id))
   console.log(client)
 return (
 <PageWrapper>
@@ -45,4 +45,4 @@ return (
 )
 }
 
-export default FolderShow
+export default CustomerShow
