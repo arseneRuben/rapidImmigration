@@ -6,10 +6,10 @@ import { useSelector,useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
+import SpinnerCustom from '../../redux/SpinnerCustom';
 
 const Programs =  () => {
     const {isLoading, programs} = useSelector((state)=> state.programs)
-    console.log(programs)
     const dispatch = useDispatch()
 
     function deleteProgram(id){
@@ -31,7 +31,7 @@ const Programs =  () => {
                                 </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                        {isLoading ? <Spinner /> :
+                                        {isLoading ? <SpinnerCustom /> :
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                     <tr>

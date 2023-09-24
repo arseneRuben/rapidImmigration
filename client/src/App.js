@@ -16,6 +16,7 @@ import CustomerShow from './adminpages/customer/show';
 import CustomerEdit from './adminpages/customer/edit';
 import NewProgram from './adminpages/program/new';
 import Programs from './adminpages/program';
+import HomePage from './frontpages/home';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -44,7 +45,7 @@ function App() {
         }/>
         <Route path="/" element={ 
             <PublicRoute>
-              <FrontPages />
+              <HomePage />
           </PublicRoute>
         }/>
           <Route path="/signout" element={ 

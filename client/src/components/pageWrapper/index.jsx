@@ -30,12 +30,12 @@ const PageWrapper = ({children}) => {
                     </div>
                 </div>
                 <div className="row">
-                <div className="col-2">
+                <div className="col-1">
                         </div>
-                    <div className="col-md-8 card">
+                    <div className="col-10 card">
                         {children}
                     </div>
-                    <div className="col-2">
+                    <div className="col-1">
                         </div>
                 </div>
                 <hr />

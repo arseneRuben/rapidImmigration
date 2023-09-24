@@ -7,6 +7,7 @@ import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { deleteCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
+import SpinnerCustom from '../../redux/SpinnerCustom';
 
 const ClientList =  () => {
     const {isLoading, customers} = useSelector((state)=> state.customers)
@@ -31,7 +32,7 @@ const ClientList =  () => {
                                 </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                        {isLoading ? <Spinner /> :
+                                        {isLoading ? <SpinnerCustom /> :
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                     <tr>

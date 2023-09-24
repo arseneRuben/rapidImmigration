@@ -9,7 +9,7 @@ import { faContactCard, faHome, faHomeAlt, faNewspaper, faPhone } from '@fortawe
 const Footer = () => {
   return (
    <>
-     <div className="container-fluid bg-danger text-white bg-gradient text-secondary p-5">
+     <div className="container-fluid bg-danger text-white bg-gradient text-secondary p-5 mt-5">
         <div className="row g-5">
             <div className="col-12 text-center">
                 <h1 className="display-5 mb-4">Stay Update!!!</h1>
