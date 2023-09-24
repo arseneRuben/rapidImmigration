@@ -53,16 +53,27 @@ app.post("/upload-file", async (req, res) => {
             });
         } else {
             let file ;
-           
-            Object.keys(req.files).forEach(function(key) {
-                file = req.files[key];
-                if(key === "profile_image"){
-                    file.mv("./uploads/profiles/" + file.name);
-                }else {
-                    file.mv(`./uploads/${req.body.full_name}/` + file.name);
-                    
-                }
-            }); 
+            if(req.body.hasOwnProperty('full_name')){
+                Object.keys(req.files).forEach(function(key) {
+                    file = req.files[key];
+                    if(key === "profile_image"){
+                        file.mv("./uploads/profiles/" + file.name);
+                    }else {
+                        file.mv(`./uploads/${req.body.full_name}/` + file.name);
+                        
+                    }
+                }); 
+            } else {
+                Object.keys(req.files).forEach(function(key) {
+                                    file = req.files[key];
+                                    file.mv(`./uploads/immigration_programs/` + file.name);
+                                });
+                     }
+                  
+        
+
+                        
+            
             
 
             res.send({

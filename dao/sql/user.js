@@ -58,6 +58,7 @@ export const authUserData = async (req, res) => {
     try {
         connect()
         query('SELECT * FROM users WHERE id = ?', [req.body.userId], (user) => {
+            
             if(!user) {
                 return res.status(200).json({ message: 'User not found', success:false })
             } else {
@@ -66,6 +67,7 @@ export const authUserData = async (req, res) => {
                     data: user[0],
                   });
             }
+           
         })
      } catch (error) {
          res.status(500).json({ message: "Auth error", success:false, error })

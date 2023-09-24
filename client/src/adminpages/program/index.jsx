@@ -9,6 +9,7 @@ import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 
 const Programs =  () => {
     const {isLoading, programs} = useSelector((state)=> state.programs)
+    console.log(programs)
     const dispatch = useDispatch()
 
     function deleteProgram(id){

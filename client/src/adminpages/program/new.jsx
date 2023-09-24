@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { message } from 'antd';
 import { useDispatch , useSelector} from 'react-redux';
 import PageWrapper from "../../components/pageWrapper";
-import { createProgram } from "../../api";
+import { createProgram } from "../../actions/program";
+
 import { Form } from "react-bootstrap";
 
 
@@ -45,9 +46,9 @@ const handleChange = (name) => (e) => {
 };
   return (
     <PageWrapper>
-       <div class="panel-heading text-center h3">
+      <div className="panel-heading text-center h3">
                                       New Immigration Program
-                                </div>
+      </div>
      
       <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
@@ -58,6 +59,7 @@ const handleChange = (name) => (e) => {
                   id="name"
                   className="w-100 mt-2"
                   onChange={handleChange("name")}
+
                 >
               </Form.Control>
             </div>
@@ -72,11 +74,8 @@ const handleChange = (name) => (e) => {
         </div>
         <div className="row m-2 ">
           <div className="col-9 w-75">
-            <Form.Group className=" ">
-            
+            <Form.Group controlId="image">
                 <Form.Label>Image</Form.Label>
-            
-                
                 <Form.Control
                   type='file'
                   onChange={handleChange("image")}

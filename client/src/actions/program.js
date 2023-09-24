@@ -1,5 +1,5 @@
-import { START_LOADING, END_LOADING, FETCH_ALL_PROGRAM, FETCH_PROGRAM_BY_CLIENT, FETCH_PROGRAM, CREATE_PROGRAM, UPDATE_PROGRAM, DELETE_PROGRAM } from '../constants/actionTypes';
-import * as api from '../api/index.js';
+import { START_LOADING, END_LOADING, FETCH_ALL_PROGRAM, FETCH_PROGRAM_BY_CLIENT, FETCH_PROGRAM, CREATE_PROGRAM, UPDATE_PROGRAM, DELETE_PROGRAM } from '../constants/actionTypes'
+import * as api from '../api/index.js'
 import {  message } from 'antd'
 
 export const getProgram = (id) => async (dispatch) => {
@@ -39,12 +39,13 @@ export const createProgram = (program, navigate) => async (dispatch) => {
         dispatch({ type: START_LOADING });
         const { data } = await api.createProgram(program);
         dispatch({ type: CREATE_PROGRAM, payload: data });
-        navigate(`/programs`);
         message.success('Program created');
+        navigate(`/programs`);
     } catch (error) {
         message.error(error.message)
     }
 }
+
 
 export const updateProgram = (id, program) => async (dispatch) => {
     try {
@@ -67,24 +68,9 @@ export const deleteProgram = (id) => async (dispatch) => {
     }
 }
 
-export const likeProgram = (id) => async (dispatch) => {
-    const user = JSON.parse(localStorage.getItem('profile'));
-    try {
-        const { data } = await api.likeProgram(id, user?.token);
-        dispatch({ type: UPDATE_PROGRAM, payload: data });
-    } catch (error) {
-        console.log(error);
-    }
-}
 
-export const commentProgram = (value, id) => async (dispatch) => {
-    try {
-        const { data } = await api.commentProgram(id, value);
-        dispatch({ type: CREATE_PROGRAM, payload: data });
-    } catch (error) {
-        console.log(error);
-    }
-}
+
+
 
 
 

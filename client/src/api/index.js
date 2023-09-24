@@ -27,6 +27,8 @@ export const updateProgram = (id, updatedProgram) => API.patch(`/programs/${id}`
 export const deleteProgram = (id) => API.delete(`/programs/${id}`);
 export const likeProgram = (id) => API.patch(`/programs/${id}/likeProgram`);
 export const comment = (value, id) => API.post(`/programs/${id}/commentProgram`, { value });
+export const deleteComment = (id) => API.delete(`/programs/${id}`);
+
 
 
 

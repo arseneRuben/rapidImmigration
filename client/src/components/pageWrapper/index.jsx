@@ -1,12 +1,9 @@
-import React , {useState, useMemo} from 'react'
-import {useDispatch} from 'react-redux'
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import React from 'react'
+import { useLocation } from "react-router-dom";
 import AdminPages from '../../adminpages';
 
 const PageWrapper = ({children}) => {
     const location = useLocation();
-    const {usr} = useSelector((state) => state.user)
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -22,12 +19,7 @@ const PageWrapper = ({children}) => {
         }
     }
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const [user, setUser] = useState(usr);
-    const handleChange = (name) => (e) => {
-        setUser({ ...user, [name]: e.target.value });
-    };
+   
     return (
         <AdminPages>
         <div id="page-wrapper">

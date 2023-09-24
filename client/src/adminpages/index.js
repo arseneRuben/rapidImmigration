@@ -5,6 +5,7 @@ import '../styles/backend/custom.css'
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { getCustomers } from '../actions/customer'
+import { getPrograms } from '../actions/program'
 
 const AdminPages = ({children}) => {
   const dispatch = useDispatch()
@@ -25,8 +26,10 @@ const AdminPages = ({children}) => {
   }
 
   useEffect(() => {
-      getUserData()
+      
       dispatch(getCustomers())
+      getUserData()
+      dispatch(getPrograms())
     }, [])
   return (
     <>  

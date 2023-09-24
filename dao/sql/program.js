@@ -63,7 +63,6 @@ export const getPrograms = async (req, res) => {
         query('SELECT * FROM programs', [], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
-            disconnect()
         })
     } catch (error) {
         res.status(404).json({ message: error.message })
