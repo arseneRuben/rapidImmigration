@@ -1,5 +1,5 @@
 import { connect, query, disconnect } from '../connectors/daoMySql.js'
-import { CONTENT_TYPE_JSON, HTTP_OK, USER_ACCESS_LEVEL_CLIENT } from './util.js'
+import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
 
 
 
@@ -12,13 +12,10 @@ export const createCustomer = async (req, res) => {
                         res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                         res.end(JSON.stringify({ message: 'Customer created', success: true }, null, 4))
                         disconnect()
-                    })
-      
-    
+                    })  
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
-   
 }
 
 export const getCustomers = async (req, res) => {
@@ -37,8 +34,8 @@ export const getCustomers = async (req, res) => {
 export const updateCustomer = async (req, res) => {
     try {
         connect()
-        query('UPDATE customers SET folder_name=?, folder_path=?,  customer_id=?, consultant_id=?, current_step=?, statut=?, updated_at WHERE id=?',
-            [req.body.folder_name, req.body.folder_path, req.body.customer_id, req.body.consultant_id,req.body.current_step, req.body.statut, req.params.id, Date.now()], function () {
+        query('UPDATE customers SET folder_name=?, folder_path=?,  customer_id=?, consultant_id=?, current_step=?, statut=? WHERE id=?',
+            [req.body.folder_name, req.body.folder_path, req.body.customer_id, req.body.consultant_id,req.body.current_step, req.body.statut, req.params.id], function () {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                 res.end(JSON.stringify({ message: 'Customer updated', success: true }, null, 4))
             })
@@ -46,7 +43,6 @@ export const updateCustomer = async (req, res) => {
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
-   
 }
 
 
@@ -56,7 +52,6 @@ export const getCustomerById = async (req, res) => {
         query('SELECT * FROM customers  WHERE id=?', [req.params.id], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
-
             disconnect()
         })
     } catch (error) {
@@ -77,6 +72,7 @@ export const getCustomersByConsultant = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
+
 export const getCustomersByFolder = async (req, res) => {
     try {
         connect()

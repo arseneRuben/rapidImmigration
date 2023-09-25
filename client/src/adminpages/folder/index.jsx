@@ -3,6 +3,7 @@ import PageWrapper from '../../components/pageWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { useSelector,useDispatch } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { deleteCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';

@@ -36,6 +36,18 @@ const NavSide = () => {
                     <li className=' nav-item p-1 m-1 '>
                         <NavLink to='/profile' className={` nav-link align-middle px-0   ${location.pathname==="/profile" && 'bg-primary-subtle'}` } > <FontAwesomeIcon icon={faUserEdit} /> <span className="ms-1 d-none d-sm-inline">Profile</span></NavLink> 
                     </li>
+                    <li className=' nav-item   p-1  m-1'>
+                        <a href="#submenu3" data-bs-toggle="collapse" className="nav-link px-0 align-middle">
+                         <FontAwesomeIcon icon={faFolderClosed} /> <span className="ms-1 d-none d-sm-inline">Dossiers</span> </a>
+                        <ul className="collapse show nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li>
+                                <NavLink to='/programs' className="nav-link px-2"> <FontAwesomeIcon icon={faList} />  </NavLink>
+                            </li>
+                            <li className="w-100">
+                                <NavLink to='/program/new' className={`nav-link px-2`}> <FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
+                            </li>
+                        </ul>
+                    </li>
                     <li className=' nav-item p-1 m-1 '>
                         <a href="#submenu1" data-bs-toggle="collapse" className="nav-link px-0 align-middle">
                          <FontAwesomeIcon icon={faPeopleGroup} /> <span className="ms-1 d-none d-sm-inline">Customers</span> </a>
@@ -65,13 +77,6 @@ const NavSide = () => {
                    
                     <li className=' nav-item  p-2  m-2'>
                         <a href="#"><FontAwesomeIcon icon={faBell} /></a>
-                    </li>
-                   
-
-                     
-                   
-                    <li className=' nav-item  p-2  m-2'>
-                        <a href="#"><FontAwesomeIcon icon={faQrcode} /></a>
                     </li>
                  
 

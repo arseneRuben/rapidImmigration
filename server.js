@@ -15,6 +15,7 @@ import bodyParser from 'body-parser'
 import userRoutes from './routes/user.js'
 import customerRoutes from './routes/customer.js'
 import programRoutes from './routes/program.js'
+import folderRoutes from './routes/folder.js'
 
 // dotenv config
 dotenv.config()
@@ -94,6 +95,8 @@ app.post("/upload-file", async (req, res) => {
 app.use('/api/users', userRoutes)
 app.use('/api/customers', customerRoutes)
 app.use('/api/programs', programRoutes)
+app.use('/api/folders', folderRoutes)
+
 // Listen port  
 const port = process.env.PORT || 8080
 app.listen(port, () => {

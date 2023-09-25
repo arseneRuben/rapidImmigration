@@ -19,6 +19,7 @@ import Programs from './adminpages/program';
 import HomePage from './frontpages/home';
 import ProgramShow from './adminpages/program/show';
 import ProgramEdit from './adminpages/program/edit';
+import Folder from './adminpages/folder';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -107,6 +108,12 @@ function App() {
         <Route path="/programs" element={ 
           <ProtectedRoute>
            <Programs/>
+          </ProtectedRoute>
+        }/>
+
+<       Route path="/folders" element={ 
+          <ProtectedRoute>
+           <Folder/>
           </ProtectedRoute>
 
         }/>
