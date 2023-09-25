@@ -47,11 +47,12 @@ export const createProgram = (program, navigate) => async (dispatch) => {
 }
 
 
-export const updateProgram = (id, program) => async (dispatch) => {
+export const updateProgram = (program, navigate) => async (dispatch) => {
     try {
-        const { data } = await api.updateProgram(id, program);
-        dispatch({ type: UPDATE_PROGRAM, payload: data });
+        const { data } = await api.updateProgram( program);
         message.success('Program updated')
+        dispatch({ type: UPDATE_PROGRAM, payload: data });
+        navigate(`/programs`)
     } catch (error) {
         message.error(error.message)
     }

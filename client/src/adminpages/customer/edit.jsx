@@ -70,10 +70,10 @@ const FolderEdit = () => {
     const handleSave = async (event) => {
         event.preventDefault()
         dispatch(updateCustomer(datas, navigate))
-      }
-      const handleChange = (name) => (e) => {
+    }
+    const handleChange = (name) => (e) => {
           setDatas({ ...datas, [name]: e.target.value });
-      };
+    };
       const onSubmit = async (data, event) =>  {
     
         const formData = new FormData();

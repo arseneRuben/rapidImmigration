@@ -57,7 +57,7 @@ const NavSide = () => {
                                 <NavLink to='/programs' className="nav-link px-2"> <FontAwesomeIcon icon={faList} />  </NavLink>
                             </li>
                             <li className="w-100">
-                                <NavLink to='/programs/new' className={`nav-link px-2`}> <FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
+                                <NavLink to='/program/new' className={`nav-link px-2`}> <FontAwesomeIcon icon={faPlusSquare} /> </NavLink>
                             </li>
                         </ul>
                     </li>

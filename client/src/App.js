@@ -17,6 +17,8 @@ import CustomerEdit from './adminpages/customer/edit';
 import NewProgram from './adminpages/program/new';
 import Programs from './adminpages/program';
 import HomePage from './frontpages/home';
+import ProgramShow from './adminpages/program/show';
+import ProgramEdit from './adminpages/program/edit';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -84,9 +86,21 @@ function App() {
 
         }/>
 
-        <Route path="/programs/new" element={ 
+        <Route path="/program/new" element={ 
           <ProtectedRoute>
            <NewProgram/>
+          </ProtectedRoute>
+
+        }/>
+        <Route path="/program/:id/show" element={ 
+          <ProtectedRoute>
+           <ProgramShow/>
+          </ProtectedRoute>
+
+        }/>
+        <Route path="/program/:id/edit" element={ 
+          <ProtectedRoute>
+           <ProgramEdit/>
           </ProtectedRoute>
 
         }/>

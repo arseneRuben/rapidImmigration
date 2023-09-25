@@ -3,26 +3,12 @@ import { useSelector } from 'react-redux'
 import FrontPages from '..'
 import { Spinner } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBriefcase, faGraduationCap, faPlane, faStreetView, faTrophy } from '@fortawesome/free-solid-svg-icons'
 import SpinnerCustom from '../../redux/SpinnerCustom'
+import { iconsMap } from '../../constants/programTypes'
 
 const HomePage = () => {
     const {isLoading, programs} = useSelector((state)=> state.programs)
-    function icons({ label  }) {
-        switch(label) {
-          case 'Permis d\'etudes':
-            return faGraduationCap
-          case 'Permis de travail':
-            return faBriefcase
-          case 'Permis visiteur':
-            return faStreetView
-          case 'Entree Express':
-                return faTrophy
-            default:
-                return faPlane
-          
-        }
-    }
+   
   return (
     <>
     <FrontPages >
@@ -37,7 +23,7 @@ const HomePage = () => {
                 <div className="service-item  bg-secondary bg-gradient text-white  text-center px-5">
                     <div className="d-flex align-items-center justify-content-center rounded-circle mx-auto mb-4" >
                      
-                       <FontAwesomeIcon icon={icons({label: program.name})} size="5x"  />
+                       <FontAwesomeIcon icon={iconsMap({label: program.type})} size="5x"  />
                     </div>
                     <h3 className="mb-3">{program.name}</h3>
                     <p className="mb-2">{program.description}</p>

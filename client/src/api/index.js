@@ -23,7 +23,7 @@ export const fetchPrograms = (page) => API.get(`/programs`);
 export const fetchProgram = (id) => API.get(`/programs/${id}`);
 export const fetchProgramByClient = (name) => API.get(`/programs/creator?name=${name}`);
 export const createProgram = (newProgram) => API.post('/programs', newProgram);
-export const updateProgram = (id, updatedProgram) => API.patch(`/programs/${id}`, updatedProgram);
+export const updateProgram = (updatedProgram) => API.patch(`/programs/${updatedProgram.id}`, updatedProgram);
 export const deleteProgram = (id) => API.delete(`/programs/${id}`);
 export const likeProgram = (id) => API.patch(`/programs/${id}/likeProgram`);
 export const comment = (value, id) => API.post(`/programs/${id}/commentProgram`, { value });

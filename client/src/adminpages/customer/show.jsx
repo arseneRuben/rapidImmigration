@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PageWrapper from '../../components/pageWrapper'
-import DownloadLink from "react-download-link";
 import { useParams} from 'react-router-dom';
-import { useDispatch , useSelector} from 'react-redux';
+import {  useSelector} from 'react-redux';
 import IdentityReport from '../../components/customer/reports/IdentityReport';
 import ContactReport from '../../components/customer/reports/ContactReport';
 import FileReport from '../../components/customer/reports/FileReport';
@@ -14,7 +13,6 @@ const CustomerShow = () => {
   const { id } = useParams();
   const {isLoading, customers} = useSelector((state)=> state.customers)
   const client = customers.find((client) => client.id === parseInt(id))
-  console.log(client)
 return (
 <PageWrapper>
   <div className="d-flex flex-column align-items-center">

@@ -8,7 +8,7 @@ router.get('/:id', getProgramById)
 /* CREATE */
 router.post('/', createProgram)
 /* UPDATE */
-router.put('/:id', updateProgram)
+router.patch('/:id', updateProgram)
 /* DELETE */
 router.delete('/:id', deleteProgram)
 export default router

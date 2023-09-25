@@ -7,10 +7,10 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
 export const createProgram = async (req, res) => {
     try {
         connect()
-        query('INSERT INTO  programs (name,  description , image              ) VALUES ( ?, ?, ?)',
-                                           [req.body.name,  req.body.description,,  req.body.image  ], function (err, result, fields) {
+        query('INSERT INTO  programs (name,  description , type              ) VALUES ( ?, ?, ?)',
+                                           [req.body.name,  req.body.description, req.body.type  ], function (err, result, fields) {
                         res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                        res.end(JSON.stringify({ message: 'Folder created', success: true }, null, 4))
+                        res.end(JSON.stringify({ message: 'program created', success: true }, null, 4))
                         disconnect()
                     })
       
@@ -26,12 +26,13 @@ export const createProgram = async (req, res) => {
 export const updateProgram = async (req, res) => {
     try {
         connect()
-        query('UPDATE programs SET name=?, description=?,  image=? WHERE id=?',
-            [req.body.name, req.body.description, req.body.image, req.params.id], function () {
+        query('UPDATE programs SET name=?, description=?,  type=? WHERE id=?',
+            [req.body.name, req.body.description, req.body.type, req.params.id], function () {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                 res.end(JSON.stringify({ message: 'Program updated', success: true }, null, 4))
+                disconnect()
             })
-        disconnect()
+      
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

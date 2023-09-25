@@ -121,12 +121,26 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+
 CREATE TABLE `programs` (
   `id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `programs`
+--
+ALTER TABLE `programs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `type` (`type`);
+COMMIT;
+
 
 
 --
