@@ -9,7 +9,7 @@ SET time_zone = "+00:00";
 
 
 CREATE TABLE `folders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) AUTO_INCREMENT  PRIMARY KEY,
   `folderNumber`int(11) NOT NULL,
   `currentStep` varchar(100) DEFAULT 'CREATED',
   `consultantId` int(11) DEFAULT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE `folders` (
   `programId` int(11) DEFAULT NULL,
   `createdAt` datetime DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `lastVist` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `lastVisit` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `comments` varchar(255) 
 );
 
@@ -68,34 +68,6 @@ INSERT INTO `customers` (`id`,   `first_name`, `last_name`, `gender`, `passport_
 
 -- --------------------------------------------------------
 
---
--- Structure de la table `comments`
---
-
-CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `author_id` int(11) DEFAULT NULL,
-  `content` text DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `tasks`
---
-
-CREATE TABLE `tasks` (
-  `id` int(11) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `consultant_id` int(11) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `due_date` datetime DEFAULT NULL,
-  `Statut` enum('En attente','En cours','Terminee') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `users`
@@ -117,7 +89,7 @@ CREATE TABLE `users` (
 
 
 CREATE TABLE `programs` (
-  `id` int(11) NOT NULL,
+  `id` int(11)  AUTO_INCREMENT  PRIMARY KEY,
   `name` varchar(200) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL
@@ -131,7 +103,6 @@ CREATE TABLE `programs` (
 -- Index pour la table `programs`
 --
 ALTER TABLE `programs`
-  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `type` (`type`);
 COMMIT;
 
@@ -157,21 +128,7 @@ INSERT INTO `users` (`id`, `last_name`, `first_name`, `email`, `password`, `prof
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
---
--- Index pour la table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `author_id` (`author_id`);
 
---
--- Index pour la table `tasks`
---
-ALTER TABLE `tasks`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `consultant_id` (`consultant_id`);
 
 --
 -- Index pour la table `users`
@@ -191,18 +148,7 @@ ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT pour la table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT pour la table `tasks`
---
-ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
@@ -212,26 +158,9 @@ ALTER TABLE `users`
 -- Contraintes pour les tables déchargées
 --
 
---
--- Contraintes pour la table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`);
-
---
--- Contraintes pour la table `tasks`
---
-ALTER TABLE `tasks`
-  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`consultant_id`) REFERENCES `users` (`id`);
 
 
---
--- Index pour la table `programs`
---
 ALTER TABLE `folders`
-  ADD PRIMARY KEY (`id`),
   ADD CONSTRAINT `fk_folders_consultant` FOREIGN KEY (`consultantId`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `fk_folders_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `fk_folders_program` FOREIGN KEY (`programId`) REFERENCES `programs` (`id`)

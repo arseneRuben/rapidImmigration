@@ -4,7 +4,7 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
 export const createFolder = async (req, res) => {
     try {
         connect()
-        query('INSERT INTO folders (programId, customerId,consultantId, folderNumber, lastVisit, comments, currentStep) VALUES (?,?,?,?, ?,?,? , ?)', [req.body.programId, req.body.customerId,req.body.consultantId,req.body.folderNumber, req.body.lastVisit, req.body.comments ], function(err, result) {
+        query('INSERT INTO folders (programId, customerId,consultantId, folderNumber, lastVisit, comments) VALUES (?,?,?,?, ?,? )', [req.body.programId, req.body.customerId,req.body.consultantId,req.body.folderNumber, Date.now(), req.body.comments ], function(err, result) {
             if(err) {
                 res.status(400).json({ message: err.message })
             } else {
@@ -19,13 +19,12 @@ export const createFolder = async (req, res) => {
 }
 export const getFolders = async (req, res) => {
     try {
-    connect()
-    query('SELECT * FROM folders', [], (resp) => {
-        res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-        res.end(JSON.stringify(resp, null, 4))
-        disconnect()
-    })
-} catch (error) {
+        connect()
+        query('SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id', [], (resp) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))
+        })
+    } catch (error) {
         res.status(404).json({ message: error.message })
     }
 }
@@ -33,8 +32,8 @@ export const getFolders = async (req, res) => {
 export const updateFolder = async (req, res) => {
     try {
         connect()
-        query('UPDATE folders SET programId=?, customerId=?, consultantId=?,folderNumber=?, lastVisit=?, comments=?, updatedAt=?, lastVisit=? , currentStep WHERE id=?',
-        [req.body.programId, req.body.customerId, req.body.consultantId,  req.body.folderNumber, req.body.lastVisit, req.body.currentStep, req.body.comments, , Date.now(),Date.now(),req.params.id],
+        query('UPDATE folders SET programId=?, customerId=?, consultantId=?,folderNumber=?, lastVisit=?, comments=?, updatedAt=?, lastVisit=?  WHERE id=?',
+        [req.body.programId, req.body.customerId, req.body.consultantId,  req.body.folderNumber,  req.body.comments, Date.now(),Date.now(),req.params.id],
         function(err, result) {
             if(err) {
                 res.status(400).json({ message: err.message })

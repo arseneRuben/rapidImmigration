@@ -1,11 +1,11 @@
-import { START_LOADING, END_LOADING, FETCH_ALL_FOLDERS, FETCH_FOLDER, FETCH_BY_CLIENT_FOLDER, CREATE_FOLDER, UPDATE_FOLDER, DELETE_FOLDER, FETCH_BY_CONSULTANT_FOLDER, FETCH_BY_CLIENT_FOLDER } from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL_FOLDERS, FETCH_FOLDER, FETCH_BY_CLIENT_FOLDER, CREATE_FOLDER, UPDATE_FOLDER, DELETE_FOLDER, FETCH_BY_CONSULTANT_FOLDER } from '../../constants/actionTypes';
 
 const folders = (state = { isLoading: true, folders: [] }, action) => {
     switch (action.type) {
     case START_LOADING:
         return { ...state, isLoading: true };
 
-    case END_LOAD :
+    case END_LOADING :
         return { ...state, isLoading: false };
     case FETCH_ALL_FOLDERS:
             return {

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { getCustomers } from '../actions/customer'
 import { getPrograms } from '../actions/program'
+import { getFolders } from '../actions/folder'
 
 const AdminPages = ({children}) => {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const AdminPages = ({children}) => {
       dispatch(getCustomers())
       getUserData()
       dispatch(getPrograms())
+      dispatch(getFolders())
     }, [])
   return (
     <>  

@@ -3,54 +3,56 @@ import PageWrapper from '../../components/pageWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { useSelector,useDispatch } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { deleteCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import SpinnerCustom from '../../redux/SpinnerCustom';
+import { deleteFolder } from '../../actions/folder';
 
-const ClientList =  () => {
-    const {isLoading, customers} = useSelector((state)=> state.customers)
+const Folder =  () => {
+    const {isLoading, folders} = useSelector((state)=> state.folders)
     const dispatch = useDispatch()
-
-    function deleteCLient(id){
+    console.log(folders)
+    function deleteFold(id){
         dispatch(showLoading())
-        deleteCustomer(id)
+        deleteFolder(id)
         window.location.reload(false);
         dispatch(hideLoading())
     }
+
+    
 
   
         
   return (
     <PageWrapper>
-        <div class="row">
-                <div class="col-lg-12">
-                        <div class="panel panel-default">
-                                <div class="panel-heading text-center h3">
-                                       Customers
-                                </div>
+       <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading text-center h3">
+                                       Customer's folders
+                                    </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
                                         {isLoading ? <SpinnerCustom /> :
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                     <tr>
-                                                        <th>FullName</th>
-                                                        <th>Passport</th>
-                                                        <th>Consultant</th>
-                                                        <th>Birthday</th>
+                                                        <th>Id</th>
+                                                        <th>Customer</th>
+                                                        <th>Program</th>
+                                                        <th>LastVisit</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {customers.map((customer)=> (
-                                                        <tr class="gradeC"  key={customer.id}>
-                                                            <td>{customer.first_name }</td>
-                                                            <td>{customer.passport_number }</td>
-                                                            <td>{customer.consultant_id }</td>
-                                                            <td className="center">{customer.birth_date }</td>
-                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/customer/${customer.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/customer/${customer.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteCLient(customer.id)} icon={faTrash} /></button></td>
+                                                    {folders.map((folder)=> (
+                                                        <tr class="gradeC"  key={folder.folderNumber}>
+                                                            <td>{folder.folderNumber }</td>
+                                                            <td>{`${folder.first_name} ${folder.last_name}`  }</td>
+                                                            <td>{folder.name }</td>
+                                                            <td>{folder.lastVisit }</td>
+                                                             <td className="center"><button   className="btn btn-warning"><NavLink to={`/folder/${folder.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/folder/${folder.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteFold(folder.id)} icon={faTrash} /></button></td>
                                                         </tr>
                                                     ))
                                                     }
@@ -62,7 +64,7 @@ const ClientList =  () => {
                                     </div>
                                 </div>
                             </div>
-        </div>
+                        </div>
         <nav aria-label="..." className="d-flex  justify-content-center">
             <ul className="pagination">
                 <li className="page-item disabled">
@@ -82,4 +84,4 @@ const ClientList =  () => {
   )
 }
 
-export default ClientList
+export default Folder

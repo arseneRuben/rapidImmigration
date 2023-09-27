@@ -29,6 +29,18 @@ export const likeProgram = (id) => API.patch(`/programs/${id}/likeProgram`);
 export const comment = (value, id) => API.post(`/programs/${id}/commentProgram`, { value });
 export const deleteComment = (id) => API.delete(`/programs/${id}`);
 
+export const fetchFolders = (page) => API.get(`/folders`);
+export const fetchFolder = (id) => API.get(`/folders/${id}`);
+export const fetchFoldersByClient = (clientId) => API.get(`/folders/client/${clientId}`);
+export const fetchFoldersByConsultant = (consultantId) => API.get(`/folders/consultant/${consultantId}`);
+export const fetchFoldersByProgram = (programId) => API.get(`/folders/program/${programId}`);
+export const fetchFoldersByCustomer = (customerId) => API.get(`/folders/customer/${customerId}`);
+
+export const createFolder = (newFolder) => API.post('/folders', newFolder);
+export const updateFolder = (updatedFolder) => API.patch(`/folders/${updatedFolder.id}`, updatedFolder);
+export const deleteFolder = (id) => API.delete(`/folders/${id}`);
+
+
 
 
 

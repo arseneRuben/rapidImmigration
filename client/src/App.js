@@ -20,6 +20,7 @@ import HomePage from './frontpages/home';
 import ProgramShow from './adminpages/program/show';
 import ProgramEdit from './adminpages/program/edit';
 import Folder from './adminpages/folder';
+import NewFolder from './adminpages/folder/new';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -111,9 +112,15 @@ function App() {
           </ProtectedRoute>
         }/>
 
-<       Route path="/folders" element={ 
+        <Route path="/folders" element={ 
           <ProtectedRoute>
            <Folder/>
+          </ProtectedRoute>
+
+        }/>
+         <Route path="/folder/new" element={ 
+          <ProtectedRoute>
+           <NewFolder/>
           </ProtectedRoute>
 
         }/>

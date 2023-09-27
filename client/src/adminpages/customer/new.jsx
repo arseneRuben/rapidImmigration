@@ -21,9 +21,7 @@ const NewCustomer = () => {
     first_name: "",
     last_name: "",
     gender: "",
-    
     email: "",
-    consultant_id: user.id,
     profile_image: "",
     phone_number: "",
     country: "",
@@ -35,8 +33,6 @@ const NewCustomer = () => {
     birth_place: "",
     birth_city: "",
     birth_country: "",
-    application_type: "",
-    application_date: "",
     birth_certificate: "",
     passport: "",
     resume: "",
