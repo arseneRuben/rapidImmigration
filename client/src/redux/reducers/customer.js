@@ -11,6 +11,8 @@ const customers= (state = { isLoading: true, customers: [] }, action) => {
       return {
         ...state,
         customers: action.payload,
+        currentPage: action.payload.currentPage,
+        numberOfPages: action.payload.numberOfPages,
        
       };
     case FETCH_BY_SEARCH:

@@ -10,7 +10,9 @@ const folders = (state = { isLoading: true, folders: [] }, action) => {
     case FETCH_ALL_FOLDERS:
             return {
                 ...state,
-                folders: action.payload
+                folders: action.payload,
+                currentPage: action.payload.currentPage,
+                numberOfPages: action.payload.numberOfPages,
             };
     case FETCH_FOLDER:
             return { ...state, folder: action.payload };

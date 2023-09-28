@@ -29,7 +29,7 @@ export const likeProgram = (id) => API.patch(`/programs/${id}/likeProgram`);
 export const comment = (value, id) => API.post(`/programs/${id}/commentProgram`, { value });
 export const deleteComment = (id) => API.delete(`/programs/${id}`);
 
-export const fetchFolders = (page) => API.get(`/folders`);
+export const fetchFolders = (page) => API.get(`/folders?page=${page}`);
 export const fetchFolder = (id) => API.get(`/folders/${id}`);
 export const fetchFoldersByClient = (clientId) => API.get(`/folders/client/${clientId}`);
 export const fetchFoldersByConsultant = (consultantId) => API.get(`/folders/consultant/${consultantId}`);

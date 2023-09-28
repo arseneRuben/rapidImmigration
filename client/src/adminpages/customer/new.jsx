@@ -15,7 +15,6 @@ const NewCustomer = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {user} = useSelector((state) => state.user)
 
   const [datas, setDatas] = useState({
     first_name: "",

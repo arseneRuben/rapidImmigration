@@ -1,5 +1,5 @@
 import { connect, query, disconnect } from '../connectors/daoMySql.js'
-import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
+import { CONTENT_TYPE_JSON, HTTP_OK, LIMIT } from './util.js'
 
 export const createFolder = async (req, res) => {
     try {
@@ -18,11 +18,21 @@ export const createFolder = async (req, res) => {
     }
 }
 export const getFolders = async (req, res) => {
+    const  page  = req.query.page;
+    const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
+    
     try {
         connect()
-        query('SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id', [], (resp) => {
-            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-            res.end(JSON.stringify(resp, null, 4))
+        query(`SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id ORDER BY folders.id LIMIT ${LIMIT} OFFSET ${startIndex}`, [],
+        function(err, result) {
+            console.log(result)
+            if(err) {
+                res.status(400).json({ message: err.message })
+            } else {
+                res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+                res.end(JSON.stringify(result))
+                
+            }
         })
     } catch (error) {
         res.status(404).json({ message: error.message })
