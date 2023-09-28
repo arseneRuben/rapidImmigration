@@ -1,4 +1,4 @@
-import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_CUSTOMER, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, FETCH_BY_CONSULTANT, FETCH_BY_CLIENT } from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_CUSTOMER, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, FETCH_BY_CONSULTANT, FETCH_BY_CLIENT, FETCH_ALL_CUSTOMER } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 import {  message } from 'antd'
 
@@ -12,11 +12,11 @@ export const getCustomer = (id) => async (dispatch) => {
   }
 };
 
-export const getCustomers = () => async (dispatch) => {
+export const getCustomers = (page) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    const { data } = await api.fetchCustomers(); 
-    dispatch({ type: FETCH_ALL, payload: data });
+    const { data } = await api.fetchCustomers(page); 
+    dispatch({ type: FETCH_ALL_CUSTOMER, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
     message.error(error.message)

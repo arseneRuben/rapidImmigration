@@ -28,9 +28,9 @@ const AdminPages = ({children}) => {
 
   useEffect(() => {
       
-      dispatch(getCustomers())
+      dispatch(getCustomers(1))
       getUserData()
-      dispatch(getPrograms())
+      dispatch(getPrograms(1))
       dispatch(getFolders(1))
     }, [])
   return (

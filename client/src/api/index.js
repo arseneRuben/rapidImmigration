@@ -11,7 +11,7 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchCustomer = (id) => API.get(`/customers/${id}`);
-export const fetchCustomers = (page) => API.get(`/customers`);
+export const fetchCustomers = (page) => API.get(`/customers?page=${page}`);
 export const fetchCustomerByClient = (name) => API.get(`/customers/creator?name=${name}`);
 export const fetchCustomerByConsultant = (name) => API.get(`/customers/consultant?name=${name}`);
 export const fetchCustomersBySearch = (searchQuery) => API.get(`/customers/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
@@ -19,7 +19,7 @@ export const createCustomer = (newCustomer) => API.post('/customers', newCustome
 export const updateCustomer = (id, updatedCustomer) => API.patch(`/customers/${id}`, updatedCustomer);
 export const deleteCustomer = (id) => API.delete(`/customers/${id}`);
 
-export const fetchPrograms = (page) => API.get(`/programs`);
+export const fetchPrograms = (page) => API.get(`/programs?page=${page}`);
 export const fetchProgram = (id) => API.get(`/programs/${id}`);
 export const fetchProgramByClient = (name) => API.get(`/programs/creator?name=${name}`);
 export const createProgram = (newProgram) => API.post('/programs', newProgram);

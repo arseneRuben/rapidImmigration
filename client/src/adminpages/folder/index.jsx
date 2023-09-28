@@ -6,14 +6,45 @@ import { useSelector,useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import SpinnerCustom from '../../redux/SpinnerCustom';
-import { deleteFolder } from '../../actions/folder';
-import Paginate from '../../components/pagination/Paginate';
+import { deleteFolder, getFolders } from '../../actions/folder';
+import Pagination from "react-bootstrap/Pagination";
+import axios from "axios";
+
 
 
 const Folder =  () => {
-    const {isLoading, folders, pageLimit, currentPage, paginationMode} = useSelector((state)=> state.folders)
+    const {isLoading, folders} = useSelector((state)=> state.folders)
+    
+
     const dispatch = useDispatch()
-    console.log(folders)
+    const [state, setState] = useState({
+        data: folders,
+        currentPage: 1
+    });
+
+    
+        useEffect(() => {
+            axios
+              .get(
+                `http://localhost:8080/api/folders?page=1`
+              )
+              .then((res) => {
+                setState((prev) => ({
+                  ...prev,
+                  data: res.data
+                }));
+              
+              })
+              .catch((error) => console.log(error));
+        }, []);
+        const handlePageChange = (pageNumber) => {
+            setState((prev) => ({ ...prev, activePage: pageNumber }));
+        
+            dispatch(getFolders(pageNumber))
+          };
+
+    
+    
 
     function deleteFold(id){
         dispatch(showLoading())
@@ -49,7 +80,7 @@ const Folder =  () => {
                                                 </thead>
                                                 <tbody>
                                                     {folders.map((folder)=> (
-                                                        <tr class="gradeC"  key={folder.folderNumber}>
+                                                        <tr class="gradeC"  key={folder.id}>
                                                             <td>{folder.folderNumber }</td>
                                                             <td>{`${folder.first_name} ${folder.last_name}`  }</td>
                                                             <td>{folder.name }</td>
@@ -67,7 +98,22 @@ const Folder =  () => {
                                 </div>
                             </div>
         </div>
-        <Paginate/>
+        <div class="row">
+        <Pagination className="d-flex justify-content-around">
+        {folders.map((_, index) => {
+          return (
+            <Pagination.Item
+              onClick={() => handlePageChange(index + 1)}
+              key={index + 1}
+              active={index + 1 === state.activePage}
+            >
+              {index + 1}
+            </Pagination.Item>
+          );
+        })}
+      </Pagination>
+      </div>
+        
     </PageWrapper>
   )
 }

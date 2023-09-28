@@ -4,13 +4,10 @@ import { CONTENT_TYPE_JSON, HTTP_OK, LIMIT } from './util.js'
 export const createFolder = async (req, res) => {
     try {
         connect()
-        query('INSERT INTO folders (programId, customerId,consultantId, folderNumber, lastVisit, comments) VALUES (?,?,?,?, ?,? )', [req.body.programId, req.body.customerId,req.body.consultantId,req.body.folderNumber, Date.now(), req.body.comments ], function(err, result) {
-            if(err) {
-                res.status(400).json({ message: err.message })
-            } else {
-                res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                res.end(JSON.stringify({ message: 'Folder created', success: true }, null, 4))
-            }
+        console.log('req.body', req.body)
+        query('INSERT INTO folders (programId, customerId,consultantId, folderNumber, lastVisit, comments) VALUES (?,?,?,?, ?,? )', [req.body.programId, req.body.customerId,req.body.consultantId,req.body.folderNumber, Date.now(), req.body.comments ], function (err, result, fields) {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify({ message: 'Fodler created', success: true }, null, 4))
             disconnect()
         })
     } catch (error) {
@@ -18,22 +15,20 @@ export const createFolder = async (req, res) => {
     }
 }
 export const getFolders = async (req, res) => {
-    const  page  = req.query.page;
-    const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
-    
+
+    const page = req.query.page ; // Page par défaut
+    const offset = (page - 1) * LIMIT; // get the starting index of every page
+    console.log(page, offset)
     try {
         connect()
-        query(`SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id ORDER BY folders.id LIMIT ${LIMIT} OFFSET ${startIndex}`, [],
-        function(err, result) {
-            console.log(result)
-            if(err) {
-                res.status(400).json({ message: err.message })
-            } else {
-                res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                res.end(JSON.stringify(result))
-                
-            }
+        query(`SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id ORDER BY folders.id DESC LIMIT ? OFFSET ?`, [LIMIT, offset],
+        (resp) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            
+            res.end(JSON.stringify(resp, null, 4))
         })
+
+        
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

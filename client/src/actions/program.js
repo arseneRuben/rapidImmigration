@@ -12,10 +12,10 @@ export const getProgram = (id) => async (dispatch) => {
     }
 }
 
-export const getPrograms = () => async (dispatch) => {
+export const getPrograms = (page) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
-        const { data } = await api.fetchPrograms(); 
+        const { data } = await api.fetchPrograms(page); 
         dispatch({ type: FETCH_ALL_PROGRAM, payload: data });
         dispatch({ type: END_LOADING });
     } catch (error) {

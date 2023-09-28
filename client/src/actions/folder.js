@@ -4,14 +4,19 @@ import {  message } from 'antd'
 
 export const getFolders = (page) => async (dispatch) => {
     try {
-    dispatch({ type: START_LOADING });
-    const { data: { data, currentPage, numberOfPages } } = await api.fetchFolders(page);
-    dispatch({ type: FETCH_ALL_FOLDERS, payload: { data, currentPage, numberOfPages } });
-    dispatch({ type: END_LOADING });
-} catch (error) {
-    message.error(error.message)
-}
-}
+       
+        dispatch({ type: START_LOADING });
+        const { data } = await api.fetchFolders(page);
+        
+        dispatch({ type: FETCH_ALL_FOLDERS, payload: data });
+        dispatch({ type: END_LOADING });
+    } catch (error) {
+        message.error(error.message)
+    }
+};
+
+
+
 
 export const getFolder = (id) => async (dispatch) => {
     try {
@@ -29,6 +34,7 @@ export const createFolder = (folder, navigate) => async (dispatch) => {
     const { data } = await api.createFolder(folder);
     dispatch({ type: CREATE_FOLDER, payload: data });
     message.success('Folder created');
+    dispatch({ type: END_LOADING });
     navigate(`/folders`);
 } catch (error) {
     message.error(error.message)

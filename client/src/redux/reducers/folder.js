@@ -1,4 +1,4 @@
-import { START_LOADING, END_LOADING, FETCH_ALL_FOLDERS, FETCH_FOLDER, FETCH_BY_CLIENT_FOLDER, CREATE_FOLDER, UPDATE_FOLDER, DELETE_FOLDER, FETCH_BY_CONSULTANT_FOLDER } from '../../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL_FOLDERS, FETCH_FOLDER, FETCH_BY_CLIENT_FOLDER, CREATE_FOLDER, UPDATE_FOLDER, DELETE_FOLDER, FETCH_BY_CONSULTANT_FOLDER, FETCH_FOLDERS_ERROR } from '../../constants/actionTypes';
 
 const folders = (state = { isLoading: true, folders: [] }, action) => {
     switch (action.type) {
@@ -10,12 +10,14 @@ const folders = (state = { isLoading: true, folders: [] }, action) => {
     case FETCH_ALL_FOLDERS:
             return {
                 ...state,
-                folders: action.payload,
-                currentPage: action.payload.currentPage,
-                numberOfPages: action.payload.numberOfPages,
+                folders: action.payload
             };
+    
+
+
     case FETCH_FOLDER:
             return { ...state, folder: action.payload };
+
     case CREATE_FOLDER:
             return { ...state, folders: [...state.folders, action.payload] };
     case UPDATE_FOLDER:

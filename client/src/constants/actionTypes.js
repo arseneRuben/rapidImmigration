@@ -1,7 +1,7 @@
 export const CREATE = 'CREATE';
 export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';
-export const FETCH_ALL = 'FETCH_ALL';
+export const FETCH_ALL_CUSTOMER = 'FETCH_ALL_CUSTOMER';
 export const FETCH_BY_SEARCH = 'FETCH_BY_SEARCH';
 export const FETCH_CUSTOMER = 'FETCH_CUSTOMER';
 export const LIKE = 'LIKE';
@@ -23,6 +23,8 @@ export const FETCH_PROGRAM = 'FETCH_PROGRAM';
 
 
 export const FETCH_ALL_FOLDERS = 'FETCH_ALL_FOLDERS';
+export const FETCH_FOLDERS_ERROR = 'FETCH_FOLDERS_ERROR';
+
 export const FETCH_FOLDER = 'FETCH_FOLDER';
 export const CREATE_FOLDER = 'CREATE_FOLDER';
 export const UPDATE_FOLDER = 'UPDATE_FOLDER';

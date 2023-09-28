@@ -9,9 +9,7 @@ const programs = (state = { isLoading: true, programs: [] }, action) => {
         case FETCH_ALL_PROGRAM:
         return {
             ...state,
-            programs: action.payload,
-            currentPage: action.payload.currentPage,
-            numberOfPages: action.payload.numberOfPages,
+            programs: action.payload
         };
         case FETCH_PROGRAM_BY_CLIENT:
         return { ...state, programs: action.payload.data };

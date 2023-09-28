@@ -24,7 +24,7 @@ const NewFolder = () => {
 
 const handleSave = async (event) => {
   event.preventDefault()
-  const res = await dispatch(createFolder(datas, navigate))
+  dispatch(createFolder(datas, navigate))
 }
 const handleChange = (name) => (e) => {
     setDatas({ ...datas, [name]: e.target.value });

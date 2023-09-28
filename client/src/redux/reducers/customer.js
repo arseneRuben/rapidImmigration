@@ -1,5 +1,5 @@
 
-import { FETCH_ALL, FETCH_BY_SEARCH, FETCH_BY_CONSULTANT, FETCH_CUSTOMER, CREATE, UPDATE, DELETE } from "../../constants/actionTypes";
+import { FETCH_ALL_CUSTOMER, FETCH_BY_SEARCH, FETCH_BY_CONSULTANT, FETCH_CUSTOMER, CREATE, UPDATE, DELETE } from "../../constants/actionTypes";
 
 const customers= (state = { isLoading: true, customers: [] }, action) => {
   switch (action.type) {
@@ -7,17 +7,14 @@ const customers= (state = { isLoading: true, customers: [] }, action) => {
       return { ...state, isLoading: true };
     case 'END_LOADING':
       return { ...state, isLoading: false };
-    case FETCH_ALL:
+    case FETCH_ALL_CUSTOMER:
       return {
         ...state,
-        customers: action.payload,
-        currentPage: action.payload.currentPage,
-        numberOfPages: action.payload.numberOfPages,
-       
+        customers: action.payload
       };
     case FETCH_BY_SEARCH:
     case FETCH_BY_CONSULTANT:
-      return { ...state, customers: action.payload.data };
+      return { ...state, customers: action.payload };
     case FETCH_CUSTOMER:
       return { ...state, customer: action.payload };
    
