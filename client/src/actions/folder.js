@@ -2,11 +2,11 @@ import { START_LOADING, END_LOADING, FETCH_ALL_FOLDERS, FETCH_FOLDER, FETCH_BY_C
 import * as api from '../api/index.js';
 import {  message } from 'antd'
 
-export const getFolders = (page) => async (dispatch) => {
+export const getFolders = (page, filter) => async (dispatch) => {
     try {
        
         dispatch({ type: START_LOADING });
-        const { data } = await api.fetchFolders(page);
+        const { data } = await api.fetchFolders(page, filter);
         
         dispatch({ type: FETCH_ALL_FOLDERS, payload: data });
         dispatch({ type: END_LOADING });

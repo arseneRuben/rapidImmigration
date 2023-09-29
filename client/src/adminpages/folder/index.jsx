@@ -14,19 +14,17 @@ import axios from "axios";
 
 const Folder =  () => {
     const {isLoading, folders} = useSelector((state)=> state.folders)
-    
+    const [filter, setFilter] = useState("");
 
     const dispatch = useDispatch()
     const [state, setState] = useState({
         data: folders,
         currentPage: 1
     });
-
-    
-        useEffect(() => {
+    useEffect(() => {
             axios
               .get(
-                `http://localhost:8080/api/folders?page=1`
+                `http://localhost:8080/api/folders?page=1&filter=${filter}`
               )
               .then((res) => {
                 setState((prev) => ({
@@ -39,8 +37,7 @@ const Folder =  () => {
         }, []);
         const handlePageChange = (pageNumber) => {
             setState((prev) => ({ ...prev, activePage: pageNumber }));
-        
-            dispatch(getFolders(pageNumber))
+            dispatch(getFolders(pageNumber, filter))
           };
 
     
@@ -53,9 +50,10 @@ const Folder =  () => {
         dispatch(hideLoading())
     }
 
-    
-
-  
+    function resetFilter() {
+        setFilter("");
+        dispatch(getFolders(state.currentPage, ""));
+    }
         
   return (
     <PageWrapper>
@@ -95,24 +93,47 @@ const Folder =  () => {
                                         }
                                         </div>
                                     </div>
+                                    <div className="panel-footer">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <h6>Total Count <span className="label label-info">{folders.length}</span></h6>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <Pagination className="d-flex justify-content-around">
+                                                    {folders.map((_, index) => {
+                                                    return (
+                                                        <Pagination.Item
+                                                        onClick={() => handlePageChange(index + 1)}
+                                                        key={index + 1}
+                                                        active={index + 1 === state.activePage}
+                                                        >
+                                                        {index + 1}
+                                                        </Pagination.Item>
+                                                    );
+                                                    })}
+                                                </Pagination>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
         </div>
         <div class="row">
-        <Pagination className="d-flex justify-content-around">
-        {folders.map((_, index) => {
-          return (
-            <Pagination.Item
-              onClick={() => handlePageChange(index + 1)}
-              key={index + 1}
-              active={index + 1 === state.activePage}
-            >
-              {index + 1}
-            </Pagination.Item>
-          );
-        })}
-      </Pagination>
-      </div>
+             <div className="col-6">
+                <div className="form-group d-flex ">
+                    <label htmlFor="filter">Filter</label>
+                    <input
+                        type="text"
+                        className="form-control m-3"
+                        id="filter"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                    />
+                    <button className="btn btn-primary m-3" onClick={() => handlePageChange(1)}> Filter </button>   
+                    <button className="btn btn-secondary m-3" onClick={() => resetFilter()}> Reset </button>
+                </div>
+             </div>
+        </div>
         
     </PageWrapper>
   )
