@@ -21,6 +21,8 @@ import ProgramShow from './adminpages/program/show';
 import ProgramEdit from './adminpages/program/edit';
 import Folder from './adminpages/folder';
 import NewFolder from './adminpages/folder/new';
+import Services from './frontpages/home/service';
+import Contact from './frontpages/home/contact';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -50,6 +52,16 @@ function App() {
         <Route path="/" element={ 
             <PublicRoute>
               <HomePage />
+          </PublicRoute>
+        }/>
+         <Route path="/services" element={ 
+            <PublicRoute>
+              <Services />
+          </PublicRoute>
+        }/>
+         <Route path="/contact" element={ 
+            <PublicRoute>
+              <Contact />
           </PublicRoute>
         }/>
           <Route path="/signout" element={ 

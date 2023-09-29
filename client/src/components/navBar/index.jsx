@@ -20,8 +20,12 @@ const NavBar = () => {
                 <NavLink to="/" className={`nav-item nav-link ${location.pathname==="/" && 'active'}`}>
                     Home
                 </NavLink>
-                <a href="about.html" className="nav-item nav-link">About</a>
-                <a href="service.html" className="nav-item nav-link">Service</a>
+                <NavLink to="/services" className={`nav-item nav-link ${location.pathname==="/services" && 'active'}`}>
+                    Services
+                </NavLink>
+                <NavLink to="/contact" className={`nav-item nav-link ${location.pathname==="/contact" && 'active'}`}>
+                    Contact
+                </NavLink>
                 <div className="nav-item dropdown">
                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div className="dropdown-menu m-0">

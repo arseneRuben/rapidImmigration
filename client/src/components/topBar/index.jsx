@@ -31,8 +31,7 @@ const TopBar = () => {
             { user &&  <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/folders" && 'bg-primary-subtle'}` } to="/folders"><FontAwesomeIcon icon={faTachometerAlt} /></NavLink> }
             { user &&<NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/profile" && 'bg-primary-subtle'}` } to="/profile"><FontAwesomeIcon icon={faUserSecret} /></NavLink> }
             { user ?  <span className="text-body py-2 px-3 border-end"  ><FontAwesomeIcon icon={faSignOut} onClick={handleLogout}/></span> : <NavLink className={`text-body py-2 px-3 border-end  ${location.pathname==="/signin" && 'bg-primary-subtle'}` } to="/signin"><FontAwesomeIcon icon={faSignIn} /></NavLink>}
-                <a className="text-body py-2 px-3 border-end" href=""><small>Policy</small></a>
-                <a className="text-body py-2 ps-3" href=""><small>Career</small></a>
+              
             </div>
         </div>
         <div className="col-md-6 text-center text-lg-end">

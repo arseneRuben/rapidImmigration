@@ -31,7 +31,7 @@ const AdminPages = ({children}) => {
       dispatch(getCustomers(1))
       getUserData()
       dispatch(getPrograms(1))
-      dispatch(getFolders(1))
+      dispatch(getFolders(1, "", "id", "asc"))
     }, [])
   return (
     <>  
