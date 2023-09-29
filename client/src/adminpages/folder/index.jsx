@@ -10,12 +10,11 @@ import { deleteFolder, getFolders } from '../../actions/folder';
 import Pagination from "react-bootstrap/Pagination";
 import axios from "axios";
 
-
-
 const Folder =  () => {
     const {isLoading, folders} = useSelector((state)=> state.folders)
     const [filter, setFilter] = useState("");
-
+    const [newOrder, setNewOrder] = useState("asc");
+    const [orderBy, setOrderBy] = useState("id");
     const dispatch = useDispatch()
     const [state, setState] = useState({
         data: folders,
@@ -24,7 +23,7 @@ const Folder =  () => {
     useEffect(() => {
             axios
               .get(
-                `http://localhost:8080/api/folders?page=1&filter=${filter}`
+                `http://localhost:8080/api/folders?page=1&filter=${filter}&orderBy=${orderBy}&newOrder=${newOrder}`
               )
               .then((res) => {
                 setState((prev) => ({
@@ -37,7 +36,7 @@ const Folder =  () => {
         }, []);
         const handlePageChange = (pageNumber) => {
             setState((prev) => ({ ...prev, activePage: pageNumber }));
-            dispatch(getFolders(pageNumber, filter))
+            dispatch(getFolders(pageNumber, filter, orderBy, newOrder))
           };
 
     
@@ -52,7 +51,22 @@ const Folder =  () => {
 
     function resetFilter() {
         setFilter("");
-        dispatch(getFolders(state.currentPage, ""));
+        dispatch(getFolders(state.currentPage, "", orderBy, newOrder));
+    }
+
+   
+    function handleSortingOrder(event) {
+        setNewOrder(newOrder === "asc" ? "desc" : "asc")
+        if(newOrder === "asc"){
+            event.target.classList.add("sorting_desc")
+            event.target.classList.remove("sorting_asc")
+        }
+        else{
+            event.target.classList.add("sorting_asc")
+            event.target.classList.remove("sorting_desc")
+        }
+        setOrderBy(event.target.id)
+        dispatch(getFolders(state.currentPage, filter, orderBy, newOrder))
     }
         
   return (
@@ -66,13 +80,13 @@ const Folder =  () => {
                                     <div class="panel-body">
                                         <div class="table-responsive">
                                         {isLoading ? <SpinnerCustom /> :
-                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            <table class="table table-striped table-bordered table-hover  dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
-                                                        <th>Customer</th>
-                                                        <th>Program</th>
-                                                        <th>LastVisit</th>
+                                                        <th className='sorting_asc' onClick={(event) => handleSortingOrder(event)} id="customerId" >Customer</th>
+                                                        <th className='sorting_asc' onClick={(event) => handleSortingOrder(event)} id="programId" >Program</th>
+                                                        <th className='sorting_asc' onClick={(event) => handleSortingOrder(event)} id="lastVisit" >LastVisit</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
