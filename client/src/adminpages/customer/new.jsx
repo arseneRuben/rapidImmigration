@@ -77,21 +77,18 @@ const NewCustomer = () => {
       formData.append("wes_report", data.wes_report[0]);
       datas["wes_report"]= data.wes_report[0].name;
     }
-  
-
-  if(data.marriage_certificate.length > 0){
-    formData.append("marriage_certificate", data.marriage_certificate[0]);
-    datas["marriage_certificate"]= data.marriage_certificate[0].name;
-  }
-  if(data.birth_certificate.length > 0){
-    formData.append("birth_certificate", data.birth_certificate[0]);
-    datas["birth_certificate"]= data.birth_certificate[0].name;
-  }
-  
+    if(data.marriage_certificate.length > 0){
+      formData.append("marriage_certificate", data.marriage_certificate[0]);
+      datas["marriage_certificate"]= data.marriage_certificate[0].name;
+    }
+    if(data.birth_certificate.length > 0){
+      formData.append("birth_certificate", data.birth_certificate[0]);
+      datas["birth_certificate"]= data.birth_certificate[0].name;
+    }
     formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
 
-
     handleSave(event)
+    
     const res = await fetch("http://localhost:8080/upload-file", {
         method: "POST",
         body: formData,
@@ -110,7 +107,6 @@ const handleChange = (name) => (e) => {
   return (
     <PageWrapper>
       <div className=" vh-100">
-     
       <form  className='w-100' onSubmit={handleSubmit(onSubmit)}>
         <div className="container d-flex justify-content-center align-items-center">
           <div className=" p-3 w-100 mt-5">

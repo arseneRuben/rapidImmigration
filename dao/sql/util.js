@@ -11,6 +11,6 @@ export const USER_ACCESS_LEVEL_ADMIN = 'admin'
 export const USER_ACCESS_LEVEL_CONSULTANT = 'consultant'
 export const USER_ACCESS_LEVEL_CLIENT = 'client'
 
-export const LIMIT=3
+export const LIMIT=5
 
 

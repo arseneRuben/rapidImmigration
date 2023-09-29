@@ -67,7 +67,7 @@ app.post("/upload-file", async (req, res) => {
             } else {
                 Object.keys(req.files).forEach(function(key) {
                                     file = req.files[key];
-                                    file.mv(`./uploads/immigration_programs/` + file.name);
+                                    file.mv(`./uploads/profiles/` + file.name);
                                 });
                      }
                   

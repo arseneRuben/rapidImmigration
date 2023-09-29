@@ -42,8 +42,8 @@ export const createCustomer = (customer, navigate) => async (dispatch) => {
     dispatch({ type: START_LOADING });
     const { data } = await api.createCustomer(customer);
     dispatch({ type: CREATE, payload: data });
-    message.success('costomer created')
-    navigate(`/folders`);
+    message.success('customer created')
+    navigate(`/customers`);
   } catch (error) {
     message.error(error.message)
   }
