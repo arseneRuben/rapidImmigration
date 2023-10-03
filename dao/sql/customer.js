@@ -7,12 +7,10 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
 export const createCustomer = async (req, res) => {
     try {
         connect()
-        query('INSERT INTO  customers (first_name,             last_name,    email,     gender,           passport_number,           country,            phone_number,           city,          street,         address,          zip_code,               birth_date,         birth_place,         birth_country,          birth_certificate,                          passport,   profile_image,         resume,          other_documents,          marital_status,          spouse_name,           marriage_certificate,       wes_report,    children               ) VALUES (  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                                           [req.body.first_name,   req.body.last_name,  req.body.email, req.body.gender,  req.body.passport_number,  req.body.country,  req.body.phone_number, req.body.city, req.body.street, req.body.address, req.body.zip_code,  req.body.birth_date, req.body.birth_place, req.body.birth_country, req.body.birth_certificate, req.body.passport,req.body.profile_image, req.body.resume, req.body.other_documents, req.body.marital_status,  req.body.spouse_name, req.body.marriage_certificate,   req.body.wes_report,  req.body.children ], function (err, result, fields) {
+        query('INSERT INTO  customers (first_name,             last_name,    email,     gender,           passport_number,           country,            phone_number,           city,          street,         address,          zip_code,               birth_date,         birth_place,         birth_country,          birth_certificate,                          passport,   profile_image,         resume,                   marital_status,                     marriage_certificate,       wes_report             ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                                           [req.body.first_name,   req.body.last_name,  req.body.email, req.body.gender,  req.body.passport_number,  req.body.country,  req.body.phone_number, req.body.city, req.body.street, req.body.address, req.body.zip_code,  req.body.birth_date, req.body.birth_place, req.body.birth_country, req.body.birth_certificate, req.body.passport,req.body.profile_image, req.body.resume,  req.body.marital_status,  req.body.marriage_certificate,   req.body.wes_report], function (err, result, fields) {
                         res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                        const lastInsertedId = result.insertId
-                        res.end(JSON.stringify({ message: 'Customer created', success: true, lastInsertedId:lastInsertedId }, null, 4))
-                        disconnect()
+                        res.end(JSON.stringify({ message: 'Customer created', success: true}, null, 4))
                     })  
     } catch (error) {
         res.status(404).json({ message: error.message })

@@ -37,10 +37,12 @@ export function disconnect () {
 
 
 export function lastId (table) {
-    connection.query('SELECT MAX(id) AS last_id FROM ' + table, (error, result) => {
+    connect()
+    query('SELECT MAX(id) AS last_id FROM ' + table, (error, result) => {
+        console.log("GO")
         if (error) {
             throw error
         }
-       return result[0].last_id
+        return result[0]['last_id']
     })
 }

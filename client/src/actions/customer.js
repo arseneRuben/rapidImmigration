@@ -37,11 +37,11 @@ export const getCustomersBySearch = (searchQuery) => async (dispatch) => {
   }
 };
 
-export const createCustomer = (customer, navigate) => async (dispatch) => {
+export const createCustomer = (customer,formValues, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createCustomer(customer);
-    console.log(data)
+    const {values} = await api.insertOthers(formValues);
     dispatch({ type: CREATE, payload: data });
     message.success('customer created')
     navigate(`/customers`);

@@ -50,9 +50,7 @@ CREATE TABLE `customers` (
   `wes_report` varchar(50) DEFAULT NULL,
   `marriage_certificate` varchar(50) DEFAULT NULL,
   `birth_certificate` varchar(50) DEFAULT NULL,
-  `other_documents` varchar(50) DEFAULT NULL,
   `marital_status` int(11) DEFAULT NULL,
-  `spouse_name` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp()
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -61,10 +59,10 @@ CREATE TABLE `customers` (
 -- Déchargement des données de la table `customers`
 --
 
-INSERT INTO `customers` (`id`,   `first_name`, `last_name`, `gender`, `passport_number`, `email`, `profile_image`, `phone_number`, `country`, `city`, `street`, `address`, `zip_code`, `birth_date`, `birth_place`, `birth_country`, `passport`, `resume`, `wes_report`, `marriage_certificate`, `birth_certificate`, `other_documents`, `marital_status`,  `created_at`) VALUES
-(1, 'ARISTIDE ', 'MONO', '1', '435455555554', NULL, NULL, '+237894561454', 'Azerbaijan', 'Sulutapa', 'WEAR', '', '87653', '1983-09-06', 'TIBATI', 'Cameroon', 'TEST.PNG', '5445fb-f.pdf', NULL, '420-DS1-TT.pdf', 'rootkey.csv', '5445fb-f.pdf', 1,  '2023-09-18 08:09:30'),
-(2, 'CLAUDIA', 'MEDIEMEN', '1', '98934593', NULL, NULL, '785225655', 'Brunei', 'Kuala Balai', '1750 Rue Crevier', '', 'H4L2X5R', '1988-10-10', 'HORISHA', 'Belarus', '420-DS1-TT.pdf', 'épervier1.png', NULL, 'CAIN23-1850578.pdf', '420-SRD-TT.pdf', '5445fb-f.pdf', 1,  '2023-09-18 08:30:28'),
-(3, 'NINA FLORALY', 'BADJO', '1', '3443923', 'nina@gmail.com', 'zack.jpg', 'rio', 'Bahrain', 'Madinat `Isa', 'RIO', '', '434454', '1990-12-11', 'brasilia', 'Azerbaijan', 'Formulaire - Consentement à la divulgation de rens', 'TEST.PNG', 'IMM5754_1-SC6JIW1.pdf', 'LetterRecommendationArsene.docx', 'Memoire_5GI_Arsene.pdf', 'TEST2.PNG', 0,  '2023-09-20 11:50:43');
+INSERT INTO `customers` (`id`,   `first_name`, `last_name`, `gender`, `passport_number`, `email`, `profile_image`, `phone_number`, `country`, `city`, `street`, `address`, `zip_code`, `birth_date`, `birth_place`, `birth_country`, `passport`, `resume`, `wes_report`, `marriage_certificate`, `birth_certificate`, `marital_status`,  `created_at`) VALUES
+(1, 'ARISTIDE ', 'MONO', '1', '435455555554', NULL, NULL, '+237894561454', 'Azerbaijan', 'Sulutapa', 'WEAR', '', '87653', '1983-09-06', 'TIBATI', 'Cameroon', 'TEST.PNG', '5445fb-f.pdf', NULL, '420-DS1-TT.pdf', 'rootkey.csv', 1,  '2023-09-18 08:09:30'),
+(2, 'CLAUDIA', 'MEDIEMEN', '1', '98934593', NULL, NULL, '785225655', 'Brunei', 'Kuala Balai', '1750 Rue Crevier', '', 'H4L2X5R', '1988-10-10', 'HORISHA', 'Belarus', '420-DS1-TT.pdf', 'épervier1.png', NULL, 'CAIN23-1850578.pdf', '420-SRD-TT.pdf', 1,  '2023-09-18 08:30:28'),
+(3, 'NINA FLORALY', 'BADJO', '1', '3443923', 'nina@gmail.com', 'zack.jpg', 'rio', 'Bahrain', 'Madinat `Isa', 'RIO', '', '434454', '1990-12-11', 'brasilia', 'Azerbaijan', 'Formulaire - Consentement à la divulgation de rens', 'TEST.PNG', 'IMM5754_1-SC6JIW1.pdf', 'LetterRecommendationArsene.docx', 'Memoire_5GI_Arsene.pdf',  0,  '2023-09-20 11:50:43');
 
 -- --------------------------------------------------------
 
@@ -180,6 +178,7 @@ ALTER TABLE `folders`
   ADD CONSTRAINT `fk_folders_consultant` FOREIGN KEY (`consultantId`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `fk_folders_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `fk_folders_program` FOREIGN KEY (`programId`) REFERENCES `programs` (`id`);
+
 
 ALTER TABLE `others`
   ADD CONSTRAINT `fk_others_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`id`);

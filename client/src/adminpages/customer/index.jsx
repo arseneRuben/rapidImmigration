@@ -36,8 +36,9 @@ const ClientList =  () => {
                                                 <thead>
                                                     <tr>
                                                         <th>FullName</th>
+                                                        <th>LastName</th>
+
                                                         <th>Passport</th>
-                                                        <th>Consultant</th>
                                                         <th>Birthday</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -46,8 +47,9 @@ const ClientList =  () => {
                                                     {customers.map((customer)=> (
                                                         <tr class="gradeC"  key={customer.id}>
                                                             <td>{customer.first_name }</td>
+                                                            <td>{customer.last_name }</td>
+
                                                             <td>{customer.passport_number }</td>
-                                                            <td>{customer.consultant_id }</td>
                                                             <td className="center">{customer.birth_date }</td>
                                                             <td className="center"><button   className="btn btn-warning"><NavLink to={`/customer/${customer.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/customer/${customer.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteCLient(customer.id)} icon={faTrash} /></button></td>
                                                         </tr>

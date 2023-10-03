@@ -2,7 +2,7 @@ import React, {useState, useRef}  from "react";
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ContactInfo from "../../components/customer/steps/ContactInfo";
 import PersonnalInfo from '../../components/customer/steps/PersonnalInfo';
 import LocationInfo from '../../components/customer/steps/LocationInfo';
@@ -39,7 +39,6 @@ const NewCustomer = () => {
     marriage_certificate: "",
     birth_certificate: "",
     marital_status: "",
-    children: 0,
    
   });
   const [step, setStep] = useState(1);
@@ -124,8 +123,8 @@ const NewCustomer = () => {
     }
     formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
 
-    handleSave(event)
-    
+    handleSave(event) 
+
     const res = await fetch("http://localhost:8080/upload-file", {
         method: "POST",
         body: formData,
@@ -136,7 +135,7 @@ const NewCustomer = () => {
 
 const handleSave = async (event) => {
   event.preventDefault()
-  dispatch(createCustomer(datas, navigate))
+  dispatch(createCustomer(datas, formValues, navigate))
 }
 const handleChange = (name) => (e) => {
     setDatas({ ...datas, [name]: e.target.value });

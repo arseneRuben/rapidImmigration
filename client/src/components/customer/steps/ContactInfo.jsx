@@ -95,7 +95,7 @@ const ContactInfo = ({ handleChange, client, formValues, toogle, inputRef, selec
      </Form.Group>
      <Form.Group className="w-100 m-2">
         <div className="row">
-          <div className="col-4">
+          <div className="col-6">
             <Form.Control
                 placeholder="Marital status"
                 className="mt-2"
@@ -111,19 +111,7 @@ const ContactInfo = ({ handleChange, client, formValues, toogle, inputRef, selec
             </Form.Control>
           </div>
         
-          <div className="col-4">
-                <Form.Label htmlFor="children"  mt="5">Number of children</Form.Label>
-            </div>
-          <div className="col-4">
-              <Form.Control
-                placeholder="Chidren"
-                type="number"
-                onChange= {handleChange("children")}
-                name="children"
-                className="mt-2"
-                value={client.children}
-              />
-          </div>
+        
         </div>
       </Form.Group>
       {formValues && formValues.map((obj, index) => (

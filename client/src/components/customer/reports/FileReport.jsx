@@ -18,9 +18,9 @@ const FileReport = ({client}) => {
     }
 
   return (
-    <div className="card w-100">
+    <div className=" w-100">
         <h4 className="card-title">Documents</h4>
-    <div className="card-body">
+    <div className="">
         
         <div className="d-flex flex-column justify-content-start w-100">
             <div>Passport :    <button value={client.passport} onClick={onButtonClick}>

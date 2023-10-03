@@ -13,8 +13,8 @@ const MaritalReport = ({client}) => {
         }
     }
   return (
-    <div className="card h-100">
-        <div className="card-body">
+    <div className=" h-100">
+        <div className="">
             <h4 className="card-title">Married life</h4>
             <p className="card-text">Marital status : {matitalStatus(client.marital_status)}</p>
             <p className="card-text">Spouse : {client.spouse_name}</p>

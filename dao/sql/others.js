@@ -6,15 +6,20 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
 export const insertOthers = async (req, res) => {
     try {
         connect()
+        let last_id
+        query('SELECT MAX(id) AS last_id FROM customers' , (error, result) => {
+            if (error) {
+                throw error
+            }
+            last_id= result[0]['last_id']
+            req.body.forEach((item) => {
+                query('INSERT INTO  others (customerId,  label, value , type              ) VALUES (?, ?, ?, ?)',
+                                                   [last_id, item.label, item.value, item.type  ], function (err, result, fields) {
+                            })
+            })
 
-        query('INSERT INTO  others (customerId,  label, value , type              ) VALUES (?, ?, ?, ?)',
-                                           [lastId('customers'),  req.body.label, req.body.value, req.body.type  ], function (err, result, fields) {
-                        res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                        res.end(JSON.stringify({ message: 'new line created', success: true }, null, 4))
-                        disconnect()
-                    })
-      
-    
+        })
+        
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

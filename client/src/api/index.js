@@ -42,6 +42,7 @@ export const updateFolder = (updatedFolder) => API.patch(`/folders/${updatedFold
 export const deleteFolder = (id) => API.delete(`/folders/${id}`);
 
 
+export const insertOthers = (newOther) => API.post('/others', newOther);
 
 
 
