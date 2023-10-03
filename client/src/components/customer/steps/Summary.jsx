@@ -4,7 +4,7 @@ import ContactReport from '../reports/ContactReport'
 import FileReport from '../reports/FileReport'
 import MaritalReport from '../reports/MaritalReport'
 
-const Summary = ({client}) => {
+const Summary = ({client, formValues}) => {
 
    
   return (
@@ -28,6 +28,19 @@ const Summary = ({client}) => {
                             <MaritalReport client={client}/>
                 </div>
             </div>
+            <div className="card-body  gx-4 gx-lg-5">
+                <div className="col-md-8 ">
+                        {
+                            formValues && formValues.map((obj, index) => (
+                                <div key={index} className='row'>
+                                   <div className="col-5">{obj.label}</div>
+                                   <div className="col-7">{obj.value}</div>
+                                </div>
+                            ))
+                        }
+                </div>
+            </div>
+
         </div>
     </div>
 )

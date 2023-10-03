@@ -34,3 +34,13 @@ export function disconnect () {
     console.log('Connection ENDED')
     connection.end()
 }
+
+
+export function lastId (table) {
+    connection.query('SELECT MAX(id) AS last_id FROM ' + table, (error, result) => {
+        if (error) {
+            throw error
+        }
+       return result[0].last_id
+    })
+}

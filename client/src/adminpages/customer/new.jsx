@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef}  from "react";
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { message } from 'antd';
@@ -39,7 +39,6 @@ const NewCustomer = () => {
     marriage_certificate: "",
     birth_certificate: "",
     marital_status: "",
-    spouse_name: "",
     children: 0,
    
   });
@@ -56,6 +55,44 @@ const NewCustomer = () => {
       setStep(step - 1);
     }
   };
+
+  const [formValues, setFormValues] = useState([]);
+  const [toggle, setToggle] = useState(false);
+  const inputRef = useRef();
+  const selectRef = useRef();
+
+  const handleAddField = (e) => {
+    e.preventDefault();
+    const values = [...formValues];
+    values[inputRef.current.value] = ""
+
+    values.push({
+      label: inputRef.current.value || "label",
+      type: selectRef.current.value || "text",
+      value: "",
+    });
+    setFormValues(values);
+    setToggle(false);
+  };
+
+  const handleDeleteField = (e, index) => {
+    const values = [...formValues];
+    values.splice(index, 1);
+    setFormValues(values);
+  };
+
+  const addBtnClick = (e) => {
+    e.preventDefault();
+    setToggle(true);
+  };
+
+  const handleInputChange = (e, index) => {
+    const values = [...formValues];
+    values[index].value = e.target.value;
+    setFormValues(values);
+  };
+
+ 
 
   // Set PersonalInfo datas
   const onSubmit = async (data, event) =>  {
@@ -112,11 +149,11 @@ const handleChange = (name) => (e) => {
           <div className=" p-3 w-100 mt-5">
             {
               {
-                1: <PersonnalInfo handleChange={handleChange}  user={datas} register={register} />,
-                2: <ContactInfo handleChange={handleChange} client={datas}  />,
-                3: <LocationInfo handleChange={handleChange} client={datas}  />,
-                4: <FilesInfo client={datas} handleChange={handleChange} register={register}  />,
-                5: <Summary  client={datas}  />,
+                1: <PersonnalInfo handleChange={handleChange}  user={datas} register={register} toogle={toggle} inputRef={inputRef} selectRef={selectRef}  handleAddField={handleAddField} handleDeleteField={handleDeleteField}  formValues={formValues} toggle={toggle} setToggle={setToggle}  setFormValues={setFormValues} handleInputChange={handleInputChange} />,
+                2: <ContactInfo handleChange={handleChange} client={datas}  toogle={toggle} inputRef={inputRef} selectRef={selectRef}  handleAddField={handleAddField} handleDeleteField={handleDeleteField}  formValues={formValues} toggle={toggle} setToggle={setToggle}  setFormValues={setFormValues} handleInputChange={handleInputChange} />,
+                3: <LocationInfo handleChange={handleChange} client={datas}  toogle={toggle} inputRef={inputRef} selectRef={selectRef}  handleAddField={handleAddField} handleDeleteField={handleDeleteField}  formValues={formValues} toggle={toggle} setToggle={setToggle}  setFormValues={setFormValues} handleInputChange={handleInputChange}  />,
+                4: <FilesInfo client={datas} handleChange={handleChange} register={register}  toogle={toggle} inputRef={inputRef} selectRef={selectRef}  handleAddField={handleAddField} handleDeleteField={handleDeleteField}  formValues={formValues} toggle={toggle} setToggle={setToggle}  setFormValues={setFormValues} handleInputChange={handleInputChange} />,
+                5: <Summary  client={datas}   formValues={formValues}   />,
               }[step]
             }
             <div className="d-flex justify-content-around px-5 mt-5">
@@ -124,7 +161,12 @@ const handleChange = (name) => (e) => {
                 <button className="btn btn-primary" onClick={prevStep}>
                   Back
                 </button>
-              ) : null}
+               ) : null}
+               {!toggle  && step >= 1 && step <= 4? (
+                <button  className=  "btn btn-secondary" onClick={ addBtnClick }>
+                    Other Info
+                </button>
+                ) : null}
               <button  className= {step === 5 ? "btn btn-danger" : "btn btn-primary"} onClick={ nextStep }>
                 {step === 5 ? "Submit" : "Next"}
               </button>

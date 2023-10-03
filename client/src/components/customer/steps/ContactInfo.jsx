@@ -1,8 +1,9 @@
 import React, {useEffect} from "react";
 import {Form} from "react-bootstrap";
 import { COUNTRIES } from "../../../js/frontend/country/countries";
+import Input from "./Input";
 
-const ContactInfo = ({ handleChange, client }) => {
+const ContactInfo = ({ handleChange, client, formValues, toogle, inputRef, selectRef, handleAddField, handleDeleteField, handleInputChange }) => {
   let citiesSelect = document.getElementById('birth_city')
   let countriesSelect = document.getElementById('birth_country')
 
@@ -39,7 +40,7 @@ const ContactInfo = ({ handleChange, client }) => {
 }
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="d-flex flex-column align-items-center" >
       <h2>Date and place of birth, marital status</h2>
       <Form.Group className="w-100 m-2">
         <div className="row">
@@ -109,15 +110,7 @@ const ContactInfo = ({ handleChange, client }) => {
                 <option  value="2">Divorced</option>
             </Form.Control>
           </div>
-          <div className="col-4">
-              <Form.Control
-                placeholder="Spouse Name"
-                onChange= {handleChange("spouse_name")}
-                name="spouse_name"
-                className="mt-2"
-                value={client.spouse_name}
-              />
-          </div>
+        
           <div className="col-4">
                 <Form.Label htmlFor="children"  mt="5">Number of children</Form.Label>
             </div>
@@ -133,6 +126,40 @@ const ContactInfo = ({ handleChange, client }) => {
           </div>
         </div>
       </Form.Group>
+      {formValues && formValues.map((obj, index) => (
+          <Input
+            key={index}
+            objValue={obj}
+            onChange={handleInputChange}
+            index={index}
+            deleteField={handleDeleteField}
+          />
+        ))}
+        {
+          toogle && (
+          <Form.Group className="w-100 m-2">
+            <div className="row">
+              <div className="col-4">
+                <input type="text" placeholder="label" ref={inputRef} className="form-control " />
+              </div>
+              <div className="col-4">
+              <select ref={selectRef}  className="form-control ">
+              <option value="" disabled selected hidden>Choose the type</option>
+                <option value="text">Text</option>
+                <option value="number">Number</option>
+                <option value="email">Email</option>
+                <option value="password">Password</option>
+              </select>
+              </div>
+              <div className="col-4">
+              <button className="btn btn-secondary" onClick={handleAddField}>
+                Add
+              </button>
+              </div>
+            </div>
+          </Form.Group>
+          )
+        }
     </div>
   );
 };

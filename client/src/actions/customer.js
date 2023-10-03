@@ -41,6 +41,7 @@ export const createCustomer = (customer, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createCustomer(customer);
+    console.log(data)
     dispatch({ type: CREATE, payload: data });
     message.success('customer created')
     navigate(`/customers`);

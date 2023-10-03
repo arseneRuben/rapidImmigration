@@ -61,10 +61,10 @@ CREATE TABLE `customers` (
 -- Déchargement des données de la table `customers`
 --
 
-INSERT INTO `customers` (`id`,   `first_name`, `last_name`, `gender`, `passport_number`, `email`, `profile_image`, `phone_number`, `country`, `city`, `street`, `address`, `zip_code`, `birth_date`, `birth_place`, `birth_country`, `passport`, `resume`, `wes_report`, `marriage_certificate`, `birth_certificate`, `other_documents`, `marital_status`, `spouse_name`, `created_at`) VALUES
-(1, 'ARISTIDE ', 'MONO', '1', '435455555554', NULL, NULL, '+237894561454', 'Azerbaijan', 'Sulutapa', 'WEAR', '', '87653', '1983-09-06', 'TIBATI', 'Cameroon', 'TEST.PNG', '5445fb-f.pdf', NULL, '420-DS1-TT.pdf', 'rootkey.csv', '5445fb-f.pdf', 1, 'JEANNE D\'ARC', '2023-09-18 08:09:30'),
-(2, 'CLAUDIA', 'MEDIEMEN', '1', '98934593', NULL, NULL, '785225655', 'Brunei', 'Kuala Balai', '1750 Rue Crevier', '', 'H4L2X5R', '1988-10-10', 'HORISHA', 'Belarus', '420-DS1-TT.pdf', 'épervier1.png', NULL, 'CAIN23-1850578.pdf', '420-SRD-TT.pdf', '5445fb-f.pdf', 1, 'JEAN-MARIE', '2023-09-18 08:30:28'),
-(3, 'NINA FLORALY', 'BADJO', '1', '3443923', 'nina@gmail.com', 'zack.jpg', 'rio', 'Bahrain', 'Madinat `Isa', 'RIO', '', '434454', '1990-12-11', 'brasilia', 'Azerbaijan', 'Formulaire - Consentement à la divulgation de rens', 'TEST.PNG', 'IMM5754_1-SC6JIW1.pdf', 'LetterRecommendationArsene.docx', 'Memoire_5GI_Arsene.pdf', 'TEST2.PNG', 0, '', '2023-09-20 11:50:43');
+INSERT INTO `customers` (`id`,   `first_name`, `last_name`, `gender`, `passport_number`, `email`, `profile_image`, `phone_number`, `country`, `city`, `street`, `address`, `zip_code`, `birth_date`, `birth_place`, `birth_country`, `passport`, `resume`, `wes_report`, `marriage_certificate`, `birth_certificate`, `other_documents`, `marital_status`,  `created_at`) VALUES
+(1, 'ARISTIDE ', 'MONO', '1', '435455555554', NULL, NULL, '+237894561454', 'Azerbaijan', 'Sulutapa', 'WEAR', '', '87653', '1983-09-06', 'TIBATI', 'Cameroon', 'TEST.PNG', '5445fb-f.pdf', NULL, '420-DS1-TT.pdf', 'rootkey.csv', '5445fb-f.pdf', 1,  '2023-09-18 08:09:30'),
+(2, 'CLAUDIA', 'MEDIEMEN', '1', '98934593', NULL, NULL, '785225655', 'Brunei', 'Kuala Balai', '1750 Rue Crevier', '', 'H4L2X5R', '1988-10-10', 'HORISHA', 'Belarus', '420-DS1-TT.pdf', 'épervier1.png', NULL, 'CAIN23-1850578.pdf', '420-SRD-TT.pdf', '5445fb-f.pdf', 1,  '2023-09-18 08:30:28'),
+(3, 'NINA FLORALY', 'BADJO', '1', '3443923', 'nina@gmail.com', 'zack.jpg', 'rio', 'Bahrain', 'Madinat `Isa', 'RIO', '', '434454', '1990-12-11', 'brasilia', 'Azerbaijan', 'Formulaire - Consentement à la divulgation de rens', 'TEST.PNG', 'IMM5754_1-SC6JIW1.pdf', 'LetterRecommendationArsene.docx', 'Memoire_5GI_Arsene.pdf', 'TEST2.PNG', 0,  '2023-09-20 11:50:43');
 
 -- --------------------------------------------------------
 
@@ -106,6 +106,12 @@ ALTER TABLE `programs`
   ADD UNIQUE KEY `type` (`type`);
 COMMIT;
 
+INSERT INTO `programs` (`id`, `name`, `type`, `description`) VALUES
+(1, 'Permis de travail', 'WORK_PERMIT', 'Autorisation legale pour travailler au Canada'),
+(2, 'Permis detudes', 'STUDY_PERMIT', 'Autorisation legale pour etudier au Canada'),
+(3, 'Entree Express', 'EXPRESS_ENTRY', 'Residence permanente'),
+(4, 'VISA VISITEUR', 'VISITOR_PERMIT', 'pour visiter un proche vivant au Canada'),
+(5, 'Selection province', 'PROVINCIAL_NOMINEE', 'Etre designe par une province');
 
 
 --
@@ -117,6 +123,16 @@ INSERT INTO `users` (`id`, `last_name`, `first_name`, `email`, `password`, `prof
 (2, NULL, NULL, 'ruben@gmail.com', '$2b$10$0Bsy0JXgxlkzvoQ4zZEfxeFBjPQZ.ygynQOHlFimHI5gcTcM8r4Ti', NULL, NULL, NULL, NULL, 'consultant'),
 (3, NULL, NULL, 'aminebenhassine@gmail.com', '$2b$10$DEyeZ3xp2xGQ98OsNmu4leSkBDWPNMW.0jahEmoWpgV5mCcdLV0/G', NULL, NULL, NULL, NULL, 'client'),
 (4, 'OUABE', 'ALAIN', 'fopoar4@gmail.com', '$2b$10$118weumuFCC8AG4FSTDrKupAe19Zn//zCiB5PxxIkD7wLVtBr7de.', NULL, NULL, NULL, NULL, 'client');
+
+
+
+CREATE TABLE `others` (
+  `id` int(11)  AUTO_INCREMENT  PRIMARY KEY,
+  `customerId` int(11) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
+  `label` varchar(100) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Index pour les tables déchargées
@@ -163,5 +179,7 @@ ALTER TABLE `users`
 ALTER TABLE `folders`
   ADD CONSTRAINT `fk_folders_consultant` FOREIGN KEY (`consultantId`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `fk_folders_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `fk_folders_program` FOREIGN KEY (`programId`) REFERENCES `programs` (`id`)
+  ADD CONSTRAINT `fk_folders_program` FOREIGN KEY (`programId`) REFERENCES `programs` (`id`);
 
+ALTER TABLE `others`
+  ADD CONSTRAINT `fk_others_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`id`);

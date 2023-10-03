@@ -27,7 +27,7 @@ const Login = () => {
            navigate('/')
         }
         else{
-           navigate('/profile')
+           navigate('/folders')
         }
       }else {
         message.error(res.data.message)

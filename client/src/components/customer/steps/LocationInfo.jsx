@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
 import { Form } from "react-bootstrap";
 import { COUNTRIES } from "../../../js/frontend/country/countries";
+import Input from "./Input";
 
-const LocationInfo = ({ handleChange, client }) => {
+
+const LocationInfo = ({ handleChange, client , formValues, toogle, inputRef, selectRef, handleAddField, handleDeleteField, handleInputChange}) => {
   let citiesSelect = document.getElementById('city')
   
   let countriesSelect = document.getElementById('country')
@@ -40,7 +42,7 @@ const LocationInfo = ({ handleChange, client }) => {
 }
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="d-flex flex-column align-items-center" id="location-info">
       <h2>Location Info</h2>
       <Form.Group className="w-100 m-3">
       <div className="row">
@@ -91,6 +93,40 @@ const LocationInfo = ({ handleChange, client }) => {
         </div>
       </div>
       </Form.Group>
+      {formValues && formValues.map((obj, index) => (
+          <Input
+            key={index}
+            objValue={obj}
+            onChange={handleInputChange}
+            index={index}
+            deleteField={handleDeleteField}
+          />
+        ))}
+        {
+          toogle && (
+          <Form.Group className="w-100 m-2">
+            <div className="row">
+              <div className="col-4">
+                <input type="text" placeholder="label" ref={inputRef} className="form-control " />
+              </div>
+              <div className="col-4">
+              <select ref={selectRef}  className="form-control ">
+              <option value="" disabled selected hidden>Choose the type</option>
+                <option value="text">Text</option>
+                <option value="number">Number</option>
+                <option value="email">Email</option>
+                <option value="password">Password</option>
+              </select>
+              </div>
+              <div className="col-4">
+              <button className="btn btn-secondary" onClick={handleAddField}>
+                Add
+              </button>
+              </div>
+            </div>
+          </Form.Group>
+          )
+        }
 
     </div>
   );
