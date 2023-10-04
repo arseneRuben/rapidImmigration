@@ -122,7 +122,7 @@ const NewCustomer = () => {
       datas["birth_certificate"]= data.birth_certificate[0].name;
     }
     formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
-
+    console.log(formData);
     handleSave(event) 
 
     const res = await fetch("http://localhost:8080/upload-file", {

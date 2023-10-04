@@ -46,6 +46,7 @@ app.use(morgan('dev'))
 // routes
 // ROUTES
 app.post("/upload-file", async (req, res) => {
+    
     try {
         
         if (!req.files) {
@@ -55,7 +56,10 @@ app.post("/upload-file", async (req, res) => {
             });
         } else {
             let file ;
-            if(req.body.hasOwnProperty('full_name')){
+          
+           
+             if(req.body['full_name']!== undefined){
+                console.log("req.files");
                 Object.keys(req.files).forEach(function(key) {
                     file = req.files[key];
                     if(key === "profile_image"){
@@ -66,19 +70,14 @@ app.post("/upload-file", async (req, res) => {
                     }
                 }); 
             } else {
+               
                 Object.keys(req.files).forEach(function(key) {
                                     file = req.files[key];
                                     file.mv(`./uploads/profiles/` + file.name);
-                                });
-                     }
+                                }); 
+                     } 
                   
-        
-
-                        
-            
-            
-
-            res.send({
+           res.send({
                 status: "success",
                 message: "File is uploaded",
                 data: {
@@ -86,8 +85,8 @@ app.post("/upload-file", async (req, res) => {
                     mimetype: file.mimetype,
                     size: file.size,
                 },
-            });
-        }
+            }); 
+        } 
     } catch (err) {
         res.status(500).send(err);
     }
