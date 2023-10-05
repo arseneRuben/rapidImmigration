@@ -22,7 +22,7 @@ export const getFolders = async (req, res) => {
     const offset = (page - 1) * LIMIT; // get the starting index of every page
     try {
         connect()
-        let request = `SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id ORDER BY folders.id DESC LIMIT ? OFFSET ?`
+        let request = `SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id INNER JOIN others ON folders.customerId = customers.id  ORDER BY folders.id DESC LIMIT ? OFFSET ?`
         if(filter) {
              request =`SELECT * FROM folders INNER JOIN programs ON folders.programId = programs.id INNER JOIN customers ON folders.customerId = customers.id WHERE customers.first_name LIKE '%${filter}%' OR  customers.last_name LIKE '%${filter}%' ORDER BY folders.id DESC LIMIT ? OFFSET ?`
         }
@@ -34,6 +34,7 @@ export const getFolders = async (req, res) => {
         }   
         query(request, [LIMIT, offset],
         (resp) => {
+            
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
         })

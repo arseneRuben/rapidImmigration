@@ -20,24 +20,103 @@ const FileReport = ({client}) => {
   return (
     <div className=" w-100">
         <h4 className="card-title">Documents</h4>
-    <div className="">
-        
-        <div className="d-flex flex-column justify-content-start w-100">
-            <div>Passport :    <button value={client.passport} onClick={onButtonClick}>
-            {client.passport}</button></div>
-            <div>Birth certificate :    <button value={client.birth_certificate} onClick={onButtonClick}>
-            {client.birth_certificate}</button></div>
-            <div>Resume :    <button value={client.resume} onClick={onButtonClick}>
-            {client.resume}</button></div>
-            <div>WES Report :    <button value={client.wes_report} onClick={onButtonClick}>
-            {client.wes_report}</button></div>
-            <div>Marriage certificate :    <button value={client.marriage_certificate} onClick={onButtonClick}>
-            {client.marriage_certificate}</button></div>
-            <div>Others:    <button value={client.other_documents} onClick={onButtonClick}>
-            {client.other_documents}</button></div>
-            <div>Photo :    <button value={client.profile_image} onClick={onButtonClick}>
-            {client.profile_image}</button></div>
-        </div>
+    <div className="card text-white bg-secondary m-2 p-2 text-center">
+    <div class=" d-flex justify-content-center">
+
+		<ul class="list-group mt-5 text-white">
+		  <li class="list-group-item d-flex justify-content-between align-content-center">
+		  	<div class="d-flex flex-row">
+		  		<img src="https://img.icons8.com/color/100/000000/file.png" width="50" />
+		  		<div class="ml-2">
+		  			<h6 class="mb-0">Passport</h6>
+		  			<div class="about">
+                      <button value={client.passport} onClick={onButtonClick}>
+                        {client.passport}</button>
+		  			</div>
+		  		</div>
+		  	</div>
+		  </li>
+		  <li class="list-group-item d-flex justify-content-between align-content-center">
+		  	<div class="d-flex flex-row">
+		  		<img src="https://img.icons8.com/color/100/000000/file.png" width="50" />
+		  		<div class="ml-2">
+		  			<h6 class="mb-0">Birth certificate </h6>
+		  			<div class="about">
+                      <button value={client.birth_certificate} onClick={onButtonClick}>
+                         {client.birth_certificate}</button>
+		  			</div>
+		  		</div>
+		  	</div>
+		  </li>
+		  
+		  <li class="list-group-item d-flex justify-content-between align-content-center">
+		  	<div class="d-flex flex-row">
+		  		<img src="https://img.icons8.com/color/100/000000/file.png" width="50" />
+		  		<div class="ml-2">
+		  			<h6 class="mb-0">Resume</h6>
+		  			<div class="about">
+                      <button value={client.resume} onClick={onButtonClick}>
+                     {client.resume}</button>
+		  			</div>
+		  		</div>
+		  	</div>
+		  
+
+		  </li>
+
+		  <li class="list-group-item d-flex justify-content-between align-content-center">
+
+		  	<div class="d-flex flex-row">
+		  		<img src="https://img.icons8.com/color/100/000000/file.png" width="50" />
+		  		<div class="ml-2">
+		  			<h6 class="mb-0">WES Report</h6>
+		  			<div class="about">
+                      <button value={client.wes_report} onClick={onButtonClick}>
+            {client.wes_report}</button>
+		  			</div>
+		  		</div>
+		  	</div>
+		  
+
+		  </li>
+
+          <li class="list-group-item d-flex justify-content-between align-content-center">
+		  	<div class="d-flex flex-row">
+		  		<img src="https://img.icons8.com/color/100/000000/file.png" width="50" />
+		  		<div class="ml-2">
+		  			<h6 class="mb-0">Marriage certificate </h6>
+		  			<div class="about">
+                      <button value={client.marriage_certificate} onClick={onButtonClick}>
+            {client.marriage_certificate}</button>
+		  			</div>
+		  		</div>
+		  	</div>
+		  
+
+		  </li>
+
+		  <li class="list-group-item d-flex justify-content-between align-content-center">
+
+		  	<div class="d-flex flex-row">
+		  		<img src="https://img.icons8.com/color/100/000000/file.png" width="50" />
+		  		<div class="ml-2">
+		  			<h6 class="mb-0">Photo</h6>
+		  			<div class="about">
+                      <button value={client.profile_image} onClick={onButtonClick}>
+            {client.profile_image}</button>
+		  			</div>
+		  		</div>
+		  	</div>
+		  
+
+		  </li>
+
+
+		  
+		  
+		</ul>
+		
+    </div>
         
     </div>
 </div>

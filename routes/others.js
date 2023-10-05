@@ -1,8 +1,10 @@
+import { insertOthers,getOthersByCustomer,  getOthers } from '../dao/sql/others.js'
 import express from 'express'
-import { insertOthers  } from '../dao/sql/others.js'
 const router = express.Router()
 /* READ */
-//router.get('/', getOthers)
+
+router.get('/customer/:id', getOthersByCustomer)
+
 /* CREATE */
 router.post('/', insertOthers)
 

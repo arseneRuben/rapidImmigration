@@ -25,3 +25,35 @@ export const insertOthers = async (req, res) => {
     }
    
 }
+
+//Get orther by customerId
+export const getOthersByCustomer = async (req, res) => {
+
+    try {
+        connect()
+        const customerId = req.params.id
+        query('SELECT * FROM others WHERE customerId =?', [customerId], (resp) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))
+        })
+    }
+    catch (error) {
+            res.status(404).json({ message: error.message })
+    }
+}
+
+//Get all orthers
+export const getOthers = async (req, res) => {
+    try {
+        connect()
+        query('SELECT * FROM others', (error, result) => {
+            if (error) {
+                throw error
+            }
+            res.status(HTTP_OK).json({ data: result })
+        })
+    }
+    catch (error) {
+            res.status(404).json({ message: error.message })
+    }
+}

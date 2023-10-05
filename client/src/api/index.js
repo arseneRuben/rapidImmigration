@@ -43,6 +43,8 @@ export const deleteFolder = (id) => API.delete(`/folders/${id}`);
 
 
 export const insertOthers = (newOther) => API.post('/others', newOther);
+export const fetchOthersByCustomer = (customerId) => API.get(`/others/customer/customerId=${customerId}`);
+
 
 
 

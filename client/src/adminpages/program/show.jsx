@@ -3,6 +3,7 @@ import PageWrapper from '../../components/pageWrapper'
 import { useParams} from 'react-router-dom';
 import {  useSelector} from 'react-redux';
 import SpinnerCustom from '../../redux/SpinnerCustom';
+import ProgramReport from '../../components/customer/reports/ProgramReport';
 
 var path = require('path');
 
@@ -15,16 +16,7 @@ return (
 <PageWrapper>
 {isLoading ? <SpinnerCustom/> :
   <div className="d-flex flex-column align-items-center">
-      <div className="card text-white bg-secondary my-5 py-4 text-center">
-
-       <div className="card-head h3">{program.name}</div>
-        <div class="card-body">
-          
-          <p class="card-text">{program.description}</p>
-          <p class="card-text">{program.type}</p>
-        </div>
-      
-      </div>
+     <ProgramReport program={program}/>
   </div>
 }
 </PageWrapper>

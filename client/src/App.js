@@ -23,6 +23,7 @@ import Folder from './adminpages/folder';
 import NewFolder from './adminpages/folder/new';
 import Services from './frontpages/home/service';
 import Contact from './frontpages/home/contact';
+import ShowFolder from './adminpages/folder/show';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -133,6 +134,12 @@ function App() {
          <Route path="/folder/new" element={ 
           <ProtectedRoute>
            <NewFolder/>
+          </ProtectedRoute>
+
+        }/>
+        <Route path="/folder/:id/show" element={ 
+          <ProtectedRoute>
+              <ShowFolder/>
           </ProtectedRoute>
 
         }/>

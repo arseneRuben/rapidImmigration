@@ -13,14 +13,12 @@ const IdentityReport = ({client}) => {
         }
     }
   return (
-            <div className=" h-100">
-                              <div className="">
-                                  <h4 className="card-title">Identite</h4>
+                           <div className="card text-white bg-secondary m-2 p-2 text-center">
+                                  <h4 className="card-title card-head">Identite</h4>
                                   <p className="card-text">{client.first_name}  {client.last_name}</p>
                                   <p className="card-text">Ne le   {client.birth_date} a {client.birth_country}-{client.birth_city}-{client.birth_place}</p>
                                   <p className="card-text">Sexe  {gender(client.gender)} </p>
                               </div>
-            </div>
   )
 }
 
