@@ -10,6 +10,7 @@ import FilesInfo from '../../components/customer/steps/FilesInfo';
 import Summary from "../../components/customer/steps/Summary";
 import PageWrapper from "../../components/pageWrapper";
 import { createCustomer } from "../../actions/customer";
+var path = require('path');
 
 const NewCustomer = () => {
   const { register, handleSubmit } = useForm();
@@ -121,8 +122,9 @@ const NewCustomer = () => {
       formData.append("birth_certificate", data.birth_certificate[0]);
       datas["birth_certificate"]= data.birth_certificate[0].name;
     }
-    formData.append("full_name" , `${datas.first_name} ${datas.last_name}`)
-    console.log(formData);
+    const first_name = datas.first_name.replace(' ', '_')
+    const last_name = datas.last_name.replace(' ',  '_')
+    formData.append("full_name" , `${first_name}_${last_name}`)
     handleSave(event) 
 
     const res = await fetch("http://localhost:8080/upload-file", {

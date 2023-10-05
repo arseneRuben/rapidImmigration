@@ -1,21 +1,13 @@
 import React from 'react'
+import FileDownloadButton from '../../FileDownloadButton';
+var path = require('path');
 
 const FileReport = ({client}) => {
-    const onButtonClick = (event) => {
-        // using Java Script method to get PDF file
-        const fileName=`../../../../uploads/${client.first_name} ${client.last_name}/${event.target.value}`;
-        fetch(fileName).then(response => {
-            response.blob().then(blob => {
-                // Creating new object of PDF file
-                const fileURL = window.URL.createObjectURL(blob);
-                // Setting various property values
-                let alink = document.createElement('a');
-                alink.href =  fileURL;
-                alink.download = fileName;
-                alink.click();
-            })
-        }) 
-    }
+
+	const first_name = client.first_name.replace(' ', '_')
+    const last_name = client.last_name.replace(' ',  '_')
+	const fileUrl = `http://localhost:8080${path.sep}${first_name}_${last_name}/`
+
 
   return (
     <div className=" w-100">
@@ -30,8 +22,8 @@ const FileReport = ({client}) => {
 		  		<div class="ml-2">
 		  			<h6 class="mb-0">Passport</h6>
 		  			<div class="about">
-                      <button value={client.passport} onClick={onButtonClick}>
-                        {client.passport}</button>
+                     
+					  <FileDownloadButton fileName={client.passport} fileUrl={fileUrl} />
 		  			</div>
 		  		</div>
 		  	</div>
@@ -42,8 +34,9 @@ const FileReport = ({client}) => {
 		  		<div class="ml-2">
 		  			<h6 class="mb-0">Birth certificate </h6>
 		  			<div class="about">
-                      <button value={client.birth_certificate} onClick={onButtonClick}>
-                         {client.birth_certificate}</button>
+                      
+						 <FileDownloadButton fileName={client.birth_certificate} fileUrl={fileUrl} />
+
 		  			</div>
 		  		</div>
 		  	</div>
@@ -55,8 +48,9 @@ const FileReport = ({client}) => {
 		  		<div class="ml-2">
 		  			<h6 class="mb-0">Resume</h6>
 		  			<div class="about">
-                      <button value={client.resume} onClick={onButtonClick}>
-                     {client.resume}</button>
+                     
+						 <FileDownloadButton fileName={client.resume} fileUrl={fileUrl} />
+
 		  			</div>
 		  		</div>
 		  	</div>
@@ -71,8 +65,9 @@ const FileReport = ({client}) => {
 		  		<div class="ml-2">
 		  			<h6 class="mb-0">WES Report</h6>
 		  			<div class="about">
-                      <button value={client.wes_report} onClick={onButtonClick}>
-            {client.wes_report}</button>
+	
+						<FileDownloadButton fileName={client.wes_report} fileUrl={fileUrl} />
+
 		  			</div>
 		  		</div>
 		  	</div>
@@ -86,8 +81,9 @@ const FileReport = ({client}) => {
 		  		<div class="ml-2">
 		  			<h6 class="mb-0">Marriage certificate </h6>
 		  			<div class="about">
-                      <button value={client.marriage_certificate} onClick={onButtonClick}>
-            {client.marriage_certificate}</button>
+                    
+						<FileDownloadButton fileName={client.marriage_certificate} fileUrl={fileUrl} />
+
 		  			</div>
 		  		</div>
 		  	</div>
@@ -102,8 +98,9 @@ const FileReport = ({client}) => {
 		  		<div class="ml-2">
 		  			<h6 class="mb-0">Photo</h6>
 		  			<div class="about">
-                      <button value={client.profile_image} onClick={onButtonClick}>
-            {client.profile_image}</button>
+                      
+						<FileDownloadButton fileName={client.profile_image} fileUrl={fileUrl} />
+
 		  			</div>
 		  		</div>
 		  	</div>
