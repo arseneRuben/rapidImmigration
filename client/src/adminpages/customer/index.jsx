@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PageWrapper from '../../components/pageWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { useSelector,useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { deleteCustomer } from '../../api';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { deleteCustomer, deleteOthersByCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import SpinnerCustom from '../../redux/SpinnerCustom';
+import { deleteFoldersByCustomer } from '../../actions/folder';
 
 const ClientList =  () => {
     const {isLoading, customers} = useSelector((state)=> state.customers)
@@ -14,7 +15,8 @@ const ClientList =  () => {
 
     function deleteCLient(id){
         dispatch(showLoading())
-        deleteCustomer(id)
+        deleteFoldersByCustomer(id)
+        deleteOthersByCustomer(id)
         window.location.reload(false);
         dispatch(hideLoading())
     }
@@ -51,7 +53,7 @@ const ClientList =  () => {
 
                                                             <td>{customer.passport_number }</td>
                                                             <td className="center">{customer.birth_date }</td>
-                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/customer/${customer.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/customer/${customer.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button className="btn btn-danger"> <FontAwesomeIcon  onClick={()=>deleteCLient(customer.id)} icon={faTrash} /></button></td>
+                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/customer/${customer.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/customer/${customer.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button  onClick={()=>deleteCLient(customer.id)} className="btn btn-danger"> <FontAwesomeIcon  icon={faTrash} /></button></td>
                                                         </tr>
                                                     ))
                                                     }

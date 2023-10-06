@@ -122,8 +122,8 @@ const NewCustomer = () => {
       formData.append("birth_certificate", data.birth_certificate[0]);
       datas["birth_certificate"]= data.birth_certificate[0].name;
     }
-    const first_name = datas.first_name.replace(' ', '_')
-    const last_name = datas.last_name.replace(' ',  '_')
+    const first_name = datas.first_name.replace(/[^a-zA-Z0-9 ]/g, '').replace(' ', '_')
+    const last_name = datas.last_name.replace(/[^a-zA-Z0-9 ]/g, '').replace(' ',  '_')
     formData.append("full_name" , `${first_name}_${last_name}`)
     handleSave(event) 
 

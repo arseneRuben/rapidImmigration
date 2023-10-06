@@ -150,3 +150,22 @@ export const getFolderByFolderNumber = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
+
+//delete folders by customer
+export const deleteFoldersByCustomer = async (req, res) => {
+    try {
+        connect()
+        query('DELETE FROM folders WHERE customerId=?', [req.params.customerId], (result) => {
+            if(result.affectedRows == 0) {
+                return res.status(404).json({
+                    message: 'Folder not found'
+                })
+            }
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify({ message: 'Folder deleted', success: true }, null, 4))
+        })
+        disconnect()
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}

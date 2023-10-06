@@ -92,7 +92,6 @@ export const deleteCustomer = async (req, res) => {
         query('DELETE  FROM customers WHERE id=?', [req.params.id], (result) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify({ message: 'Customer deleted', success: true }, null, 4))
-            disconnect()
         })
     } catch (error) {
         res.status(404).json({ message: error.message })
@@ -104,7 +103,6 @@ export const deleteCustomerByConsultant = async (req, res) => {
         connect()
         query('DELETE  FROM customers WHERE consultant_id=$1', [req.params.consultant_id], (result) => {
             req.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-            disconnect()
         })
     } catch (error) {
         res.status(404).json({ message: error.message })

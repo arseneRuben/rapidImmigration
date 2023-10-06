@@ -2,7 +2,7 @@ import { connect, query, disconnect, lastId } from '../connectors/daoMySql.js'
 import { CONTENT_TYPE_JSON, HTTP_OK } from './util.js'
 
 
-//Register an user
+//Register others
 export const insertOthers = async (req, res) => {
     try {
         connect()
@@ -26,7 +26,7 @@ export const insertOthers = async (req, res) => {
    
 }
 
-//Get orther by customerId
+//Get other by customerId
 export const getOthersByCustomer = async (req, res) => {
 
     try {
@@ -42,7 +42,7 @@ export const getOthersByCustomer = async (req, res) => {
     }
 }
 
-//Get all orthers
+//Get all others
 export const getOthers = async (req, res) => {
     try {
         connect()
@@ -55,5 +55,49 @@ export const getOthers = async (req, res) => {
     }
     catch (error) {
             res.status(404).json({ message: error.message })
+    }
+}
+
+//Update other
+export const updateOthers = async (req, res) => {
+    try {
+        connect()
+        const customerId = req.params.id
+        req.body.forEach((item) => {
+            console.log(item)
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+
+}
+
+//Delete other by customer
+export const deleteOthersByCustomer = async (req, res) => {
+    try {
+        connect()
+        const customerId = req.params.id
+        query('DELETE FROM others WHERE customerId =?', [customerId], (result) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify({ message: 'Others deleted', success: true }, null, 4))
+            disconnect()
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+//Delete other
+export const deleteOther = async (req, res) => {
+    try {
+        connect()
+        const otherId = req.params.id
+        query('DELETE FROM others WHERE id =?', [otherId], (result) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify({ message: 'Other deleted', success: true }, null, 4))
+            disconnect()
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
     }
 }

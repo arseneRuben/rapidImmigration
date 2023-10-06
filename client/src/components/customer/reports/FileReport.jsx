@@ -4,8 +4,8 @@ var path = require('path');
 
 const FileReport = ({client}) => {
 
-	const first_name = client.first_name.replace(' ', '_')
-    const last_name = client.last_name.replace(' ',  '_')
+	const first_name = client.first_name.replace(/[^a-zA-Z0-9 ]/g, '').replace(' ', '_')
+    const last_name = client.last_name.replace(/[^a-zA-Z0-9 ]/g, '').replace(' ',  '_')
 	const fileUrl = `http://localhost:8080${path.sep}${first_name}_${last_name}/`
 
 

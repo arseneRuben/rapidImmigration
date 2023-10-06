@@ -135,13 +135,11 @@ function App() {
           <ProtectedRoute>
            <NewFolder/>
           </ProtectedRoute>
-
         }/>
         <Route path="/folder/:id/show" element={ 
           <ProtectedRoute>
               <ShowFolder/>
           </ProtectedRoute>
-
         }/>
       
       </Routes>

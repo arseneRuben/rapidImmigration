@@ -42,7 +42,8 @@ export const createCustomer = (customer,formValues, navigate) => async (dispatch
     dispatch({ type: START_LOADING });
     const { data } = await api.createCustomer(customer);
     const {values} = await api.insertOthers(formValues);
-    dispatch({ type: CREATE, payload: data });
+    dispatch({ type: CREATE, payload: data })
+    dispatch({ type: END_LOADING });
     message.success('customer created')
     navigate(`/customers`);
   } catch (error) {
@@ -50,11 +51,14 @@ export const createCustomer = (customer,formValues, navigate) => async (dispatch
   }
 };
 
-export const updateCustomer = (id, costomer) => async (dispatch) => {
+export const updateCustomer = (id,formValues, costomer) => async (dispatch) => {
   try {
+    dispatch({ type: START_LOADING });
     const { data } = await api.updateCustomer(id, costomer);
+    const {values} = await api.updateOthers(formValues);
     message.success('costomer updated')
     dispatch({ type: UPDATE, payload: data });
+    dispatch({ type: END_LOADING });
   } catch (error) {
     message.error(error.message)
   }

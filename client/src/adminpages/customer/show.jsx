@@ -1,13 +1,17 @@
 import React , {useState, useEffect} from 'react';
 import PageWrapper from '../../components/pageWrapper'
-import { useParams} from 'react-router-dom';
-import { useSelector} from 'react-redux';
+import { NavLink, useNavigate, useParams} from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
 import IdentityReport from '../../components/customer/reports/IdentityReport';
 import ContactReport from '../../components/customer/reports/ContactReport';
 import FileReport from '../../components/customer/reports/FileReport';
 import MaritalReport from '../../components/customer/reports/MaritalReport';
 import axios from "axios";
 import OtherReport from '../../components/customer/reports/OtherReport';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { deleteCustomer, deleteOthersByCustomer } from '../../api';
+import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 
 
 
@@ -16,6 +20,8 @@ const CustomerShow = () =>  {
   const {isLoading, customers} = useSelector((state)=> state.customers)
   const [others, setOthers] = useState([])
   const client = customers.find((client) => client.id === parseInt(id))
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
       axios
@@ -25,7 +31,14 @@ const CustomerShow = () =>  {
         .then((res) => setOthers(res.data))
         .catch((error) => console.log(error));
   }, []);
- 
+  
+  function deleteCLient(id){
+    dispatch(showLoading())
+    deleteOthersByCustomer(id)
+    deleteCustomer(id)
+    navigate('/customers')
+    dispatch(hideLoading())
+}
 
 return (
 <PageWrapper>
@@ -50,15 +63,31 @@ return (
                             <MaritalReport client={client}/>
                 </div>
             </div>
-            <div className=" row ">
+             <div className=" row ">
                 <div className="col-md-6 mb-5">
                   <OtherReport others={others}/>
                 </div>
 
             </div>
-
+           
+ 
 
          </div>
+         <div class="card-footer d-flex justify-content-evenly"> 
+           <NavLink to={`/customer/${id}/edit`} className="navbar-brand p-0">
+              <button class="btn btn-warning btn-sm float-left"> 
+                 <FontAwesomeIcon icon={faEdit} />
+              </button> 
+            </NavLink>
+                
+              
+                
+              <button class="btn btn-danger btn-sm float-right"
+                   onClick={()=>deleteCLient(id)}
+                     > 
+                   <FontAwesomeIcon icon={faTrash} /> 
+              </button> 
+          </div>
       </div>
   </div>
 </PageWrapper>

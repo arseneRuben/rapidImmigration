@@ -40,9 +40,15 @@ export const fetchFoldersByCustomer = (customerId) => API.get(`/folders/customer
 export const createFolder = (newFolder) => API.post('/folders', newFolder);
 export const updateFolder = (updatedFolder) => API.patch(`/folders/${updatedFolder.id}`, updatedFolder);
 export const deleteFolder = (id) => API.delete(`/folders/${id}`);
+export const deleteFoldersByCustomer = (customerId) => API.delete(`/folders/customer/${customerId}`);
+
 
 
 export const insertOthers = (newOther) => API.post('/others', newOther);
+export const updateOthers = (updatedOther) => API.patch(`/others/${updatedOther.id}`, updatedOther);
+export const deleteOthers = (id) => API.delete(`/others/${id}`);
+export const deleteOthersByCustomer = (customerId) => API.delete(`/others/customer/${customerId}`);
+
 export const fetchOthersByCustomer = (customerId) => API.get(`/others/customer/customerId=${customerId}`);
 
 

@@ -89,5 +89,19 @@ export const deleteFolder = (id, navigate) => async (dispatch) => {
 }
 }
 
+// delete folders by customer
+export const deleteFoldersByCustomer = (id, navigate) => async (dispatch) => {
+    try {
+        dispatch({ type: START_LOADING });
+        await api.deleteFoldersByCustomer(id);
+        console.log("GO1")
+
+        dispatch({ type: DELETE_FOLDER, payload: id });
+        message.success('Folder deleted successfully');
+    } catch (error) {
+        message.error(error.message);
+    }
+}
+
 
 

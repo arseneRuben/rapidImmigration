@@ -1,6 +1,6 @@
 
 
-import { createFolder, getFolders, updateFolder, deleteFolder } from '../dao/sql/folders.js'
+import { createFolder, getFolders, updateFolder, deleteFolder, deleteFoldersByCustomer } from '../dao/sql/folders.js'
 import express from 'express'
 const router = express.Router()
 
@@ -16,5 +16,8 @@ router.post('/', createFolder)
 router.patch('/:id', updateFolder)
 /* DELETE */
 router.delete('/:id', deleteFolder)
+router.delete('customer/:customerId', deleteFoldersByCustomer)
+
+
 
 export default router
