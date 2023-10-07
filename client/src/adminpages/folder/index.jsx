@@ -44,7 +44,7 @@ const Folder =  () => {
 
     function deleteFold(id){
         dispatch(showLoading())
-        deleteFolder(id)
+        dispatch(deleteFolder(id))
         window.location.reload(false);
         dispatch(hideLoading())
     }

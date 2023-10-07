@@ -1,4 +1,4 @@
-import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_CUSTOMER, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, FETCH_BY_CONSULTANT, FETCH_BY_CLIENT, FETCH_ALL_CUSTOMER } from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_CUSTOMER, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, FETCH_BY_CONSULTANT, FETCH_BY_CLIENT, FETCH_ALL_CUSTOMER } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 import {  message } from 'antd'
 
@@ -70,7 +70,10 @@ export const updateCustomer = (id,formValues, costomer) => async (dispatch) => {
 
 export const deleteCustomer = (id) => async (dispatch) => {
   try {
-    await await api.deleteCustomer(id);
+    await api.deleteOthersByCustomer(id)
+    await api.deleteFoldersByCustomer(id)
+    await api.deleteCustomer(id);
+
     dispatch({ type: DELETE, payload: id });
     message.success('costomer deleted')
   } catch (error) {

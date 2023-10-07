@@ -4,22 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { useSelector,useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { deleteCustomer, deleteOthersByCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import SpinnerCustom from '../../redux/SpinnerCustom';
-import { deleteFoldersByCustomer } from '../../actions/folder';
+import { deleteCustomer } from '../../actions/customer';
 
 const ClientList =  () => {
     const {isLoading, customers} = useSelector((state)=> state.customers)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    function deleteCLient(id){
-        dispatch(showLoading())
-        deleteFoldersByCustomer(id)
-        deleteOthersByCustomer(id)
-        window.location.reload(false);
-        dispatch(hideLoading())
-    }
+    
+  function deleteCLient(id){
+    dispatch(showLoading())
+    dispatch(deleteCustomer(id))
+    navigate(`/customers`);
+    window.location.reload(false);
+    dispatch(hideLoading())
+}
 
   
         

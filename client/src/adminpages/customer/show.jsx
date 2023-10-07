@@ -10,8 +10,8 @@ import axios from "axios";
 import OtherReport from '../../components/customer/reports/OtherReport';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { deleteCustomer, deleteOthersByCustomer } from '../../api';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
+import { deleteCustomer } from '../../actions/customer';
 
 
 
@@ -34,9 +34,9 @@ const CustomerShow = () =>  {
   
   function deleteCLient(id){
     dispatch(showLoading())
-    deleteOthersByCustomer(id)
-    deleteCustomer(id)
-    navigate('/customers')
+    dispatch(deleteCustomer(id))
+    navigate(`/customers`);
+    window.location.reload(false);
     dispatch(hideLoading())
 }
 

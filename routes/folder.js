@@ -16,7 +16,7 @@ router.post('/', createFolder)
 router.patch('/:id', updateFolder)
 /* DELETE */
 router.delete('/:id', deleteFolder)
-router.delete('customer/:customerId', deleteFoldersByCustomer)
+router.delete('/customer/:customerId', deleteFoldersByCustomer)
 
 
 
