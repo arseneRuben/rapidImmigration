@@ -31,7 +31,7 @@ const Services = () => {
 
         <div className="container-fluid pt-6 px-5">
             <div className="text-center mx-auto mb-5" >
-                <h1 className="display-5 mb-0">Quel services offrons-nous?</h1>
+                <h1 className="display-5 mb-0">Quels services offrons-nous?</h1>
                 <hr className="w-25 mx-auto bg-primary"/>
             </div>
 
