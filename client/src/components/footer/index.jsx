@@ -37,9 +37,9 @@ const Footer = () => {
             </div>
             <div className="">
                 <h3 className="text-white mb-4">Get In Touch</h3>
-                <p className="mb-2"><i className="bi bi-geo-alt text-danger me-2"></i>123 Street, New York, USA</p>
-                <p className="mb-2"><i className="bi bi-envelope-open text-danger me-2"></i>info@example.com</p>
-                <p className="mb-0"><i className="bi bi-telephone text-danger me-2"></i>+012 345 67890</p>
+                <p className="mb-2"><i className="bi bi-geo-alt text-danger me-2"></i>1750 Rue Crevier, Montreal, QC</p>
+                <p className="mb-2"><i className="bi bi-envelope-open text-danger me-2"></i>polyinformatique7@gmail.com</p>
+                <p className="mb-0"><i className="bi bi-telephone text-danger me-2"></i>+1 4506267192</p>
             </div>
             <div className="">
                 <h3 className="text-white mb-4">Follow Us</h3>
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
     </div>
     <div className="container-fluid bg-dark text-secondary text-center border-top py-4 px-5" >
-        <p className="m-0">&copy; <a className="text-secondary border-bottom" href="https://www.linkedin.com/in/ars%C3%A8ne-fokam-poka-045467a0/">Arsene Fokam Pola </a>. All Rights Reserved. Designed by <a className="text-secondary border-bottom" href="https://htmlcodex.com">RUSWEL CONSULTING INFORMATION PROCESSING</a></p>
+        <p className="m-0">&copy; <a className="text-secondary border-bottom" href="https://www.linkedin.com/in/ars%C3%A8ne-fokam-poka-045467a0/">Arsene Fokam Poka </a>. All Rights Reserved. Designed by <a className="text-secondary border-bottom" href="https://htmlcodex.com">RUSWEL CONSULTING INFORMATION PROCESSING</a></p>
     </div>
    </>
   )

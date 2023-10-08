@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { deleteFolder } from '../../actions/folder';
 
-var path = require('path');
 const ShowFolder = () => {
     const { id } = useParams();
     const {isLoading, folders} = useSelector((state)=> state.folders)

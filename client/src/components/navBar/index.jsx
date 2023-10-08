@@ -36,9 +36,7 @@ const NavBar = () => {
                         <NavLink to="/signin" className={`dropdown-item ${location.pathname==="/signin" && ' bg-danger'}`}>Sign In</NavLink>
                     </div>
                 </div>
-                <NavLink to="/contact" className={`nav-item nav-link ${location.pathname==="/contact" && 'active'}`}>
-                    Contact
-                </NavLink>
+             
             </div>
         </div>
     </nav>

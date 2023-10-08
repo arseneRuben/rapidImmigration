@@ -55,10 +55,9 @@ const ContactPage = () => {
                       </form>
                   </div>
                   <div className="col-lg-6">
-                      <div className="position-relative h-100">
-                      <iframe className="position-relative w-100 h-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.2795894057476!2d-73.59052407447864!3d45.584923975376746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91eeda21f5953%3A0x448dfe33ee8f3088!2sSaint-L%C3%A9onard%2C%20QC%20H1P%201W9!5e0!3m2!1sfr!2sca!4v1694375325265!5m2!1sfr!2sca"  allowFullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"  frameborder="0" tabIndex="0"></iframe>
-                          
-                      </div>
+                    <div className="position-relative h-100">
+                      <iframe className="position-relative w-100 h-100"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.5977666701856!2d-73.69803257448271!3d45.51817517983683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc918739449ce79%3A0x7e5b5e82510e8659!2sSaint-Laurent%2C%20QC%20H4L%202X5!5e0!3m2!1sfr!2sca!4v1696751818633!5m2!1sfr!2sca" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0" tabIndex="0"></iframe>   
+                    </div>
                   </div>
               </div>
           </div>

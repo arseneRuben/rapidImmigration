@@ -60,7 +60,7 @@ const HomePage = () => {
     
     <div className="container-fluid py-6 px-5">
         <div className="text-center mx-auto mb-5">
-            <h1 className="display-5 mb-0">Our Team Members</h1>
+            <h1 className="display-5 mb-0">Equipes d'experts</h1>
             <hr className="w-25 mx-auto bg-primary"/>
         </div>
         <div className="row g-5">
