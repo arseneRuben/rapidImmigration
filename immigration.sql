@@ -132,6 +132,17 @@ CREATE TABLE `others` (
   `value` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE quotes (
+    id int(11)  AUTO_INCREMENT PRIMARY KEY,
+    `email` varchar(255) DEFAULT NULL,
+    `phone_number` varchar(100) DEFAULT NULL,
+    `programId` int(11) DEFAULT NULL,
+    `full_name` varchar(50) DEFAULT NULL,
+    `created_at` datetime DEFAULT current_timestamp(),
+    `visited` boolean DEFAULT FALSE
+);
+
+
 --
 -- Index pour les tables déchargées
 --
@@ -182,3 +193,6 @@ ALTER TABLE `folders`
 
 ALTER TABLE `others`
   ADD CONSTRAINT `fk_others_customer` FOREIGN KEY (`customerId`) REFERENCES `customers` (`id`);
+
+ALTER TABLE `quotes`
+  ADD CONSTRAINT `fk_quotes_program` FOREIGN KEY (`programId`) REFERENCES `programs` (`id`);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PageWrapper from '../../components/pageWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCircleExclamation, faEye, faTasks, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { useSelector,useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
@@ -70,17 +70,17 @@ const Folder =  () => {
     }
         
   return (
+    <>
     <PageWrapper>
-       <div class="row">
-                            <div class="col-lg-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading text-center h3">
+       <div className="row">
+                                <div className="panel panel-default">
+                                    <div className="panel-heading text-center h3">
                                        Customer's folders
                                     </div>
-                                    <div class="panel-body">
-                                        <div class="table-responsive">
+                                    <div className="panel-body">
+                                        <div className="table-responsive">
                                         {isLoading ? <SpinnerCustom /> :
-                                            <table class="table table-striped table-bordered table-hover  dataTable">
+                                            <table className="table table-striped table-bordered table-hover  dataTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -92,7 +92,8 @@ const Folder =  () => {
                                                 </thead>
                                                 <tbody>
                                                     {folders.map((folder)=> (
-                                                        <tr class="gradeC"  key={folder.id}>
+
+                                                        <tr className="gradeC"  key={folder.id}>
                                                             <td>{folder.folderNumber }</td>
                                                             <td>{`${folder.first_name} ${folder.last_name}`  }</td>
                                                             <td>{folder.name }</td>
@@ -130,9 +131,9 @@ const Folder =  () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                           
         </div>
-        <div class="row">
+        <div className="row">
              <div className="col-6">
                 <div className="form-group d-flex ">
                     <label htmlFor="filter">Filter</label>
@@ -150,6 +151,8 @@ const Folder =  () => {
         </div>
         
     </PageWrapper>
+   
+    </>
   )
 }
 

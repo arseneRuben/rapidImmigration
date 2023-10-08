@@ -29,13 +29,11 @@ const NavBar = () => {
                 <div className="nav-item dropdown">
                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div className="dropdown-menu m-0">
-                        <a href="blog.html"    className="dropdown-item">Blog Grid</a>
-                        <a href="detail.html"  className="dropdown-item">Blog Detail</a>
-                        <a href="feature.html" className="dropdown-item">Features</a>
-                        <a href="quote.html"  className="dropdown-item">Quote Form</a>
+                        
+                        <NavLink to="/contact" className={`dropdown-item ${location.pathname==="/contact" && ' bg-danger'}`}>Contact</NavLink>
+                        <NavLink to="/services" className={`dropdown-item ${location.pathname==="/services" && ' bg-danger'}`}>Services</NavLink>
                         <NavLink to="/signup" className={`dropdown-item ${location.pathname==="/signup" && ' bg-danger'}`}>Sign Up</NavLink>
                         <NavLink to="/signin" className={`dropdown-item ${location.pathname==="/signin" && ' bg-danger'}`}>Sign In</NavLink>
-                        <a href="testimonial.html" className="dropdown-item">Testimonial</a>
                     </div>
                 </div>
                 <NavLink to="/contact" className={`nav-item nav-link ${location.pathname==="/contact" && 'active'}`}>

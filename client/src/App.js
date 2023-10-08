@@ -24,6 +24,8 @@ import NewFolder from './adminpages/folder/new';
 import Services from './frontpages/home/service';
 import Contact from './frontpages/home/contact';
 import ShowFolder from './adminpages/folder/show';
+import Quote from './adminpages/quote';
+import QuoteShow from './adminpages/quote/show';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -140,6 +142,16 @@ function App() {
           <ProtectedRoute>
               <ShowFolder/>
           </ProtectedRoute>
+        }/>
+          <Route path="/quotes" element={ 
+            <ProtectedRoute>
+                <Quote/>
+            </ProtectedRoute>
+        }/>
+        <Route path="/quote/:id/show" element={ 
+            <ProtectedRoute>
+                <QuoteShow/>
+            </ProtectedRoute>
         }/>
       
       </Routes>

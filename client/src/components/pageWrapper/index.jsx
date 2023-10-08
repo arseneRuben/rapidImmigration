@@ -1,9 +1,25 @@
-import React from 'react'
-import { useLocation } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import AdminPages from '../../adminpages';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBell, faCircleExclamation, faComments, faTasks } from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
 
 const PageWrapper = ({children}) => {
     const location = useLocation();
+    const [quotes, setQuotes] = useState([]); 
+    const unVisitedQuotes = quotes.filter(quote =>!quote.visited);
+ 
+    useEffect(() => {
+            axios
+              .get(
+                `http://localhost:8080/api/quotes`
+              )
+              .then((res) => setQuotes(res.data))
+              .catch((error) => console.log(error));
+    }, []);
+     
+
     function Title({ pathname }) {
         switch(pathname) {
           case '/admin':
@@ -30,13 +46,39 @@ const PageWrapper = ({children}) => {
                     </div>
                 </div>
                 <div className="row">
-                <div className="col-1">
-                        </div>
+               
                     <div className="col-10 card">
                         {children}
                     </div>
-                    <div className="col-1">
-                        </div>
+                    <div className="col-2">
+                    <div className="panel panel-default">
+        <div className="panel-heading">
+            <NavLink to="/quotes" className="btn bg-primary bg-gradient btn-block">
+                <span className="fa-stack fa-2x" data-count={unVisitedQuotes.length}>
+                    <FontAwesomeIcon icon={faBell}/>  
+                </span>
+            </NavLink>
+
+        </div>
+        <div className="panel-body">
+            <div className="list-group">
+            
+                <a href="#" className="list-group-item">
+                <FontAwesomeIcon icon={faTasks}/>  New Task
+                    <span className="pull-right text-muted small"><em>43 minutes ago</em>
+                    </span>
+                </a>
+                
+                <a href="#" className="list-group-item">
+                <FontAwesomeIcon icon={faCircleExclamation}/>
+                    <span className="pull-right text-muted small"><em>9:49 AM</em>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+                    </div>
                 </div>
                 <hr />
             </div>

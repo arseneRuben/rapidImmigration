@@ -51,6 +51,9 @@ export const deleteOthersByCustomer = (customerId) => API.delete(`/others/custom
 
 export const fetchOthersByCustomer = (customerId) => API.get(`/others/customer/customerId=${customerId}`);
 
+export const createQuote = (newQuote) => API.post('/quotes', newQuote);
+export const updateQuote = (updatedQuote) => API.patch(`/quotes/${updatedQuote.id}`, updatedQuote);
+export const deleteQuote = (id) => API.delete(`/quotes/${id}`);
 
 
 

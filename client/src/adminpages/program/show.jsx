@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PageWrapper from '../../components/pageWrapper'
 import { useParams} from 'react-router-dom';
 import {  useSelector} from 'react-redux';

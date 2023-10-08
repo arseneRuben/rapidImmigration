@@ -10,7 +10,7 @@ import { faHomeAlt, faNewspaper, faPhone } from '@fortawesome/free-solid-svg-ico
 const Footer = () => {
   return (
    <>
-     <div className="container-fluid bg-danger text-white bg-gradient text-secondary p-5 mt-5">
+     {/*<div className="container-fluid bg-danger text-white bg-gradient text-secondary p-5 mt-5">
         <div className="row g-5">
             <div className="col-12 text-center">
                 <h1 className="display-5 mb-4">Stay Update!!!</h1>
@@ -22,7 +22,7 @@ const Footer = () => {
                 </form>
             </div>
         </div>
-    </div>
+  </div>*/}
     <div className="container-fluid bg-dark text-secondary p-5">
         <div className=" d-flex justify-content-evenly g-5">
          

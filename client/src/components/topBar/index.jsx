@@ -37,10 +37,10 @@ const TopBar = () => {
         <div className="col-md-6 text-center text-lg-end">
             <div className="position-relative d-inline-flex align-items-center bg-danger text-white top-shape px-5">
                 <div className="me-3 pe-3 border-end py-2"> 
-                    <p className="m-0"> <FontAwesomeIcon icon={faEnvelopeOpen} />  send@quickimmigration.com</p>
+                    <p className="m-0"> <FontAwesomeIcon icon={faEnvelopeOpen} />  polyinformatique7@gmail.com</p>
                 </div>
                 <div className="py-2">
-                    <p className="m-0"> <FontAwesomeIcon icon={faPhoneAlt} /> +012 345 6789</p>
+                    <p className="m-0"> <FontAwesomeIcon icon={faPhoneAlt} /> (+1)450 626 7192</p>
                 </div>
             </div>
         </div>

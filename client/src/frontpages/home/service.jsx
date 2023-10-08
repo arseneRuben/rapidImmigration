@@ -1,19 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, {useState} from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SpinnerCustom from '../../redux/SpinnerCustom'
 import { iconsMap } from '../../constants/programTypes'
 import FrontPages from '..';
+import { createQuote } from "../../api";
+import { hideLoading, showLoading } from '../../redux/features/alertSlice'
 
 const Services = () => {
-    const {isLoading, programs} = useSelector((state)=> state.programs)
-
+  const {isLoading, programs} = useSelector((state)=> state.programs)
+  const dispatch = useDispatch()
+  const [datas, setDatas] = useState({
+    full_name: "",
+    programId: "",
+    phone_number: "",
+    email:""
+  });
+  const handleSubmit =  async(event) =>  {
+    event.preventDefault()
+    dispatch(showLoading())
+    const res = await createQuote(datas)
+    dispatch(hideLoading())
+  }
+  const handleChange = (name) => (e) => {
+    setDatas({ ...datas, [name]: e.target.value });
+};
+   
   return (
     <FrontPages >
 
         <div className="container-fluid pt-6 px-5">
             <div className="text-center mx-auto mb-5" >
-                <h1 className="display-5 mb-0">What We Offer</h1>
+                <h1 className="display-5 mb-0">Quel services offrons-nous?</h1>
                 <hr className="w-25 mx-auto bg-primary"/>
             </div>
 
@@ -37,27 +55,35 @@ const Services = () => {
         <div className="container-fluid ">
             <div className="row g-0">
                 <div className="col-lg-7 py-6 px-5">
-                    <h1 className="display-5 mb-4">Request A  Quote</h1>
-                    <p className="mb-4">Kasd vero erat ea amet justo no stet, et elitr no dolore no elitr sea kasd et dolor diam tempor. Nonumy sed dolore no eirmod sit nonumy vero lorem amet stet diam at. Ea at lorem sed et, lorem et rebum ut eirmod gubergren, dolor ea duo diam justo dolor diam ipsum dolore stet stet elitr ut. Ipsum amet labore lorem lorem diam magna sea, eos sed dolore elitr.</p>
-                    <form  className='w-100'  id="quote">
+                    <h1 className="display-5 mb-4">Prise de rendez-vous</h1>
+                    <p className="mb-4">Chacun est encourage a prendre un rendez-vous avec un consultant  afin d' etudier le projet d'immigration. N'hesitez pas!</p>
+                    <form  className='w-100'  id="quote" onSubmit={handleSubmit}>
                         <div className="row gx-3">
-                            <div className="col-6">
+                            <div className="col-4">
                                 <div className="form-floating">
-                                    <input type="text" className="form-control" id="form-floating-1" placeholder="John Doe"/>
+                                    <input type="text" name="full_name" className="form-control" id="form-floating-1" placeholder="John Doe"    onChange={handleChange("full_name")} value={datas.full_name}/>
                                     <label for="form-floating-1">Full Name</label>
                                 </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-4">
                                 <div className="form-floating mb-3">
-                                    <input type="email" className="form-control" id="form-floating-2" placeholder="name@example.com"/>
+                                    <input className="form-control" id="form-floating-2" type="tel" name="phone_number" placeholder="+237 ... ..."  onChange={handleChange("phone_number")} value={datas.phone_number}/>
+                                    <label for="form-floating-2">Phone number</label>
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <div className="form-floating mb-3">
+                                    <input type="email" name="email" className="form-control" id="form-floating-2" placeholder="name@example.com" onChange={handleChange("email")} value={datas.email}/>
                                     <label for="form-floating-2">Email address</label>
                                 </div>
                             </div>
+                        </div>
+                        <div className="row gx-3">
                             <div className="col-6">
                                 <div className="form-floating">
-                                    <select className="form-select" id="floatingSelect" aria-label="Financial Consultancy">
+                                    <select className="form-select" name="programId" id="floatingSelect" aria-label="Express Entry" onChange={handleChange("programId")} value={datas.programId}>
                                     {isLoading ? <SpinnerCustom /> : programs.map((program)=> (
-                                        <option >{program.name}</option>
+                                        <option value={program.id} >{program.name}</option>
                                          ))
                                     }
                                        

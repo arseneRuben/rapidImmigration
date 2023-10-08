@@ -8,8 +8,12 @@ import { getCustomers } from '../actions/customer'
 import { getPrograms } from '../actions/program'
 import { getFolders } from '../actions/folder'
 
+
+
 const AdminPages = ({children}) => {
   const dispatch = useDispatch()
+
+
   // login user data
   const getUserData = async () => { 
     try {
@@ -27,7 +31,7 @@ const AdminPages = ({children}) => {
   }
 
   useEffect(() => {
-      
+
       dispatch(getCustomers(1))
       getUserData()
       dispatch(getPrograms(1))
@@ -37,6 +41,7 @@ const AdminPages = ({children}) => {
     <>  
       <TopNavigation/> 
       <NavSide/>
+      
        {children}
     </>
   )

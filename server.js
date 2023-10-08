@@ -17,6 +17,7 @@ import customerRoutes from './routes/customer.js'
 import programRoutes from './routes/program.js'
 import folderRoutes from './routes/folder.js'
 import othersRoutes from './routes/others.js'
+import quotesRoutes from './routes/quotes.js'
 
 // dotenv config
 dotenv.config()
@@ -97,6 +98,8 @@ app.use('/api/customers', customerRoutes)
 app.use('/api/programs', programRoutes)
 app.use('/api/folders', folderRoutes)
 app.use('/api/others', othersRoutes)
+app.use('/api/quotes', quotesRoutes)
+
 
 // Listen port  
 const port = process.env.PORT || 8080

@@ -60,8 +60,14 @@ const NavSide = () => {
                             </li>
                         </ul>
                     </li>
-                    <li className=' nav-item  p-2  m-2'>
-                        <a href="#"><FontAwesomeIcon icon={faBell} /></a>
+                    <li className=' nav-item p-1 m-1 '>
+                        <a href="#submenu4" data-bs-toggle="collapse" className="nav-link px-0 align-middle">
+                         <FontAwesomeIcon icon={faBell} /> <span className="ms-1 d-none d-sm-inline">Quotes</span> </a>
+                        <ul className="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li>
+                                <NavLink to='/quotes' className="nav-link px-2"> <FontAwesomeIcon icon={faList} />  </NavLink>
+                            </li>
+                        </ul>
                     </li>
                     <li className=' nav-item  p-2  m-2'>
                         <a href="blank.html"><FontAwesomeIcon icon={faTable} /></a>
