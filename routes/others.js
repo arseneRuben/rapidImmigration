@@ -1,4 +1,4 @@
-import { insertOthers,getOthersByCustomer,  getOthers, updateOthers, deleteOther,deleteOthersByCustomer } from '../dao/sql/others.js'
+import { insertOthers,getOthersByCustomer, updateOthers, deleteOther,deleteOthersByCustomer } from '../dao/sql/others.js'
 import express from 'express'
 const router = express.Router()
 /* READ */
