@@ -17,7 +17,6 @@ export const getFolders = async (req, res) => {
     const filter = req.query.filter ; 
     const orderBy = req.query.orderBy ;
     const newOrder = req.query.newOrder ;
-
     const page = req.query.page ; // Page par défaut
     const offset = (page - 1) * LIMIT; // get the starting index of every page
     try {

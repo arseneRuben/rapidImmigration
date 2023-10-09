@@ -42,21 +42,7 @@ export const getOthersByCustomer = async (req, res) => {
     }
 }
 
-//Get all others
-export const getOthers = async (req, res) => {
-    try {
-        connect()
-        query('SELECT * FROM others', (error, result) => {
-            if (error) {
-                throw error
-            }
-            res.status(HTTP_OK).json({ data: result })
-        })
-    }
-    catch (error) {
-            res.status(404).json({ message: error.message })
-    }
-}
+
 
 //Update other
 export const updateOthers = async (req, res) => {
