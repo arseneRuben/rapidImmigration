@@ -5,7 +5,6 @@ import {  useSelector} from 'react-redux';
 import SpinnerCustom from '../../redux/SpinnerCustom';
 import ProgramReport from '../../components/customer/reports/ProgramReport';
 
-var path = require('path');
 
 
 const ProgramShow = () => {

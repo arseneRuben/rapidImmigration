@@ -31,7 +31,6 @@ export const getUsers = async (req, res) => {
         query('SELECT * FROM users', [], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
-            disconnect()
         })
     } catch (error) {
         res.status(404).json({ message: error.message })
@@ -58,8 +57,8 @@ export const toggle = async (req, res) => {
         connect()
         query('SELECT * FROM users WHERE id = ?', [req.params.id], (result) => {
             if (result.length > 0) {
-                let state = result[0].enable === 1 ? 0 : 1
-            query('UPDATE users SET enable=? WHERE id=?',
+                let state = result[0].enabled == 1 ? 0 : 1
+            query('UPDATE users SET enabled=? WHERE id=?',
                 [ state ,  req.params.id], (result) => {
                     res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                     res.end(JSON.stringify(result, null, 4))

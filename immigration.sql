@@ -82,7 +82,7 @@ CREATE TABLE `users` (
   `google_id` int(11) DEFAULT NULL,
   `gender` int(11) DEFAULT NULL,
   `enabled` int(1) DEFAULT 0,
-  `access_level` enum('admin','consultant','client') DEFAULT 'client'
+  `access_level` enum('admin','consultant','client') DEFAULT 'consultant'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 

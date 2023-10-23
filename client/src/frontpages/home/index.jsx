@@ -65,6 +65,7 @@ const HomePage = () => {
         </div>
         <div className="row g-5">
         {users.map(user=> (
+            user.enabled && 
             <div className="col-lg-3">
                 <div className="team-item position-relative overflow-hidden">
                     <img className="img-fluid w-100" src={`http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}`} alt=""/>

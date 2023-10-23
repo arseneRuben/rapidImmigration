@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import axios from "axios";
-import { deleteUser } from '../../api';
+import { deleteUser, toggle } from '../../api';
 
 const UserList =  () => {
     const dispatch = useDispatch()
@@ -32,13 +32,13 @@ const UserList =  () => {
 
     
   function deleteItem(id){
-    dispatch(showLoading())
-    dispatch(deleteUser(id))
-    navigate(`/users`);
+    deleteUser(id)
     window.location.reload(false);
-    dispatch(hideLoading())
 }
-
+function toggleItem(id){
+    toggle(id)
+    window.location.reload(false);
+}
   
         
   return (
@@ -69,7 +69,7 @@ const UserList =  () => {
                                                             <td>{customer.last_name }</td>
 
                                                             <td>{customer.access_level }</td>
-                                                            <td className="center"><button   className="btn btn-warning"><NavLink to={`/customer/${customer.id}/edit`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faUserEdit} /></NavLink></button><button className="btn btn-info"><NavLink to={`/customer/${customer.id}/show`} className="navbar-brand p-0"> <FontAwesomeIcon icon={faEye} /></NavLink></button><button  onClick={()=>deleteItem(customer.id)} className="btn btn-danger"> <FontAwesomeIcon  icon={faTrash} /></button></td>
+                                                            <td className="center"><button  onClick={()=>toggleItem(customer.id)} className={`btn  ${customer.enabled=="1" ? 'btn-warning': 'btn-primary' }` }> <FontAwesomeIcon  icon={faUserEdit} /></button><button  onClick={()=>deleteItem(customer.id)} className="btn btn-danger"> <FontAwesomeIcon  icon={faTrash} /></button></td>
                                                         </tr>
                                                     ))
                                                     }
