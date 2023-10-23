@@ -41,12 +41,32 @@ export const getUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         connect()
+        
         query('UPDATE users SET last_name=?, first_name=?, email=?, password=?, profile_image=?,   gender=? WHERE id=?',
             [req.body.last_name, req.body.first_name, req.body.email, bcrypt.hashSync(req.body.password, 10), req.body.profile_image,  req.body.gender,  req.params.id], (result) => {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                 res.end(JSON.stringify(result, null, 4))
                 disconnect()
             })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+export const toggle = async (req, res) => {
+    try {
+        connect()
+        query('SELECT * FROM users WHERE id = ?', [req.params.id], (result) => {
+            if (result.length > 0) {
+                let state = result[0].enable === 1 ? 0 : 1
+            query('UPDATE users SET enable=? WHERE id=?',
+                [ state ,  req.params.id], (result) => {
+                    res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+                    res.end(JSON.stringify(result, null, 4))
+                    disconnect()
+                })
+            }  
+        })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
@@ -104,10 +124,7 @@ export const getUser = async (req, res) => {
             const token = jwt.sign({ id: result[0].id }, process.env.JWT_SECRET, {
                 expiresIn: "1d" // expires in 24 hours
             })
-           // res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-            res.status(HTTP_OK).send({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0] })
-           // res.end(JSON.stringify({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0]}, null, 4))
-            
+            res.status(HTTP_OK).send({ auth: true, token: token, success: true, access_level:result[0].access_level, user: result[0] })            
             disconnect()
         })
     } catch (error) {

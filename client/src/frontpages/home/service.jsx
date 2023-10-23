@@ -19,7 +19,7 @@ const Services = () => {
   const handleSubmit =  async(event) =>  {
     event.preventDefault()
     dispatch(showLoading())
-    const res = await createQuote(datas)
+    await createQuote(datas)
     dispatch(hideLoading())
   }
   const handleChange = (name) => (e) => {

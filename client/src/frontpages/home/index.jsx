@@ -23,7 +23,7 @@ const HomePage = () => {
         <div id="header-carousel" className="carousel slide carousel-fade" data-bs-ride="carousel">
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img className="w-100" src="img/carousel-1.jpg" alt="Image"/>
+                    <img className="w-100" src="img/carousel-1.jpg" />
                     <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div className="p-3" >
                             <h5 className="text-white text-uppercase">Immigration Consultancy</h5>
@@ -34,7 +34,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img className="w-100" src="img/carousel-2.jpg" alt="Image"/>
+                    <img className="w-100" src="img/carousel-2.jpg" />
                     <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div className="p-3" >
                             <h5 className="text-white text-uppercase">Immigration Consultancy</h5>

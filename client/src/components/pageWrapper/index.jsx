@@ -2,14 +2,16 @@ import React, {useState, useEffect} from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import AdminPages from '../../adminpages';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faCircleExclamation, faComments, faTasks } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faCircleExclamation, faClock, faComments, faTasks } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
+import moment from 'moment';
 
 const PageWrapper = ({children}) => {
     const location = useLocation();
     const [quotes, setQuotes] = useState([]); 
     const unVisitedQuotes = quotes.filter(quote =>!quote.visited);
- 
+    const lastQuote = unVisitedQuotes[unVisitedQuotes.length - 1]
+
     useEffect(() => {
             axios
               .get(
@@ -63,11 +65,12 @@ const PageWrapper = ({children}) => {
         <div className="panel-body">
             <div className="list-group">
             
-                <a href="#" className="list-group-item">
-                <FontAwesomeIcon icon={faTasks}/>  New Task
-                    <span className="pull-right text-muted small"><em>43 minutes ago</em>
-                    </span>
-                </a>
+            <a href="#" className="list-group-item">
+                                  <FontAwesomeIcon icon={faClock}/> 
+
+                                      <span className="pull-right text-muted  m-1"><em>{lastQuote!=undefined ? moment(lastQuote.created_at).fromNow(): ""}</em>
+                                      </span>
+            </a>
                 
                 <a href="#" className="list-group-item">
                 <FontAwesomeIcon icon={faCircleExclamation}/>

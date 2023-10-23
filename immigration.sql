@@ -81,6 +81,7 @@ CREATE TABLE `users` (
   `phone_number` varchar(100) DEFAULT NULL,
   `google_id` int(11) DEFAULT NULL,
   `gender` int(11) DEFAULT NULL,
+  `enabled` int(1) DEFAULT 0,
   `access_level` enum('admin','consultant','client') DEFAULT 'client'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -112,15 +113,6 @@ INSERT INTO `programs` (`id`, `name`, `type`, `description`) VALUES
 (5, 'Selection province', 'PROVINCIAL_NOMINEE', 'Etre designe par une province');
 
 
---
--- Déchargement des données de la table `users`
---
-
-INSERT INTO `users` (`id`, `last_name`, `first_name`, `email`, `password`, `profile_image`, `phone_number`, `google_id`, `gender`, `access_level`) VALUES
-(1, 'FOKAM POKA', 'ARSENE', 'fopoar@gmail.com', '$2b$10$mzyEQjcQ8j62HV/kLkggWuljCuIW5X4iw3N0NemW0Tb7iwZeOs4cm', 'photo.PNG', NULL, NULL, 0, 'admin'),
-(2, NULL, NULL, 'ruben@gmail.com', '$2b$10$0Bsy0JXgxlkzvoQ4zZEfxeFBjPQZ.ygynQOHlFimHI5gcTcM8r4Ti', NULL, NULL, NULL, NULL, 'consultant'),
-(3, NULL, NULL, 'aminebenhassine@gmail.com', '$2b$10$DEyeZ3xp2xGQ98OsNmu4leSkBDWPNMW.0jahEmoWpgV5mCcdLV0/G', NULL, NULL, NULL, NULL, 'client'),
-(4, 'OUABE', 'ALAIN', 'fopoar4@gmail.com', '$2b$10$118weumuFCC8AG4FSTDrKupAe19Zn//zCiB5PxxIkD7wLVtBr7de.', NULL, NULL, NULL, NULL, 'client');
 
 
 

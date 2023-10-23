@@ -1,6 +1,6 @@
 import React  from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faBell, faEdit, faEnvelopeOpen, faFileArchive, faFolder, faFolderClosed, faList, faPeopleGroup, faPhoneAlt, faPlus, faPlusSquare, faQrcode, faSitemap, faTable, faTachometerAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
+import {  faBell, faEdit, faEnvelopeOpen, faFileArchive, faFolder, faFolderClosed, faList, faPeopleGroup, faPhoneAlt, faPlus, faPlusSquare, faQrcode, faSitemap, faTable, faTachometerAlt, faUser, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import defaultProfile from '../../img/user.jpg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';
@@ -69,9 +69,15 @@ const NavSide = () => {
                             </li>
                         </ul>
                     </li>
-                    <li className=' nav-item  p-2  m-2'>
-                        <a href="blank.html"><FontAwesomeIcon icon={faTable} /></a>
-                    </li>  
+                    <li className=' nav-item p-1 m-1 '>
+                        <a href="#submenu5" data-bs-toggle="collapse" className="nav-link px-0 align-middle">
+                         <FontAwesomeIcon icon={faUser} /> <span className="ms-1 d-none d-sm-inline">Users</span> </a>
+                        <ul className="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li>
+                                <NavLink to='/users' className="nav-link px-2"> <FontAwesomeIcon icon={faList} />  </NavLink>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                    

@@ -10,6 +10,9 @@ API.interceptors.request.use((req) => {
   return req;
 });
 export const fetchUsers = () => API.get(`/users`);
+export const toggle = (id) => API.patch(`/users/${id}`);
+export const deleteUser = (id) => API.delete(`/users/${id}`);
+
 
 export const fetchCustomer = (id) => API.get(`/customers/${id}`);
 export const fetchCustomers = (page) => API.get(`/customers?page=${page}`);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PageWrapper from '../../components/pageWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTrash, faUserEdit } from '@fortawesome/free-solid-svg-icons';
@@ -6,12 +6,39 @@ import { useSelector,useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import SpinnerCustom from '../../redux/SpinnerCustom';
-import { deleteCustomer } from '../../actions/customer';
+import { deleteCustomer, getCustomers } from '../../actions/customer';
+import axios from "axios";
 
 const ClientList =  () => {
     const {isLoading, customers} = useSelector((state)=> state.customers)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [filter, setFilter] = useState("");
+    const [newOrder, setNewOrder] = useState("asc");
+    const [orderBy, setOrderBy] = useState("id")
+    const [state, setState] = useState({
+        data: customers,
+        currentPage: 1
+    });
+
+    useEffect(() => {
+        axios
+          .get(
+            `http://localhost:8080/api/customers?page=1&filter=${filter}&orderBy=${orderBy}&newOrder=${newOrder}`
+          )
+          .then((res) => {
+            setState((prev) => ({
+              ...prev,
+              data: res.data
+            }));
+          
+          })
+          .catch((error) => console.log(error));
+    }, []);
+    const handlePageChange = (pageNumber) => {
+        setState((prev) => ({ ...prev, activePage: pageNumber }));
+        dispatch(getCustomers(pageNumber, filter, orderBy, newOrder))
+    };
 
     
   function deleteCLient(id){

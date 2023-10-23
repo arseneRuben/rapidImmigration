@@ -26,6 +26,7 @@ import Contact from './frontpages/home/contact';
 import ShowFolder from './adminpages/folder/show';
 import Quote from './adminpages/quote';
 import QuoteShow from './adminpages/quote/show';
+import UserList from './adminpages/profile/list';
 
 function App() {
   const {loading} = useSelector((state) => state.alerts)
@@ -151,6 +152,12 @@ function App() {
         <Route path="/quote/:id/show" element={ 
             <ProtectedRoute>
                 <QuoteShow/>
+            </ProtectedRoute>
+        }/>
+
+<Route path="/users" element={ 
+            <ProtectedRoute>
+                <UserList/>
             </ProtectedRoute>
         }/>
       
