@@ -1,17 +1,19 @@
 
 'use strict'
 import mysql from 'mysql'
+import dotenv from 'dotenv'
+dotenv.config({ })
 
 let connection = {}
 
 export function connect () {
     connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'immigration'
+        host:  process.env.DB_HOSTNAME ,
+        user: process.env.DB_USERNAME ,
+        password: process.env.DB_PASSWORD ,
+        database: process.env.DB_NAME,
     })
-   
+    console.log('Connecting to Db',  process.env.DB_USERNAME)
     connection.connect((err) => {
         if (err) {
             console.log('Error connecting to Db')
