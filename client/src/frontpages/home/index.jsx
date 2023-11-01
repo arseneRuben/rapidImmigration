@@ -3,6 +3,7 @@ import FrontPages from '..'
 import { NavLink } from "react-router-dom";
 
 import axios from "axios";
+import { baseURL } from '../../api';
 var path = require('path');
 
 const HomePage = () => {
@@ -11,7 +12,7 @@ const HomePage = () => {
     useEffect(() => {
         axios
           .get(
-            `http://localhost:8080/api/users`
+            `${baseURL}/api/users`
           )
           .then((res) => setUsers(res.data))
           .catch((error) => console.log(error));
@@ -68,7 +69,7 @@ const HomePage = () => {
             user.enabled && 
             <div className="col-lg-3">
                 <div className="team-item position-relative overflow-hidden">
-                    <img className="img-fluid w-100" src={`http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}`} alt=""/>
+                    <img className="img-fluid w-100" src={`${baseURL}${path.sep}profiles${path.sep}${user.profile_image}`} alt=""/>
                     <div className="team-text w-100 position-absolute top-50 text-center bg-danger p-4">
                         <h3 className="text-white">{user.first_name}</h3>
                         <p className="text-white text-uppercase mb-0">Lawyer</p>

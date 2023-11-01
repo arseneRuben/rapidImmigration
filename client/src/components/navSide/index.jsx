@@ -4,6 +4,7 @@ import {  faBell, faEdit, faEnvelopeOpen, faFileArchive, faFolder, faFolderClose
 import defaultProfile from '../../img/user.jpg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import { baseURL } from '../../api'
 var path = require('path');
 
 const NavSide = () => {
@@ -14,7 +15,7 @@ const NavSide = () => {
             <div className="sidebar-collapse">
             <div className="dropdown pb-4">
                     <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src={user ? `http://localhost:8080${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} alt="hugenerd" width="50" height="50" className="rounded-circle"/>
+                        <img src={user ? `${baseURL}${path.sep}profiles${path.sep}${user.profile_image}` : defaultProfile} alt="hugenerd" width="50" height="50" className="rounded-circle"/>
                         <span className="d-none d-sm-inline mx-1">{user && user.first_name}</span>
                     </a>
                 

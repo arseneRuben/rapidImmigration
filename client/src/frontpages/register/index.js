@@ -7,6 +7,7 @@ import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import { hideLoading, showLoading } from '../../redux/features/alertSlice'
 import FrontPages from '..'
+import { baseURL } from '../../api'
 
 const Register = () => {
 
@@ -17,7 +18,7 @@ const Register = () => {
     try {
       if(values.password === values.confirmPassword) {
         dispatch(showLoading())
-        axios.post('http://localhost:8080/api/users/signup', values) 
+        axios.post(`${baseURL}/api/users/signup`, values) 
         .then(function (response) {
           if(response.status === 200){
             message.success(response.data.message)

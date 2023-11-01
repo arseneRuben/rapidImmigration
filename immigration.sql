@@ -1,7 +1,7 @@
 
-DROP DATABASE IF EXISTS immigration;
-CREATE DATABASE immigration ;
-use immigration;
+DROP DATABASE IF EXISTS dbruswel;
+CREATE DATABASE dbruswel ;
+use dbruswel;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
