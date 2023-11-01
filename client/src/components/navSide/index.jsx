@@ -1,6 +1,6 @@
 import React  from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faBell, faEdit, faEnvelopeOpen, faFileArchive, faFolder, faFolderClosed, faList, faPeopleGroup, faPhoneAlt, faPlus, faPlusSquare, faQrcode, faSitemap, faTable, faTachometerAlt, faUser, faUserEdit } from '@fortawesome/free-solid-svg-icons'
+import {  faBell, faFolderClosed, faList, faPeopleGroup,  faPlusSquare,  faSitemap, faUser, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import defaultProfile from '../../img/user.jpg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';

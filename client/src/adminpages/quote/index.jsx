@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
-import { deleteQuote } from '../../api';
+import { baseURL, deleteQuote } from '../../api';
 const Quote =  () => {
    
     const [quotes, setQuotes] = useState([]); 
@@ -18,7 +18,7 @@ const Quote =  () => {
     useEffect(() => {
             axios
               .get(
-                `http://localhost:8080/api/quotes`
+                `${baseURL}/api/quotes`
               )
               .then((res) => setQuotes(res.data))
               .catch((error) => console.log(error));

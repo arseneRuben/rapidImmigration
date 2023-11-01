@@ -8,6 +8,7 @@ import { hideLoading, showLoading } from '../../redux/features/alertSlice';
 import SpinnerCustom from '../../redux/SpinnerCustom';
 import { deleteCustomer, getCustomers } from '../../actions/customer';
 import axios from "axios";
+import { baseURL } from '../../api';
 
 const ClientList =  () => {
     const {isLoading, customers} = useSelector((state)=> state.customers)
@@ -24,7 +25,7 @@ const ClientList =  () => {
     useEffect(() => {
         axios
           .get(
-            `http://localhost:8080/api/customers?page=1&filter=${filter}&orderBy=${orderBy}&newOrder=${newOrder}`
+            `${baseURL}/api/customers?page=1&filter=${filter}&orderBy=${orderBy}&newOrder=${newOrder}`
           )
           .then((res) => {
             setState((prev) => ({

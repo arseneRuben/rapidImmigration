@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PageWrapper from '../../components/pageWrapper'
 import { useParams} from 'react-router-dom';
 import axios from 'axios'
-import { updateQuote } from '../../api';
+import { baseURL, updateQuote } from '../../api';
 
 
 const QuoteShow = () => {
@@ -12,7 +12,7 @@ const QuoteShow = () => {
   useEffect(() => {
           axios
             .get(
-              `http://localhost:8080/api/quotes/${id}`
+              `${baseURL}/api/quotes/${id}`
             )
             .then((res) => setQuote(res.data))
             .catch((error) => console.log(error));

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircleExclamation, faClock, faComments, faTasks } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import moment from 'moment';
+import { baseURL } from "../../api";
 
 const PageWrapper = ({children}) => {
     const location = useLocation();
@@ -15,7 +16,7 @@ const PageWrapper = ({children}) => {
     useEffect(() => {
             axios
               .get(
-                `http://localhost:8080/api/quotes`
+                `${baseURL}/api/quotes`
               )
               .then((res) => setQuotes(res.data))
               .catch((error) => console.log(error));
