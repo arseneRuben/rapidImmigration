@@ -13,7 +13,6 @@ export function connect () {
         password: process.env.DB_PASSWORD ,
         database: process.env.DB_NAME,
     })
-    console.log('Connecting to Db',  process.env.DB_USERNAME)
     connection.connect((err) => {
         if (err) {
             console.log('Error connecting to Db')
@@ -22,7 +21,6 @@ export function connect () {
         console.log('Connection ESTABLISHED')
     })
 }
-
 export function query (query, values, resultCallback) {
     connection.query(query, values, (error, result) => {
         if (error) {

@@ -12,7 +12,7 @@ const HomePage = () => {
     useEffect(() => {
         axios
           .get(
-            `${baseURL}/api/users`
+            `${baseURL}/api/users?page=1`
           )
           .then((res) => setUsers(res.data))
           .catch((error) => console.log(error));

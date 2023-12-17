@@ -1,5 +1,6 @@
 import axios from 'axios';
-export const baseURL = '';
+//export const baseURL = 'http://localhost:8080';
+export const baseURL = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:8080';
 const API = axios.create({ baseURL:`${baseURL}/api`});
 
 API.interceptors.request.use((req) => {
@@ -12,6 +13,7 @@ API.interceptors.request.use((req) => {
 export const fetchUsers = () => API.get(`/users`);
 export const toggle = (id) => API.patch(`/users/${id}`);
 export const deleteUser = (id) => API.delete(`/users/${id}`);
+
 
 
 export const fetchCustomer = (id) => API.get(`/customers/${id}`);

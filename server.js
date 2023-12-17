@@ -18,6 +18,7 @@ import programRoutes from './routes/program.js'
 import folderRoutes from './routes/folder.js'
 import othersRoutes from './routes/others.js'
 import quotesRoutes from './routes/quotes.js'
+import messagesRoutes from './routes/message.js'
 
 // dotenv config
 dotenv.config()
@@ -57,9 +58,7 @@ app.post("/upload-file", async (req, res) => {
             });
         } else {
             let file ;
-          
-           
-             if(req.body['full_name']!== undefined){
+            if(req.body['full_name']!== undefined){
                 console.log("req.files");
                 Object.keys(req.files).forEach(function(key) {
                     file = req.files[key];
@@ -67,7 +66,6 @@ app.post("/upload-file", async (req, res) => {
                         file.mv("./uploads/profiles/" + file.name);
                     }else {
                         file.mv(`./uploads/${req.body.full_name}/` + file.name);
-                        
                     }
                 }); 
             } else {
@@ -94,15 +92,18 @@ app.post("/upload-file", async (req, res) => {
 });
 
 app.use('/api/users', userRoutes)
+
 app.use('/api/customers', customerRoutes)
+
 app.use('/api/programs', programRoutes)
 app.use('/api/folders', folderRoutes)
 app.use('/api/others', othersRoutes)
 app.use('/api/quotes', quotesRoutes)
+app.use('/api/messages', messagesRoutes)
 
 
 // Listen port  
-const port = process.env.PORT || 8080
+const port = process.env.PORT 
 app.listen(port, () => {
     console.log(`server running in ${process.env.NODE_MODE} Mode on port ${port}`.bgCyan.white)
 })

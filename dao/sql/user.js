@@ -26,6 +26,7 @@ export const createUser = async (req, res) => {
 }
 
 export const getUsers = async (req, res) => {
+    console.log("userRoutes")
     try {
         connect()
         query('SELECT * FROM users', [], (resp) => {

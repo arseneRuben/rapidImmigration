@@ -14,10 +14,36 @@ export const createQuote = async (req, res) => {
     }
 }
 
+export const createMessage = async (req, res) => {
+    try {
+        connect()
+        query('INSERT INTO quotes (object,full_name, email, phone_number, content) VALUES (?,?,?,? , ?)', [ req.body.object, req.body.full_name,req.body.email, req.body.phone_number, req.body.content ], function () {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify({ message: 'Message sent', success: true }, null, 4))
+            disconnect()
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
 export const getQuotes = async (req, res) => {
     try {
         connect()
         query('SELECT * FROM quotes WHERE visited=?', [0], (resp) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))
+        })
+        disconnect()
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+export const getMessages = async (req, res) => {
+    try {
+        connect()
+        query('SELECT * FROM quotes order by created_at DESC',  (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
         })
