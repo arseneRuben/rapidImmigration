@@ -9,16 +9,16 @@ SET time_zone = "+00:00";
 
 
 CREATE TABLE `folders` (
-  `id` int(11) AUTO_INCREMENT  PRIMARY KEY,
-  `folderNumber`int(11) NOT NULL,
-  `currentStep` varchar(100) DEFAULT 'CREATED',
-  `consultantId` int(11) DEFAULT NULL,
-  `customerId` int(11) DEFAULT NULL,
-  `programId` int(11) DEFAULT NULL,
+  `id` integer  PRIMARY KEY,
+  `folderNumber` integer NOT NULL,
+  `currentStep` char(100) DEFAULT 'CREATED',
+  `consultantId` integer DEFAULT NULL,
+  `customerId` integer DEFAULT NULL,
+  `programId` integer DEFAULT NULL,
   `createdAt` datetime DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `lastVisit` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `comments` varchar(255) 
+  `comments` char(255) 
 );
 
 
